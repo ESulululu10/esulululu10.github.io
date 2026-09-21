@@ -443,3 +443,40 @@
   font-family: var(--mono); font-size: .58rem; letter-spacing: .18em; color: var(--ink-faint);
   padding-top: .7rem; border-top: 1px solid var(--rule);
 }
+
+/* ---- globe chips: bolder, and a bit more fun ---- */
+.globe-tabs { gap: .45rem; }
+.globe-tab {
+  --c: var(--accent);
+  position: relative; display: inline-flex; align-items: center; gap: .45rem;
+  font-size: .62rem; font-weight: 500; letter-spacing: .12em;
+  padding: .46rem .8rem .46rem .6rem; border-radius: 3px; overflow: hidden;
+  transition: transform .22s var(--snap), border-color .22s var(--ease),
+              color .22s var(--ease), background-color .22s var(--ease);
+}
+.globe-tab .gdot {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--c); flex: none;
+  transition: transform .25s var(--snap), box-shadow .25s var(--ease);
+}
+.globe-tab .gnum { font-weight: 400; opacity: .45; font-variant-numeric: tabular-nums; }
+.globe-tab:hover {
+  transform: translateY(-2px);
+  border-color: var(--c); color: var(--ink);
+  background: color-mix(in srgb, var(--c) 12%, transparent);
+}
+.globe-tab:hover .gdot { transform: scale(1.35); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 22%, transparent); }
+.globe-tab:active { transform: translateY(0) scale(.97); }
+.globe-tab[aria-pressed="true"] {
+  background: var(--c); border-color: var(--c); color: #17120c; transform: none;
+}
+.globe-tab[aria-pressed="true"] .gnum { opacity: .6; }
+.globe-tab[aria-pressed="true"] .gdot { background: #17120c; box-shadow: none; }
+
+/* the panel headline carries the chapter's colour */
+.globe-panel h3 { font-size: clamp(1.7rem, 3.8vw, 2.7rem); }
+.globe-panel .place { font-size: .62rem; font-weight: 500; }
+
+@media (prefers-reduced-motion: reduce) {
+  .globe-tab, .globe-tab .gdot { transition: none; }
+  .globe-tab:hover { transform: none; }
+}

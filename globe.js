@@ -45,7 +45,7 @@
   var ctx = canvas.getContext('2d');
   var W = 0, H = 0, R = 0, cx = 0, cy = 0;
   var rot = -0.6, tilt = 0.28, spin = 0.0021;
-  var drag = null, vel = 0, glide = 0, gliding = 0;
+  var drag = null, vel = 0, glide = 0, gliding = 0, pulse = 0;
   var active = nodes[nodes.length - 1], hover = null;
 
   function ink() {
@@ -121,12 +121,12 @@
     }
     ctx.restore();
 
-    ctx.lineWidth = 1.5; ctx.lineCap = 'round';
+    ctx.lineWidth = 2.1; ctx.lineCap = 'round';
     arcs.forEach(function (arc) {
       var pa = project(arc.a.lat, arc.a.lon), pb = project(arc.b.lat, arc.b.lon);
       var g = ctx.createLinearGradient(pa.x, pa.y, pb.x, pb.y);
       g.addColorStop(0, arc.a.color); g.addColorStop(1, arc.b.color);
-      ctx.strokeStyle = g; ctx.globalAlpha = 0.7;
+      ctx.strokeStyle = g; ctx.globalAlpha = 0.82;
       ctx.beginPath();
       var started = false;
       for (var k = 0; k < arc.pts.length; k++) {
@@ -144,17 +144,27 @@
       if (p.z <= 0.02) return;
       var on = (nd === active) || (nd === hover);
       labels.push({ nd: nd, x: p.x, y: p.y, on: on });
-      ctx.beginPath(); ctx.arc(p.x, p.y, on ? 5.5 : 3.4, 0, Math.PI * 2);
-      ctx.fillStyle = nd.color; ctx.globalAlpha = on ? 1 : 0.72; ctx.fill(); ctx.globalAlpha = 1;
+      // a ring that breathes on the chapter you are reading
+      if (nd === active) {
+        var grow = 13 + Math.sin(pulse) * 3.5;
+        ctx.beginPath(); ctx.arc(p.x, p.y, grow, 0, Math.PI * 2);
+        ctx.strokeStyle = nd.color; ctx.globalAlpha = 0.5 - Math.sin(pulse) * 0.16;
+        ctx.lineWidth = 1.4; ctx.stroke();
+        ctx.beginPath(); ctx.arc(p.x, p.y, grow + 7, 0, Math.PI * 2);
+        ctx.globalAlpha = 0.16; ctx.lineWidth = 1; ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+      ctx.beginPath(); ctx.arc(p.x, p.y, on ? 7 : 4.4, 0, Math.PI * 2);
+      ctx.fillStyle = nd.color; ctx.globalAlpha = on ? 1 : 0.8; ctx.fill(); ctx.globalAlpha = 1;
       if (on) {
-        ctx.beginPath(); ctx.arc(p.x, p.y, 11, 0, Math.PI * 2);
-        ctx.strokeStyle = nd.color; ctx.globalAlpha = 0.45; ctx.lineWidth = 1; ctx.stroke();
+        ctx.beginPath(); ctx.arc(p.x, p.y, on ? 7 : 4.4, 0, Math.PI * 2);
+        ctx.strokeStyle = '#fff'; ctx.globalAlpha = 0.35; ctx.lineWidth = 1.4; ctx.stroke();
         ctx.globalAlpha = 1;
       }
     });
 
     // labels last: nudged apart, flipped to stay inside the frame
-    ctx.font = '10px ui-monospace, monospace';
+    ctx.font = '600 11px ui-monospace, monospace';
     labels.sort(function (a, b) { return a.y - b.y; });
     var lastY = -999;
     labels.forEach(function (L) {
@@ -174,7 +184,7 @@
         ctx.globalAlpha = 1;
       }
       ctx.fillStyle = L.on ? L.nd.color : C;
-      ctx.globalAlpha = L.on ? 1 : 0.8;
+      ctx.globalAlpha = L.on ? 1 : 0.72;
       ctx.fillText(txt, lx, ly);
       ctx.globalAlpha = 1;
     });
@@ -209,7 +219,9 @@
       b.className = 'globe-tab';
       b.type = 'button';
       b.setAttribute('aria-pressed', 'false');
-      b.textContent = nd.short;
+      b.style.setProperty('--c', nd.color);
+      b.innerHTML = '<i class="gdot"></i><b class="gnum">' +
+                    ('0' + (nd.i + 1)).slice(-2) + '</b>' + nd.short;
       b.addEventListener('click', function () { show(nd); spinTo(nd); });
       tabsBox.appendChild(b);
     });
@@ -248,11 +260,14 @@
 
   var raf = 0, visible = true;
   function tick() {
+    pulse += 0.0;
     if (gliding) {
       var stepv = glide * gliding;
       rot += stepv; glide -= stepv;
       if (Math.abs(glide) < 0.002) { glide = 0; gliding = 0; }
+      pulse += 0.055;
     } else if (!drag) {
+      pulse += 0.055;
       if (Math.abs(vel) > 0.0004) { rot += vel; vel *= 0.94; }
       else rot += spin;
     }
