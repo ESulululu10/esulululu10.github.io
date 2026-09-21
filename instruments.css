@@ -349,3 +349,63 @@
 @media (prefers-reduced-motion: reduce) {
   .cv-index a s, .cv-item[data-peek]::after, .peek { transition: none; }
 }
+
+/* ============================================================
+   4b. BACKGROUND — rotating globe
+   The trajectory is literal: the places the work happened in.
+   Replaces the horizontal track, which needed too much scrolling.
+   ============================================================ */
+.globe-wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); gap: clamp(1.5rem, 5vw, 4rem); align-items: center; }
+@media (max-width: 900px) { .globe-wrap { grid-template-columns: 1fr; } }
+
+.globe-stage {
+  position: relative; aspect-ratio: 1; max-width: 520px; width: 100%;
+  touch-action: none; cursor: grab;
+}
+.globe-stage:active { cursor: grabbing; }
+.globe-stage canvas { width: 100%; height: 100%; display: block; }
+.globe-hint {
+  position: absolute; left: 0; bottom: 2%;
+  font-family: var(--mono); font-size: .56rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ink-faint); pointer-events: none;
+}
+
+.globe-panel { min-height: 240px; }
+.globe-panel .place {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: .5rem;
+}
+.globe-panel h3 {
+  font-family: var(--display); font-size: clamp(1.6rem, 3.6vw, 2.6rem); line-height: 1.05;
+  color: var(--ink); margin: 0 0 1.1rem;
+}
+.gstop { padding: .7rem 0; border-top: 1px dotted var(--rule); }
+.gstop .when { font-family: var(--mono); font-size: .6rem; letter-spacing: .14em; color: var(--ink-faint); display: block; }
+.gstop .what { font-family: var(--display); font-size: 1.08rem; color: var(--ink); display: block; margin: .15rem 0 .2rem; }
+.gstop .why { font-size: .85rem; color: var(--ink-soft); margin: 0; line-height: 1.5; }
+
+.globe-tabs { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.2rem; }
+.globe-tab {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase;
+  border: 1px solid var(--rule); background: none; color: var(--ink-soft);
+  padding: .32rem .65rem; border-radius: 2px; cursor: pointer;
+  transition: border-color .25s var(--ease), color .25s var(--ease), background-color .25s var(--ease);
+}
+.globe-tab:hover { border-color: var(--ink-faint); color: var(--ink); }
+.globe-tab[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+
+/* the accessible source of truth; shown when the globe cannot be */
+.globe-list { list-style: none; margin: 1.4rem 0 0; padding: 0; display: none; }
+.globe-list li { padding: .7rem 0; border-top: 1px dotted var(--rule); }
+.globe-list .when { font-family: var(--mono); font-size: .6rem; letter-spacing: .14em; color: var(--ink-faint); display: block; }
+.globe-list .what { font-family: var(--display); font-size: 1.05rem; color: var(--ink); display: block; margin: .15rem 0 .2rem; }
+.globe-list .why { font-size: .85rem; color: var(--ink-soft); margin: 0; }
+.no-js .globe-list { display: block; }
+
+@media (prefers-reduced-motion: reduce) { .globe-tab { transition: none; } }
+
+/* the panel can run longer than the globe; keep the globe in view while reading */
+@media (min-width: 901px) {
+  .globe-wrap { align-items: start; }
+  .globe-stage { position: sticky; top: 92px; }
+}
