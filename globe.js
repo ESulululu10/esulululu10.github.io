@@ -25,6 +25,13 @@
     return v || '#6f757f';
   }
 
+  var ROLE = {                       // colour encodes the journey, not decoration
+    kathmandu:   { c: '#cf2e4a', tag: 'origin'  },   // Nepal, where it starts
+    london:      { c: '#8a94a6', tag: 'transit' },
+    minneapolis: { c: '#8a94a6', tag: 'transit' },
+    flint:       { c: '#e8873a', tag: 'now'     }    // where the research happens
+  };
+
   var LABEL = {
     london: 'Where it started',
     kathmandu: 'First engineering work',
@@ -43,6 +50,8 @@
         lat: +li.getAttribute('data-lat'),
         lon: +li.getAttribute('data-lon'),
         label: LABEL[id] || li.getAttribute('data-city'),
+        color: (ROLE[id] || {}).c || '#e8873a',
+        tag: (ROLE[id] || {}).tag || '',
         stops: []
       };
       order.push(places[id]);
@@ -57,7 +66,7 @@
 
   var ctx = canvas.getContext('2d');
   var W = 0, H = 0, R = 0, cx = 0, cy = 0;
-  var rot = -1.0, tilt = -0.32, spin = 0.0022;
+  var rot = -1.0, tilt = 0.62, spin = 0.0022;   // ~35N, centres Kathmandu through Flint
   var drag = null, vel = 0, glide = 0, gliding = 0;
   var active = null, hover = null;
 
@@ -109,7 +118,9 @@
     return out;
   }
   var arcs = [];
-  for (var s0 = 0; s0 < order.length - 1; s0++) arcs.push(arcPoints(order[s0], order[s0 + 1], 48));
+  for (var s0 = 0; s0 < order.length - 1; s0++) {
+    arcs.push({ pts: arcPoints(order[s0], order[s0 + 1], 48), a: order[s0], b: order[s0 + 1] });
+  }
 
   function draw() {
     if (!W) return;
@@ -130,43 +141,86 @@
     }
     ctx.restore();
 
-    ctx.lineWidth = 1.4; ctx.strokeStyle = 'rgba(232,135,58,.6)';
-    arcs.forEach(function (pts) {
+    ctx.lineWidth = 1.5; ctx.lineCap = 'round';
+    arcs.forEach(function (arc) {
+      var pa = project(arc.a.lat, arc.a.lon), pb = project(arc.b.lat, arc.b.lon);
+      var g = ctx.createLinearGradient(pa.x, pa.y, pb.x, pb.y);
+      g.addColorStop(0, arc.a.color); g.addColorStop(1, arc.b.color);
+      ctx.strokeStyle = g;
+      ctx.globalAlpha = 0.75;
       ctx.beginPath();
       var started = false;
-      for (var k = 0; k < pts.length; k++) {
-        var q = project(pts[k].lat, pts[k].lon);
+      for (var k = 0; k < arc.pts.length; k++) {
+        var q = project(arc.pts[k].lat, arc.pts[k].lon);
         if (q.z <= 0) { started = false; continue; }
         if (!started) { ctx.moveTo(q.x, q.y); started = true; } else ctx.lineTo(q.x, q.y);
       }
       ctx.stroke();
+      ctx.globalAlpha = 1;
     });
 
+    var labels = [];
     order.forEach(function (pl) {
       var p = project(pl.lat, pl.lon);
       pl.sx = p.x; pl.sy = p.y; pl.sz = p.z;
       if (p.z <= 0.02) return;
       var on = (pl === active) || (pl === hover);
+      labels.push({ pl: pl, x: p.x, y: p.y, on: on });
       ctx.beginPath(); ctx.arc(p.x, p.y, on ? 5 : 3.2, 0, Math.PI * 2);
-      ctx.fillStyle = on ? ACCENT : 'rgba(232,135,58,.62)'; ctx.fill();
+      ctx.fillStyle = pl.color; ctx.globalAlpha = on ? 1 : 0.7; ctx.fill(); ctx.globalAlpha = 1;
       if (on) {
         ctx.beginPath(); ctx.arc(p.x, p.y, 10, 0, Math.PI * 2);
-        ctx.strokeStyle = 'rgba(232,135,58,.45)'; ctx.lineWidth = 1; ctx.stroke();
+        ctx.strokeStyle = pl.color; ctx.globalAlpha = .45; ctx.lineWidth = 1; ctx.stroke();
+        ctx.globalAlpha = 1;
       }
-      ctx.fillStyle = on ? ACCENT : C;
-      ctx.font = '10px ui-monospace, monospace';
-      ctx.fillText(pl.city.toUpperCase(), p.x + 13, p.y + 3.5);
+    });
+
+    // labels last, nudged apart so nearby cities stay readable
+    ctx.font = '10px ui-monospace, monospace';
+    labels.sort(function (a, b) { return a.y - b.y; });
+    var lastY = -999;
+    labels.forEach(function (L) {
+      var ly = L.y + 3.5;
+      if (ly - lastY < 13) ly = lastY + 13;
+      lastY = ly;
+      if (ly !== L.y + 3.5) {
+        ctx.strokeStyle = L.on ? L.pl.color : C;
+        ctx.globalAlpha = .45; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(L.x + 7, L.y); ctx.lineTo(L.x + 11, ly - 3.5); ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+      ctx.fillStyle = L.on ? L.pl.color : C;
+      var txt = L.pl.city.toUpperCase() + (L.pl.tag === 'origin' ? '  · ORIGIN' : '');
+      var tw = ctx.measureText(txt).width;
+      // flip the label to the other side rather than let it run off the canvas
+      ctx.fillText(txt, (L.x + 13 + tw > W - 4) ? L.x - 13 - tw : L.x + 13, ly);
     });
   }
 
   function show(pl) {
     active = pl;
-    var stops = pl.stops.map(function (st) {
-      return '<div class="gstop"><span class="when">' + st.when + '</span>' +
-             '<span class="what">' + st.what + '</span>' +
-             (st.why ? '<p class="why">' + st.why + '</p>' : '') + '</div>';
+    var stops = pl.stops.map(function (st, i) {
+      return '<div class="gtopic' + (i === 0 ? ' open' : '') + '">' +
+               '<button class="gtopic-head" type="button" aria-expanded="' + (i === 0) + '">' +
+                 '<span class="when">' + st.when + '</span>' +
+                 '<span class="what">' + st.what + '</span>' +
+                 '<span class="gtopic-mark" aria-hidden="true"></span>' +
+               '</button>' +
+               '<div class="gtopic-body"><div>' +
+                 (st.why ? '<p>' + st.why + '</p>' : '<p></p>') +
+               '</div></div>' +
+             '</div>';
     }).join('');
-    panel.innerHTML = '<div class="place">' + pl.city + '</div><h3>' + pl.label + '</h3>' + stops;
+    panel.innerHTML = '<div class="place' + (pl.tag === 'origin' ? ' origin' : '') + '">' +
+                      pl.city + (pl.tag === 'origin' ? ' &middot; origin' : '') + '</div>' +
+                      '<h3>' + pl.label + '</h3>' + stops;
+    Array.prototype.forEach.call(panel.querySelectorAll('.gtopic-head'), function (btn) {
+      btn.addEventListener('click', function () {
+        var t = btn.parentNode;
+        var open = t.classList.toggle('open');
+        btn.setAttribute('aria-expanded', String(open));
+      });
+    });
     if (tabsBox) {
       Array.prototype.forEach.call(tabsBox.children, function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute('data-place') === pl.id));
