@@ -436,3 +436,10 @@
 @media (max-width: 520px) { .gtopic-body p { padding-left: 0; } }
 .globe-panel .place.origin { color: #cf2e4a; }
 @media (prefers-reduced-motion: reduce) { .gtopic-body, .gtopic-mark, .gtopic-head .what { transition: none; } }
+
+/* globe panel: one chapter at a time */
+.globe-panel .gwhy { font-size: .92rem; color: var(--ink-soft); line-height: 1.6; margin: 0 0 1rem; }
+.globe-panel .gcount {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .18em; color: var(--ink-faint);
+  padding-top: .7rem; border-top: 1px solid var(--rule);
+}
