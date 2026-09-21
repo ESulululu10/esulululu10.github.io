@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ExpressBot &mdash; Gaurab Khadka</title>
+<meta name="description" content="ExpressBot: a three-robot fleet with seven motion primitives, studied with 11 non-experts to ask whether people can read a robot's state from its motion alone. Formative study behind his current thesis work.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#research">Research</a>
+      <a href="index.html#publications" class="hide-xs">Publications</a>
+      <a href="index.html#experience" class="hide-sm">Experience</a>
+      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="Gaurab_Khadka_CV.pdf">CV</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <div class="page-head">
+    <a class="back" href="index.html#research">All research</a>
+    <h1>ExpressBot</h1>
+    <p class="sub">
+      A low-cost robot fleet that communicates what it is doing through motion alone &mdash; and the study that
+      showed both that this works and where it stops working.
+    </p>
+
+    <div class="facts">
+      <div>
+        <div class="k">Status</div>
+        <div class="v">Formative study, unpublished</div>
+      </div>
+      <div>
+        <div class="k">Role</div>
+        <div class="v">Built the fleet and the motion vocabulary; ran the study</div>
+      </div>
+      <div>
+        <div class="k">Where</div>
+        <div class="v">PLAYLab, University of Michigan&ndash;Flint</div>
+      </div>
+      <div>
+        <div class="k">Evaluation</div>
+        <div class="v">User study, N&nbsp;=&nbsp;11 &middot; SUS &asymp; 70</div>
+      </div>
+    </div>
+  </div>
+
+  <article class="body">
+
+    <h2>The question</h2>
+    <p>
+      A robot working near people has an internal state &mdash; it is searching, it is delivering something, it is in a
+      hurry &mdash; and most ways of communicating that state need a screen, a speaker or a manual. ExpressBot asks
+      whether motion on its own is enough: <strong>can a person with no robotics background tell what a robot is doing
+      just by watching how it moves?</strong>
+    </p>
+
+    <h2>The system</h2>
+    <p>
+      A fleet of three robots, built for about <strong>$30 each</strong>, navigating by camera-based ArUco marker
+      tracking. I designed <strong>seven motion primitives</strong> &mdash; <em>Searching</em>, <em>Delivering</em>,
+      <em>Waking</em>, <em>Urgent</em>, <em>Returning</em>, <em>Error</em> and <em>Idle</em> &mdash; each one a movement
+      pattern meant to be read at a glance rather than decoded.
+    </p>
+
+    <figure class="diagram">
+      <div class="frame plate">
+        <img src="media/expressbot-figure.png" width="1600" height="344" loading="lazy"
+             alt="Left: the seven motion primitives drawn as colored path diagrams, labeled Searching, Delivering, Waking, Urgent, Returning, Error and Idle. Right: three photographs of the ExpressBot robots, each a blue printed chassis carrying a circuit board, servos and an ArUco marker on top.">
+      </div>
+      <figcaption>
+        <strong>(a)</strong> The seven motion primitives. <strong>(b)</strong> The robots: a printed chassis, an
+        ArUco marker for overhead tracking, and about $30 of parts each. <em>Searching</em> and <em>Urgent</em> are
+        both agitated, back-and-forth motions &mdash; which turned out to matter.
+      </figcaption>
+    </figure>
+
+    <h2>What the study found</h2>
+    <p>
+      Eleven participants watched the fleet and reported what they thought each robot was doing. Two results came out
+      of it, and the second one is the reason there is a second project.
+    </p>
+    <ul>
+      <li>
+        <strong>Motion alone carried the state.</strong> Non-experts could read what a robot was doing from how it
+        moved, without a screen, a label or an explanation, and rated the system usable (SUS&nbsp;&asymp;&nbsp;70).
+      </li>
+      <li>
+        <strong>Two primitives collided.</strong> <em>Urgent</em> and <em>Searching</em> were regularly confused with
+        each other &mdash; both are fast and repetitive, and the distinction I had designed into them was not the
+        distinction people perceived.
+      </li>
+      <li>
+        <strong>The behaviors did not travel.</strong> Every primitive was tuned by hand for one scenario. Moving to a
+        different task meant re-engineering the vocabulary, which no end user could do.
+      </li>
+    </ul>
+
+    <div class="callout">
+      <p>
+        <strong>Why this matters for the next project.</strong> If a designer hand-authoring behaviors can still pick
+        two that people confuse, the fix is not a better-designed vocabulary &mdash; it is letting the people who know
+        the task author the motions themselves, and making those motions reusable when the scenario changes. That is
+        <a href="thesis.html">my current thesis work</a>.
+      </p>
+    </div>
+
+    <h2>Status</h2>
+    <p>
+      Formative work. It has not been submitted for publication; it exists as the study that set up the thesis project,
+      and I describe it here because the failures in it are what the current system is designed around.
+    </p>
+
+    <p style="margin-top:2rem">
+      <a class="more" href="thesis.html">Next: my current thesis work</a>
+    </p>
+  </article>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Gaurab Khadka</span>
+    <span><a href="index.html">Home</a> &middot; <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var root = document.documentElement;
+      var isDark = root.getAttribute('data-theme') === 'dark' ||
+        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

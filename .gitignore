@@ -1,0 +1,5 @@
+# Local Claude Code / editor config, not part of the site
+.claude/
+
+# Previous version of the site, kept locally only
+_old-broken-file/

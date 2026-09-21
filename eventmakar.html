@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EventMakAR &mdash; Gaurab Khadka</title>
+<meta name="description" content="EventMakAR: a browser-based authoring tool that lets people with no programming background build AR stories driven by five physical robot characters. Deployed at the Super Friday workshop at UM-Flint.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#research">Research</a>
+      <a href="index.html#publications" class="hide-xs">Publications</a>
+      <a href="index.html#experience" class="hide-sm">Experience</a>
+      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="Gaurab_Khadka_CV.pdf">CV</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <div class="page-head">
+    <a class="back" href="index.html#research">All research</a>
+    <h1>EventMakAR</h1>
+    <p class="sub">
+      A browser-based authoring tool for AR stories performed by physical robots &mdash; built so that a student with
+      no programming background can write one, and run it, in a single workshop session.
+    </p>
+
+    <div class="facts">
+      <div>
+        <div class="k">Status</div>
+        <div class="v">Deployed at a public workshop; no formal study</div>
+      </div>
+      <div>
+        <div class="k">Role</div>
+        <div class="v">Designed and built the authoring tool; ran it live with participants</div>
+      </div>
+      <div>
+        <div class="k">Where</div>
+        <div class="v">PLAYLab, University of Michigan&ndash;Flint</div>
+      </div>
+      <div>
+        <div class="k">Code</div>
+        <div class="v"><a href="https://github.com/ESulululu10/EventMakAR" rel="noopener">github.com/ESulululu10/EventMakAR</a></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="body">
+
+    <h2>The problem</h2>
+    <p>
+      An AR experience driven by real robots normally has a programmer somewhere in the loop: someone has to describe,
+      in code or in a config file, which character does what and when. That puts the interesting authoring decisions
+      &mdash; the story ones &mdash; in the hands of whoever can edit the project, not whoever has the idea.
+    </p>
+    <p>
+      EventMakAR removes that step. The author works in a browser, arranges what each of five robot characters does,
+      and the tool emits the file the runtime already knows how to read.
+    </p>
+
+    <figure class="diagram">
+      <div class="frame">
+        <svg viewBox="0 0 620 170" role="img" aria-label="Flow: a browser authoring tool exports an events file, the Unity AR runtime parses it, and five robot characters perform the story.">
+          <rect class="dg-box-accent" x="14" y="46" width="150" height="72" rx="8" stroke-width="1.5"/>
+          <text class="dg-text" x="32" y="76" font-size="14" font-weight="600">Browser tool</text>
+          <text class="dg-sub" x="32" y="95" font-size="11.5">author picks actions</text>
+          <text class="dg-sub" x="32" y="110" font-size="11.5">per character, in order</text>
+
+          <path class="dg-line" d="M164 82 H 196" stroke-width="1.5"/>
+          <path class="dg-arrow" d="M196 78 l 9 4 -9 4 z"/>
+
+          <rect class="dg-box" x="210" y="46" width="140" height="72" rx="8" stroke-width="1.5"/>
+          <text class="dg-text" x="228" y="76" font-size="14" font-weight="600">Events file</text>
+          <text class="dg-sub" x="228" y="95" font-size="11.5">structured JSON in the</text>
+          <text class="dg-sub" x="228" y="110" font-size="11.5">format the parser expects</text>
+
+          <path class="dg-line" d="M350 82 H 382" stroke-width="1.5"/>
+          <path class="dg-arrow" d="M382 78 l 9 4 -9 4 z"/>
+
+          <rect class="dg-box" x="396" y="46" width="130" height="72" rx="8" stroke-width="1.5"/>
+          <text class="dg-text" x="414" y="76" font-size="14" font-weight="600">Unity AR</text>
+          <text class="dg-sub" x="414" y="95" font-size="11.5">runtime parses and</text>
+          <text class="dg-sub" x="414" y="110" font-size="11.5">drives the devices</text>
+
+          <path class="dg-line" d="M526 82 H 552" stroke-width="1.5"/>
+          <path class="dg-arrow" d="M552 78 l 9 4 -9 4 z"/>
+
+          <g class="dg-box" stroke-width="1.4">
+            <rect x="572" y="40" width="34" height="16" rx="3"/>
+            <rect x="572" y="62" width="34" height="16" rx="3"/>
+            <rect x="572" y="84" width="34" height="16" rx="3"/>
+            <rect x="572" y="106" width="34" height="16" rx="3"/>
+          </g>
+          <text class="dg-sub" x="589" y="140" font-size="11.5" text-anchor="middle">robots</text>
+        </svg>
+      </div>
+      <figcaption>
+        The author never sees the file format. The tool writes the exact structure the existing Unity parser expects,
+        including the action list that belongs to each individual device.
+      </figcaption>
+    </figure>
+
+    <h2>How it works</h2>
+    <ul>
+      <li>
+        A standalone single-file HTML/React application &mdash; no install, no build step, no server. It runs from a
+        file on a laptop in a workshop room, which is the environment it had to survive.
+      </li>
+      <li>
+        Five robot characters, each with its own device-specific action list, so the author picks from what that
+        character can actually do rather than from a generic menu.
+      </li>
+      <li>
+        The export is an events file in the precise JSON structure the Unity runtime&rsquo;s existing parser reads, so
+        authored stories run on the deployed AR system without anyone touching the Unity project.
+      </li>
+    </ul>
+
+    <h2>Deployment</h2>
+    <p>
+      EventMakAR was used live at the <strong>Super Friday workshop</strong> at UM&ndash;Flint, where student
+      participants authored their own AR stories and ran them with physical robots. That was the first time this
+      authoring model met users outside the lab, and it is the reason the current thesis work assumes authoring has to
+      survive a novice, a time limit and a room full of people.
+    </p>
+
+    <div class="callout">
+      <p>
+        <strong>What this is and is not.</strong> This was a deployment, not a study: I did not collect measures from
+        the workshop. Its value here is as evidence that the authoring model works in the wild and that I can ship a
+        system other people use &mdash; the evaluated version of this question is
+        <a href="thesis.html">my current thesis work</a>.
+      </p>
+    </div>
+
+    <p style="margin-top:2rem">
+      <a class="more" href="thesis.html">See the evaluated authoring system</a>
+    </p>
+  </article>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Gaurab Khadka</span>
+    <span><a href="index.html">Home</a> &middot; <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var root = document.documentElement;
+      var isDark = root.getAttribute('data-theme') === 'dark' ||
+        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Current thesis work &mdash; Gaurab Khadka</title>
+<meta name="description" content="Gaurab Khadka's M.S. thesis work on end-user authoring for human-multi-robot interaction: people author the motions, a model composes them for new scenarios, and nobody moves a robot until the person approves the plan.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#research">Research</a>
+      <a href="index.html#publications" class="hide-xs">Publications</a>
+      <a href="index.html#experience" class="hide-sm">Experience</a>
+      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="Gaurab_Khadka_CV.pdf">CV</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <div class="page-head">
+    <a class="back" href="index.html#research">All research</a>
+    <h1>Authoring motion for robot teams</h1>
+    <p class="sub">
+      My M.S. thesis work: people without robotics expertise author the motions themselves, a model composes those
+      motions for a new scenario, and nobody moves a robot until the person has approved the plan.
+    </p>
+
+    <div class="facts">
+      <div>
+        <div class="k">Status</div>
+        <div class="v">Full paper under review, HRI&nbsp;2027</div>
+      </div>
+      <div>
+        <div class="k">Role</div>
+        <div class="v">System design, implementation, study design and analysis</div>
+      </div>
+      <div>
+        <div class="k">Where</div>
+        <div class="v">PLAYLab, University of Michigan&ndash;Flint &middot; advised by Dr.&nbsp;Ananya Ipsita</div>
+      </div>
+      <div>
+        <div class="k">Evaluation</div>
+        <div class="v">Controlled within-subjects user study</div>
+      </div>
+    </div>
+  </div>
+
+  <article class="body">
+
+    <div class="callout">
+      <p>
+        This page describes the work in general terms while the paper is under review. The system name, the
+        architecture and results figures, and video of the fleet are held back until the review process allows them
+        to be posted. My CV carries the full detail, and I am glad to send figures and a demo to faculty who ask
+        &mdash; <a href="mailto:gaurabk@umich.edu">email me</a>.
+      </p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>
+      Expressive robot motion works: a robot that moves the right way can tell a bystander what it is doing without a
+      screen or a voice. But in the systems I had built and read about, those behaviors were hand-engineered for one
+      scenario. Change the task &mdash; a different room, a different set of robots, a different job &mdash; and a
+      researcher has to go back and author the motion again. That is a bottleneck no end user can get past, and it is
+      exactly what my earlier system, <a href="expressbot.html">ExpressBot</a>, ran into: the behaviors were legible,
+      and they were stuck.
+    </p>
+    <p>
+      My thesis starts from the opposite end. <strong>The person authors the motions</strong>, in a way that needs no
+      robotics background, and the system&rsquo;s job is to reuse what they authored when the scenario changes.
+    </p>
+
+    <h2>The stance</h2>
+    <p>
+      A language model is good at reading &ldquo;three robots search a room; one signals urgently when it finds
+      something&rdquo; and proposing who should do what. It is not something I want quietly driving hardware in a room
+      with people in it. So the work is built around a division of labor:
+    </p>
+
+    <figure class="diagram">
+      <div class="frame">
+        <svg viewBox="0 0 620 150" role="img" aria-label="Three stages: the person authors the motion vocabulary, the model composes a plan from it, and the person approves the plan before any robot moves.">
+          <rect class="dg-box-accent" x="10" y="26" width="178" height="74" rx="8" stroke-width="1.5"/>
+          <text class="dg-text" x="30" y="56" font-size="14.5" font-weight="600">The person authors</text>
+          <text class="dg-sub" x="30" y="76" font-size="12">the motion vocabulary</text>
+          <text class="dg-sub" x="30" y="120" font-size="11">human</text>
+
+          <path class="dg-line" d="M192 63 H 214" stroke-width="1.5"/>
+          <path class="dg-arrow" d="M214 59 l 9 4 -9 4 z"/>
+
+          <rect class="dg-box" x="228" y="26" width="164" height="74" rx="8" stroke-width="1.5"/>
+          <text class="dg-text" x="248" y="56" font-size="14.5" font-weight="600">The model</text>
+          <text class="dg-sub" x="248" y="76" font-size="12">composes a plan</text>
+          <text class="dg-sub" x="248" y="120" font-size="11">machine</text>
+
+          <path class="dg-line" d="M396 63 H 418" stroke-width="1.5"/>
+          <path class="dg-arrow" d="M418 59 l 9 4 -9 4 z"/>
+
+          <rect class="dg-box-accent" x="432" y="26" width="178" height="74" rx="8" stroke-width="1.5"/>
+          <text class="dg-text" x="452" y="56" font-size="14.5" font-weight="600">The person approves</text>
+          <text class="dg-sub" x="452" y="76" font-size="12">before anything moves</text>
+          <text class="dg-sub" x="452" y="120" font-size="11">human</text>
+        </svg>
+      </div>
+      <figcaption>
+        The division of labor the work is built on. The model never gets the last word: the vocabulary it draws from
+        is the user&rsquo;s, and the plan it proposes is reviewed and editable before execution.
+      </figcaption>
+    </figure>
+
+    <p>
+      That last stage is not a safety afterthought bolted on at the end &mdash; it is the part I am actually studying.
+      What can a person tell about a plan a model proposed? What do they change, and what do they let through? Those
+      questions are what make this an HRI problem rather than a robotics one.
+    </p>
+
+    <h2>What I built</h2>
+    <ul>
+      <li>
+        <strong>Two ways to author a motion</strong>, neither of which assumes a robotics background: one where the
+        person sketches the path they want, and one where they demonstrate the motion physically. Those are the two
+        conditions in the study &mdash; the same authoring task, done through a screen or through the body.
+      </li>
+      <li>
+        <strong>A planning stage</strong> that turns a scenario written in plain English into per-robot assignments
+        drawn from the user&rsquo;s own motions, and that refuses and regenerates output which does not hold up
+        structurally, rather than passing it to the robots.
+      </li>
+      <li>
+        <strong>The robot fleet and its tracking</strong> &mdash; a multi-robot platform with a central control server
+        and motion-capture-grade localization. That stack is itself a finding: the first localization approach I built
+        on was not accurate enough to tell whether a robot had actually performed the motion the user authored, so I
+        replaced it.
+      </li>
+    </ul>
+
+    <h2>The study</h2>
+    <p>
+      I designed and ran a counterbalanced, within-subjects study comparing the two authoring methods, combining
+      think-aloud protocol during authoring with standard workload and usability instruments afterwards and
+      semi-structured interviews at the end &mdash; so that what people said while authoring can be read against what
+      they reported once they were done. Participant counts, measures and results are in my CV and in the paper.
+    </p>
+
+    <div class="callout">
+      <p><strong>My role: I built this end to end.</strong> I identified the reuse limitation in prior work and
+      designed the system around it, then built all of it &mdash; the robots and their electronics, the localization
+      and the control server that drives them, both authoring interfaces, and the planning and validation layer
+      behind them. The interface work was as much of the problem as the hardware: it has to be usable by someone
+      who has never programmed a robot, in one sitting, under observation. I then designed, ran and analyzed the
+      user study. Advised by Dr.&nbsp;Ananya Ipsita in PLAYLab.</p>
+    </div>
+
+    <p style="margin-top:2rem">
+      <a class="more" href="expressbot.html">Read about ExpressBot, the study this came out of</a>
+    </p>
+  </article>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Gaurab Khadka</span>
+    <span><a href="index.html">Home</a> &middot; <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var root = document.documentElement;
+      var isDark = root.getAttribute('data-theme') === 'dark' ||
+        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+</body>
+</html>
