@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Technical background &middot; Gaurab Khadka</title>
+<meta name="description" content="Engineering, machine learning and security work behind Gaurab Khadka's research: a forensic deepfake detection pipeline, explainable web filtering, a CNC machine built from scratch, and earlier industry roles.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="system.css?v=3">
+<link rel="stylesheet" href="art-direction.css?v=3">
+<link rel="stylesheet" href="instruments.css?v=3">
+<link rel="stylesheet" href="nav.css?v=3">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="work.html">Work</a>
+      <a href="index.html#publications" class="hide-xs">Publications</a>
+      <a href="index.html#experience" class="hide-sm">Experience</a>
+      <a href="engineering.html" aria-current="page" class="hide-sm">Technical</a>
+      <a href="cv.html">CV</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+
+  <div class="page-head">
+    <a class="back" href="index.html">Home</a>
+    <h1>Technical background</h1>
+    <p class="sub">
+      The work that is not part of my research line, kept here rather than on the front page: machine learning,
+      embedded hardware, security, and the industry roles I held before graduate school. It is the background that
+      makes the robot fleets in my research possible.
+    </p>
+  </div>
+
+  <article class="body" style="max-width:none">
+
+  </article>
+</div>
+</main>
+
+<section class="bp-wrap" data-blueprint aria-label="System schematic">
+  <div class="wrap">
+    <p class="annot" style="margin-bottom:1.6rem">The stack I build with: hover or tap a component</p>
+    <div class="bp-grid">
+
+      <div class="bp">
+        <svg class="bp-wires" aria-hidden="true" preserveAspectRatio="none"></svg>
+        <div class="bnode core" style="left:50%;top:50%">A robot study,<br>end to end</div>
+          <button class="bnode" type="button" data-part="interface" style="left:16%;top:18%">INTERFACE</button>
+          <button class="bnode" type="button" data-part="llm" style="left:50%;top:9%">LLM</button>
+          <button class="bnode" type="button" data-part="ar" style="left:84%;top:18%">AR</button>
+          <button class="bnode" type="button" data-part="control" style="left:12%;top:50%">CONTROL</button>
+          <button class="bnode" type="button" data-part="tracking" style="left:88%;top:50%">TRACKING</button>
+          <button class="bnode" type="button" data-part="esp32" style="left:18%;top:84%">ESP32</button>
+          <button class="bnode" type="button" data-part="data" style="left:50%;top:92%">DATA</button>
+          <button class="bnode" type="button" data-part="analysis" style="left:84%;top:84%">ANALYSIS</button>
+      </div>
+
+      <div>
+        <div class="bp-list">
+        <button class="bnode" type="button" data-part="interface">INTERFACE</button>
+        <button class="bnode" type="button" data-part="llm">LLM</button>
+        <button class="bnode" type="button" data-part="ar">AR</button>
+        <button class="bnode" type="button" data-part="control">CONTROL</button>
+        <button class="bnode" type="button" data-part="tracking">TRACKING</button>
+        <button class="bnode" type="button" data-part="esp32">ESP32</button>
+        <button class="bnode" type="button" data-part="data">DATA</button>
+        <button class="bnode" type="button" data-part="analysis">ANALYSIS</button>
+        </div>
+        <div class="bp-panel"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bp-data" hidden>
+      <div data-for="interface">
+        <div class="k">Component</div>
+        <h3>Authoring interface</h3>
+        <p>The surface a non expert actually touches: a canvas to draw a motion on, a library of what they have authored, and a plan they can read and edit before anything runs. Usable in one sitting, by someone who has never programmed a robot, while being observed.</p>
+        <div class="stack"><span>HTML / CSS / JS</span><span>React</span><span>Canvas 2D</span><span>SVG</span></div>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#eventmakar">EventMakAR</a></p>
+      </div>
+      <div data-for="llm">
+        <div class="k">Component</div>
+        <h3>Scenario engine</h3>
+        <p>Turns a scenario written in plain English into assignments drawn from the user's own motion library. Output that does not hold up structurally is refused and regenerated rather than passed downstream, and the result is always shown to a person before it reaches hardware.</p>
+        <div class="stack"><span>Claude API</span><span>Gemini API</span><span>Structured output validation</span><span>Schema repair</span></div>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#video">nursing video</a></p>
+      </div>
+      <div data-for="ar">
+        <div class="k">Component</div>
+        <h3>Augmented reality layer</h3>
+        <p>Spatial overlays registered to the room, driven by the same event file a non programmer authored in the browser. The runtime parses the file and drives the physical characters, so authored stories run without anyone opening the Unity project.</p>
+        <div class="stack"><span>Unity</span><span>AR Foundation</span><span>ARCore</span><span>C#</span></div>
+        <p class="used">Used in <a href="work.html#eventmakar">EventMakAR</a></p>
+      </div>
+      <div data-for="control">
+        <div class="k">Component</div>
+        <h3>Control server</h3>
+        <p>The centre of the fleet: takes an approved plan, splits it per robot, dispatches commands and watches what comes back. Also where an emergency stop lives, which matters when the robots are on the floor of a room with participants in it.</p>
+        <div class="stack"><span>Python</span><span>WebSockets</span><span>REST</span><span>Serial</span></div>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
+      </div>
+      <div data-for="tracking">
+        <div class="k">Component</div>
+        <h3>Localization</h3>
+        <p>Knowing where each robot actually is, not where it was told to be. Without accurate position you cannot tell whether a robot performed the motion a person authored, which makes the whole study unanswerable. My first localization approach was not accurate enough and I replaced it.</p>
+        <div class="stack"><span>HTC Vive Tracker</span><span>SteamVR</span><span>ArUco markers</span><span>OpenCV</span></div>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
+      </div>
+      <div data-for="esp32">
+        <div class="k">Component</div>
+        <h3>Robot controllers</h3>
+        <p>The robots themselves. Microcontroller firmware driving motors and servos over wifi, on a chassis built for roughly thirty dollars a unit so a study can use a fleet rather than one robot.</p>
+        <div class="stack"><span>ESP32 / NodeMCU</span><span>C++ (Arduino)</span><span>PWM motor control</span><span>3D printed chassis</span></div>
+        <p class="used">Used in <a href="work.html#motion-study">the motion study</a> &middot; <a href="work.html#thesis">thesis work</a></p>
+      </div>
+      <div data-for="data">
+        <div class="k">Component</div>
+        <h3>Study instrumentation</h3>
+        <p>What a session leaves behind: authoring logs, execution traces, questionnaire responses and interview recordings, captured so that what someone said while authoring can be read against what they reported once they were done.</p>
+        <div class="stack"><span>Think aloud protocol</span><span>SUS</span><span>NASA-TLX</span><span>Semi structured interviews</span></div>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
+      </div>
+      <div data-for="analysis">
+        <div class="k">Component</div>
+        <h3>Analysis</h3>
+        <p>Turning sessions into findings: counterbalanced within subjects comparison, descriptive and inferential statistics, and qualitative coding of what participants said, plus the figures that report it.</p>
+        <div class="stack"><span>Python</span><span>pandas</span><span>matplotlib</span><span>Qualitative coding</span></div>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
+      </div>
+  </div>
+</section>
+<main><div class="wrap"><article class="body" style="max-width:none">
+    <h2>Technical skills</h2>
+    <div class="kw" style="margin-bottom:1.6rem">
+      <span>Python</span><span>JavaScript / React</span><span>C#</span><span>C++ (Arduino)</span><span>Java</span><span>Git</span>
+      <span>ESP32 / NodeMCU fleets</span><span>HTC Vive Tracker (SteamVR)</span><span>ArUco localization</span>
+      <span>Unity AR Foundation</span><span>ARCore</span>
+      <span>LLM pipelines (Claude, Gemini)</span><span>Structured output validation</span>
+      <span>Statistical analysis</span><span>Qualitative coding</span><span>SUS / NASA-TLX</span>
+    </div>
+
+    <h2>Selected engineering projects</h2>
+    <div class="cards">
+
+      <div class="card">
+        <h3>Deepfake detection pipeline</h3>
+        <p>
+          A nine module forensic pipeline in Python, evaluated on ProGAN, BigGAN and CycleGAN datasets. Feature
+          selection at k&nbsp;=&nbsp;20 was optimal for AdaBoost, reaching <strong>87.20% mean AUC</strong>. Delivered
+          with a written forensic report.
+        </p>
+        <p class="foot"><a href="https://github.com/ESulululu10/DeepfakeDetectionPipeline" rel="noopener">Code on GitHub</a></p>
+      </div>
+
+      <div class="card">
+        <h3>Web Shield-AI</h3>
+        <p>
+          Explainable machine learning for web content filtering, with a human in the loop feedback mechanism so that
+          filtering decisions can be inspected and corrected rather than just accepted.
+        </p>
+        <p class="foot"><a href="https://github.com/ESulululu10/Webshield-AI" rel="noopener">Code on GitHub</a></p>
+      </div>
+
+      <div class="card">
+        <h3>CNC wood carving machine</h3>
+        <p>
+          Bachelor&rsquo;s final year project: a working three axis CNC machine built from scratch: mechanical
+          assembly, motor control and G code path planning. My first experience of debugging a system where the bug
+          can be mechanical.
+        </p>
+        <p class="foot">London Metropolitan University &middot; 2022&ndash;2023</p>
+      </div>
+
+      <div class="card">
+        <h3>Network intrusion detection</h3>
+        <p>
+          A deep learning intrusion detection system for classifying network attacks, built as a graduate course project.
+        </p>
+        <p class="foot"><a href="https://github.com/ESulululu10/Network-Intrusion-Detection-System-NIDS-Using-Deep-Learning" rel="noopener">Code on GitHub</a></p>
+      </div>
+
+    </div>
+
+    <h2 style="margin-top:2.4rem">Earlier experience</h2>
+    <div class="rows" style="max-width:66ch">
+      <div class="row">
+        <div class="row-head">
+          <h3>UX Analyst Intern</h3>
+          <span class="when">May &ndash; Jul 2025</span>
+        </div>
+        <p class="where">BizGees Ltd. &middot; United Kingdom (remote)</p>
+        <p>Accessibility testing, and working with developers to resolve the usability issues it surfaced.</p>
+      </div>
+      <div class="row">
+        <div class="row-head">
+          <h3>QA &amp; IT Support</h3>
+          <span class="when">Sep 2022 &ndash; Jan 2024</span>
+        </div>
+        <p class="where">Danfe Solution Pvt. Ltd. &middot; Kathmandu, Nepal</p>
+        <p>Resolved technical and security issues; supported firewall, VPN and vulnerability reporting.</p>
+      </div>
+    </div>
+
+    <h2 style="margin-top:2.4rem">Course projects and writeups</h2>
+    <p style="max-width:66ch">
+      Graduate and undergraduate course projects, kept for completeness rather than as research output.
+    </p>
+    <ul class="compact">
+      <li><strong>EternalBlue (MS17-010) Windows 7 CTF</strong>: exploitation and post exploitation writeup in a lab environment (UM Flint CYB 501). <a href="https://github.com/ESulululu10/EternalBlue-win7-CTF" rel="noopener">GitHub</a></li>
+      <li><strong>Covert channel data hiding</strong>: TCP/IP covert channels in a Linux network simulation. <a href="https://github.com/ESulululu10/covert-channel-data-hiding" rel="noopener">GitHub</a></li>
+      <li><strong>Cryptography &amp; ciphers</strong>: symmetric and asymmetric encryption, cipher design and testing. <a href="https://github.com/ESulululu10/cryptography-ciphers-research" rel="noopener">GitHub</a></li>
+      <li><strong>SQL injection demonstration</strong>: SQLMap against a deliberately vulnerable target. <a href="https://github.com/ESulululu10/Sql-injection-demo-report" rel="noopener">GitHub</a></li>
+      <li><strong>Data breach analysis</strong>: ethical, legal and social analysis of a real Elasticsearch exposure. <a href="https://github.com/ESulululu10/online-casino-data-leak-report" rel="noopener">GitHub</a></li>
+      <li><strong>Cultural heritage safety, Nepal</strong>: a database system for heritage preservation and community safety monitoring. <a href="https://github.com/ESulululu10/cultural-heritage-safety-nepal" rel="noopener">GitHub</a></li>
+      <li><strong>Java and Python systems</strong>: course projects: a Swing course management GUI, a library management system, an inventory CLI. <a href="https://github.com/ESulululu10?tab=repositories" rel="noopener">All repositories</a></li>
+    </ul>
+
+    <h2 style="margin-top:2.4rem">Certifications</h2>
+    <ul class="compact">
+      <li><strong>Google Cybersecurity Professional Certificate</strong> &middot; Dec 2024 &middot; <a href="https://coursera.org/share/1b971182c4f8a63c9493eba0f3b03576" rel="noopener">verify</a></li>
+      <li><strong>AWS Academy Graduate: Cloud Foundations</strong> &middot; Apr 2022 &middot; <a href="https://www.credly.com/badges/749d5676-9ca6-4d48-abe7-d7ea7cb34221/public_url" rel="noopener">verify</a></li>
+      <li><strong>AWS Academy Graduate: Data Center Technician</strong> &middot; Jul 2022 &middot; <a href="https://www.credly.com/badges/95f6a4e6-b13a-4fa9-9a15-a039a408ec02/public_url" rel="noopener">verify</a></li>
+      <li><strong>Introduction to Cybersecurity</strong>, Cisco &middot; Jul 2022 &middot; <a href="https://www.credly.com/badges/c328643a-0bec-460d-a3c0-9f2118243477/public_url" rel="noopener">verify</a></li>
+    </ul>
+
+    <p style="margin-top:2rem"><a class="more" href="index.html#research">Back to the research</a></p>
+  </article>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Gaurab Khadka</span>
+    <span><a href="index.html">Home</a> &middot; <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('themeBtn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var root = document.documentElement;
+      var isDark = root.getAttribute('data-theme') === 'dark' ||
+        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      var next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  })();
+</script>
+<script src="art-direction.js?v=3" defer></script>
+<script src="instruments.js?v=3" defer></script>
+<script src="nav.js?v=3" defer></script>
+</body>
+</html>

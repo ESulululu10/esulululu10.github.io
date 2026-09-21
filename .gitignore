@@ -1,0 +1,8 @@
+# Local Claude Code / editor config, not part of the site
+.claude/
+
+# Previous version of the site, kept locally only
+_old-broken-file/
+
+# Local preview server, not site content
+devserver.py

@@ -1,754 +1,685 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaurab Khadka | HRI &amp; Robotics Researcher</title>
-    <meta name="description" content="Gaurab Khadka, MS Computer Science researcher at University of Michigan-Flint, working on LLM driven robot communication, augmented reality for HRI, and expressive robot behavior.">
-    <meta name="keywords" content="Gaurab Khadka, Multi Human Robot Interaction, HRI, LLM, robotics, augmented reality, University of Michigan Flint">
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%96%3C/text%3E%3C/svg%3E">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0a0e14;
-            --bg-alt: #0d1420;
-            --line: #1c2531;
-            --teal: #2dd4bf;
-            --violet: #a78bfa;
-            --text: #dbe3ee;
-            --text-dim: #8b98ab;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaurab Khadka</title>
+<meta name="description" content="Gaurab Khadka is an M.S. student at the University of Michigan Flint working on end user authoring for human-multi robot interaction: tools that let people without robotics expertise author and understand the behavior of robot teams.">
+<link rel="canonical" href="https://esulululu10.github.io/">
 
-        * { scroll-behavior: smooth; }
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Gaurab Khadka">
+<meta property="og:description" content="End user authoring for human-multi robot interaction. M.S. student, University of Michigan Flint (PLAYLab).">
+<meta property="og:url" content="https://esulululu10.github.io/">
+<meta property="og:image" content="https://esulululu10.github.io/1.jpg">
+<meta name="twitter:card" content="summary">
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-        }
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
 
-        h1, h2, h3, h4, .font-display {
-            font-family: 'Space Grotesk', sans-serif;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="system.css?v=3">
+<link rel="stylesheet" href="art-direction.css?v=3">
+<link rel="stylesheet" href="instruments.css?v=3">
+<link rel="stylesheet" href="nav.css?v=3">
 
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
+<script>
+  // Set the stored theme before first paint so the page does not flash.
+  try {
+    var t = localStorage.getItem('theme');
+    if (t) document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+</script>
 
-        .bg-grid {
-            background-image:
-                radial-gradient(circle at 1px 1px, rgba(45, 212, 191, 0.15) 1px, transparent 0);
-            background-size: 32px 32px;
-        }
-
-        .kicker {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--teal);
-            letter-spacing: 0.15em;
-        }
-
-        .glow-blob {
-            position: absolute;
-            border-radius: 9999px;
-            filter: blur(90px);
-            opacity: 0.25;
-            pointer-events: none;
-        }
-
-        .card {
-            background: var(--bg-alt);
-            border: 1px solid var(--line);
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(45, 212, 191, 0.4);
-            box-shadow: 0 20px 40px -20px rgba(45, 212, 191, 0.15);
-        }
-
-        .tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.02em;
-            border: 1px solid var(--line);
-            color: var(--text-dim);
-        }
-
-        .nav-link {
-            position: relative;
-            color: var(--text-dim);
-        }
-
-        .nav-link:hover { color: var(--text); }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--teal);
-            transition: width 0.25s ease;
-        }
-
-        .nav-link:hover::after { width: 100%; }
-
-        .timeline-item {
-            position: relative;
-            padding-left: 2rem;
-            border-left: 1px solid var(--line);
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 9999px;
-            left: -5.5px;
-            top: 0.4rem;
-            background: var(--bg);
-            border: 2px solid var(--teal);
-        }
-
-        .fade-in {
-            animation: fadeIn 0.7s ease-out forwards;
-            opacity: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
-        ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 9999px; }
-    </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Gaurab Khadka",
+  "url": "https://esulululu10.github.io/",
+  "email": "mailto:gaurabk@umich.edu",
+  "jobTitle": "Graduate Student Research Assistant",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Michigan Flint"
+  },
+  "knowsAbout": [
+    "Human Robot Interaction",
+    "End user robot programming",
+    "Human-Computer Interaction",
+    "Large language models for robot behavior",
+    "Augmented reality"
+  ],
+  "sameAs": [
+    "https://github.com/ESulululu10",
+    "https://www.linkedin.com/in/gaurabk/"
+  ]
+}
+</script>
 </head>
-<body class="antialiased">
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-[#0a0e14]/85 backdrop-blur-md z-50 border-b border-[#1c2531]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="flex justify-between items-center h-16">
-                <a href="#home" class="font-display font-semibold text-lg text-white flex items-center gap-2">
-                    GaurabK
-                </a>
+<div class="boot" hidden>
+  <div class="boot-inner">
+    <span class="boot-row"><i></i> system 01 &middot; fleet</span>
+    <span class="boot-row"><i></i> system 02 &middot; authoring</span>
+    <span class="boot-row"><i></i> system 03 &middot; review</span>
+  </div>
+</div>
 
-                <div class="hidden lg:flex items-center gap-7 text-sm">
-                    <a href="#about" class="nav-link">About</a>
-                    <a href="#research" class="nav-link">Research</a>
-                    <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#experience" class="nav-link">Experience</a>
-                    <a href="#certifications" class="nav-link">Certifications</a>
-                    <a href="#contact" class="nav-link">Contact</a>
-                    <a href="resume.pdf" target="_blank" class="border border-[#2dd4bf]/50 text-[#2dd4bf] hover:bg-[#2dd4bf]/10 px-4 py-1.5 rounded-md transition text-sm">Resume</a>
-                </div>
-
-                <button id="mobileMenuButton" class="lg:hidden text-gray-300">
-                    <i class="fas fa-bars text-xl"></i>
-                </button>
-            </div>
-
-            <div id="mobileMenu" class="hidden lg:hidden pb-4 space-y-3 text-sm">
-                <a href="#about" class="block nav-link">About</a>
-                <a href="#research" class="block nav-link">Research</a>
-                <a href="#projects" class="block nav-link">Projects</a>
-                <a href="#experience" class="block nav-link">Experience</a>
-                <a href="#certifications" class="block nav-link">Certifications</a>
-                <a href="#contact" class="block nav-link">Contact</a>
-                <a href="resume.pdf" target="_blank" class="block text-[#2dd4bf]">Resume</a>
-            </div>
-        </div>
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="work.html">Work</a>
+      <a href="#publications" class="hide-xs">Publications</a>
+      
+      <a href="engineering.html" class="hide-sm">Technical</a>
+      <a href="cv.html">CV</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+      </button>
     </nav>
+  </div>
+</header>
 
-    <!-- Hero -->
-    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-16 bg-grid overflow-hidden">
-        <div class="glow-blob w-96 h-96 bg-teal-500 -top-20 -left-20"></div>
-        <div class="glow-blob w-96 h-96 bg-violet-500 top-40 right-0"></div>
+<nav class="index-nav" aria-label="Section index">
+  <a href="#about"><b>01</b><s></s><span>About</span></a>
+  <a href="#research"><b>02</b><s></s><span>Systems</span></a>
+  <a href="#publications"><b>03</b><s></s><span>Papers</span></a>
+  <a href="#background"><b>04</b><s></s><span>Background</span></a>
+  <a href="#contact"><b>05</b><s></s><span>Contact</span></a>
+</nav>
 
-        <div class="max-w-6xl mx-auto px-6 relative z-10 w-full">
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3 fade-in">
-                    <p class="kicker text-sm mb-4">MS COMPUTER SCIENCE · UNIVERSITY OF MICHIGAN-FLINT</p>
-                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-                        Gaurab Khadka
-                    </h1>
-                    <h2 class="text-xl md:text-2xl font-medium text-[#2dd4bf] mb-6 font-display">
-                        Multi Human Robot Interaction &amp; LLM Driven Robot Communication
-                    </h2>
-                    <p class="text-base md:text-lg text-[#8b98ab] mb-8 max-w-xl">
-                        I research expressive robot communication, LLM driven robot behavior generation, and
-                        augmented reality for human robot interaction. I'm also leading a graduate thesis project
-                        in this space; details stay confidential until it's published.
-                    </p>
-                    <div class="flex flex-wrap gap-4">
-                        <a href="#contact" class="bg-[#2dd4bf] hover:bg-[#25b8a5] text-[#0a0e14] font-medium px-6 py-3 rounded-md transition">Get in Touch</a>
-                        <a href="#projects" class="border border-[#1c2531] hover:border-[#2dd4bf]/50 text-[#dbe3ee] px-6 py-3 rounded-md transition">View Research &amp; Projects</a>
-                    </div>
-                    <div class="flex mt-8 space-x-5">
-                        <a href="https://github.com/ESulululu10" target="_blank" rel="noopener" class="text-[#8b98ab] hover:text-[#2dd4bf] text-xl transition">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/gaurabk/" target="_blank" rel="noopener" class="text-[#8b98ab] hover:text-[#2dd4bf] text-xl transition">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="mailto:Gaurabk@umich.edu" class="text-[#8b98ab] hover:text-[#2dd4bf] text-xl transition">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
+<main id="main">
 
-                <div class="md:col-span-2 flex justify-center fade-in delay-200">
-                    <div class="relative">
-                        <div class="w-64 h-64 md:w-72 md:h-72 rounded-full absolute -z-10 top-4 left-4 bg-gradient-to-br from-teal-500/30 to-violet-500/30 blur-sm"></div>
-                        <img src="1.jpg" alt="Gaurab Khadka"
-                            class="w-64 h-64 md:w-72 md:h-72 object-cover rounded-full border-4 border-[#1c2531] shadow-2xl">
-                    </div>
-                </div>
-            </div>
+<!-- ============================ 01 · WHO I AM ============================ -->
+<section class="hero arena-hero" data-anchor aria-labelledby="hero-name">
+
+  <div class="hero-stage" data-arena>
+    <canvas role="img" aria-label="An arena of robots following authored paths, leaving trajectory traces. Drag anywhere inside it to author a new path and a robot will follow it."></canvas>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-comp">
+      <div class="hero-name">
+        <p class="annot" style="margin:0 0 1.5rem">Gaurab Khadka &middot; Graduate researcher</p>
+        <h1 id="hero-name"><span class="ln"><i>Gaurab</i></span><span class="ln"><i>Khadka</i></span></h1>
+        <p class="hero-sub">
+          I build tools that let <span class="hl-human">people without robotics expertise author</span>
+          the behavior of robot teams, where a <span class="hl-machine">model composes the plan</span>
+          and the person keeps the last word.
+        </p>
+      </div>
+
+      <div class="hero-meta">
+        <dl>
+          <dt>Position</dt>
+          <dd>M.S. Computer Science<br>University of Michigan Flint</dd>
+        </dl>
+        <dl>
+          <dt>Lab</dt>
+          <dd>PLAYLab<br>University of Michigan Flint</dd>
+        </dl>
+        <dl>
+          <dt>Fields</dt>
+          <dd>Human Robot Interaction<br>HCI &middot; Human AI Interaction</dd>
+        </dl>
+        <dl>
+          <dt>Index</dt>
+          <dd>
+            <a href="Gaurab_Khadka_CV.pdf">Curriculum Vitae</a><br>
+            <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a><br>
+            <a href="https://github.com/ESulululu10" rel="noopener">GitHub</a> &middot;
+            <a href="https://www.linkedin.com/in/gaurabk/" rel="noopener">LinkedIn</a>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-tools">
+    <div class="wrap">
+      <span class="hero-hint"><i></i> drag anywhere to author a path</span>
+      <button class="arena-reset" type="button" data-arena-demo>Run demo path</button>
+      <button class="arena-reset" type="button" data-arena-reset>Reset</button>
+      <span class="arena-legend hero-legend">
+        <span><i class="h"></i> authored by a person</span>
+        <span><i class="m"></i> executed by the fleet</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 02 · WHAT I STUDY ============================ -->
+<section id="about" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>02</b> What I study</p>
+
+    <div class="split">
+      <div>
+        <h2 class="section-title">One question, from four directions</h2>
+        <p>
+          I am a master&rsquo;s student in Computer Science at the University of Michigan Flint, where I work in
+          PLAYLab on end user authoring for human multi robot
+          interaction. My <a href="work.html#thesis">thesis work</a> grew out of a concrete failure in my earlier system:
+          expressive robot behaviors had to be rebuilt by hand for every new scenario. So I built a system where
+          <em>novices author the motions</em>, by sketching or by physical demonstration, and an LLM reuses that motion
+          library across scenarios, with the person reviewing and editing the plan before any robot moves.
+        </p>
+        <p>
+          I care about the human side of that loop: what people can author, what they can read off a robot&rsquo;s
+          motion, and where they need to intervene when a model proposes something wrong. I also mentor an
+          undergraduate researcher on accessible AR authoring through UM Flint&rsquo;s NSF REU Site in Digital
+          Accessibility. I am applying to PhD programs in HCI and HRI for Fall&nbsp;2027 entry.
+        </p>
+      </div>
+
+      <div>
+        <!-- Research constellation: areas and projects in one force field.
+             Hover lights the connections, clicking a project reorganises the field. -->
+        <div class="cons" data-constellation>
+          <svg class="cons-edges" aria-hidden="true" preserveAspectRatio="none"></svg>
+
+          <button class="cnode area" data-id="hri"   data-x="22" data-y="16">Human Robot Interaction</button>
+          <button class="cnode area" data-id="hai"   data-x="78" data-y="14">Human AI Interaction</button>
+          <button class="cnode area" data-id="eup"   data-x="13" data-y="47">End User Programming</button>
+          <button class="cnode area" data-id="expr"  data-x="84" data-y="46">Expressive Motion</button>
+          <button class="cnode area" data-id="multi" data-x="26" data-y="78">Multi Robot Systems</button>
+          <button class="cnode area" data-id="isys"  data-x="76" data-y="77">Interactive Systems</button>
+
+          <button class="cnode proj" data-id="p-thesis" data-x="44" data-y="40" data-rel="hri eup multi hai"
+                  data-meta="M.S. thesis &middot; under review" data-href="work.html#thesis"
+                  data-q="How can someone with no robotics background author expressive motion for a robot team, and reuse it when the scenario changes?">Authoring motion</button>
+
+          <button class="cnode proj" data-id="p-express" data-x="70" data-y="60" data-rel="expr hri multi"
+                  data-meta="Formative study &middot; N = 11" data-href="work.html#motion-study"
+                  data-q="Can non experts tell what a robot is doing from its motion alone?">Motion study</button>
+
+          <button class="cnode proj" data-id="p-ar" data-x="32" data-y="61" data-rel="hri isys eup"
+                  data-meta="Deployed &middot; public workshop" data-href="work.html#eventmakar"
+                  data-q="Can people who do not program author AR stories that drive physical robots?">EventMakAR</button>
+
+          <button class="cnode proj" data-id="p-video" data-x="60" data-y="26" data-rel="hai isys"
+                  data-meta="Manuscript in preparation" data-href="work.html#video"
+                  data-q="Can the short video format students already watch carry course competencies?">Nursing video</button>
+
+          <div class="cons-read"><div class="m"></div><div class="q"></div><a class="more" href="#"></a></div>
         </div>
-    </section>
+        <p class="cons-hint">Hover an area to light its work &middot; click a project to reorganise the field</p>
 
-    <!-- About -->
-    <section id="about" class="py-14 border-t border-[#1c2531]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-12 font-display">About Me</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-12">
-                <div class="md:col-span-2">
-                    <img src="2.jpg" alt="Gaurab Khadka" class="w-full rounded-xl object-cover border border-[#1c2531] shadow-xl mb-6">
-                    <div class="space-y-3 text-sm">
-                        <div class="flex items-center gap-3 text-[#8b98ab]">
-                            <i class="fas fa-map-marker-alt text-[#2dd4bf] w-4"></i> Flint, MI, USA
-                        </div>
-                        <div class="flex items-center gap-3 text-[#8b98ab]">
-                            <i class="fas fa-envelope text-[#2dd4bf] w-4"></i> Gaurabk@umich.edu
-                        </div>
-                        <div class="flex items-center gap-3 text-[#8b98ab]">
-                            <i class="fas fa-graduation-cap text-[#2dd4bf] w-4"></i> MS Computer &amp; Information Science, GPA 4.0
-                        </div>
-                    </div>
-                </div>
-
-                <div class="md:col-span-3">
-                    <p class="text-[#8b98ab] mb-6 leading-relaxed">
-                        I'm a graduate researcher in the HRI Lab at the University of Michigan-Flint, working at the
-                        intersection of robotics, large language models, and augmented reality. My graduate thesis
-                        work is unpublished, so the specifics stay confidential until release, targeted for 2027.
-                        Outside the lab, I mentor undergraduate researchers on accessibility centered HRI and
-                        contribute to AI assisted educational tooling.
-                    </p>
-
-                    <div class="mb-8">
-                        <h4 class="text-white font-semibold mb-3 font-display">Research Interests</h4>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="tag px-3 py-1.5 rounded-full">Expressive Robot Communication</span>
-                            <span class="tag px-3 py-1.5 rounded-full">LLM Driven Robot Behavior Generation</span>
-                            <span class="tag px-3 py-1.5 rounded-full">AR for HRI</span>
-                            <span class="tag px-3 py-1.5 rounded-full">End User Robot Programming</span>
-                            <span class="tag px-3 py-1.5 rounded-full">Multi Robot Fleet Systems</span>
-                            <span class="tag px-3 py-1.5 rounded-full">Accessibility Centered HRI</span>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div class="card rounded-lg p-5">
-                            <h4 class="text-white font-semibold mb-1 font-display">MS Computer &amp; Information Science</h4>
-                            <p class="text-sm text-[#2dd4bf] mb-2">University of Michigan-Flint · Expected 2027</p>
-                            <p class="text-sm text-[#8b98ab]">GPA 4.0. Thesis research is unpublished and kept confidential until release.</p>
-                        </div>
-                        <div class="card rounded-lg p-5">
-                            <h4 class="text-white font-semibold mb-1 font-display">BSc (Hons) Computer Networking &amp; IT Security</h4>
-                            <p class="text-sm text-[#2dd4bf] mb-2">London Metropolitan University · 2020–2023</p>
-                            <p class="text-sm text-[#8b98ab]">Final year project: a functional CNC wood carving machine, including mechanical assembly, motor control, and G code path planning.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Same information without hover or JS. -->
+        <div class="cons-fallback">
+          <h4>Research interests</h4>
+          <div class="kw">
+            <span>End user robot programming</span>
+            <span>Human multi robot interaction</span>
+            <span>Legible robot motion</span>
+            <span>Human oversight of LLM generated robot behavior</span>
+          </div>
+          <p>
+            Six areas meet in the same question: <a href="work.html#thesis">my thesis work</a> and
+            <a href="work.html#motion-study">the motion study</a> sit in HRI, expressive motion and multi robot systems,
+            <a href="work.html#eventmakar">EventMakAR</a> in authoring and interactive systems, and the
+            <a href="work.html#video">nursing video work</a> in human AI interaction.
+          </p>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <!-- Research Experience -->
-    <section id="research" class="py-14 border-t border-[#1c2531] bg-[#0d1420]/40">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-12 font-display">Research Experience</h2>
+<!-- ============================ 03 · SYSTEMS I HAVE BUILT ============================ -->
+<section id="research" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>03</b> Systems I have built &amp; studied</p>
+    <h2 class="section-title">Three systems, one question</h2>
+    <p class="prose" style="margin-bottom:1.6rem">
+      Each answers a piece of the same problem: how does a person who is not a roboticist tell a team of robots what to
+      do, and know what they are doing? Open a card for the problem, the system, my role, the method and the result.
+    </p>
 
-            <div class="max-w-3xl space-y-14">
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">Graduate Student Research Assistant, HRI Lab</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">Aug 2025 to Present</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">University of Michigan-Flint</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Leading a graduate thesis project on LLM driven robot communication and AR supported human robot interaction.</li>
-                        <li>Full technical details are confidential while the work is prepared for publication, targeted for 2027.</li>
-                    </ul>
-                </div>
+    <!-- ---------- Card 01 · thesis ---------- -->
+    <article class="pcard reveal" data-item data-prox>
+      <button class="pcard-head" type="button" data-toggle aria-controls="body-thesis">
+        <span class="pcard-viz" aria-hidden="true">
+          <svg viewBox="0 0 200 125">
+            <rect x="0" y="0" width="200" height="125" fill="#0b0d11"/>
+            <g stroke="rgba(255,255,255,.06)" stroke-width="1">
+              <path d="M40 0V125M80 0V125M120 0V125M160 0V125M0 31H200M0 62H200M0 93H200"/>
+            </g>
+            <path class="viz-auth" d="M24 96 C 60 34, 96 108, 132 46" fill="none" stroke="#f0a64a"
+                  stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path class="viz-exec" d="M24 96 C 60 34, 96 108, 132 46" fill="none" stroke="#6fb0e8"
+                  stroke-width="2.4" stroke-linecap="round"
+                  pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+            <rect class="viz-bot" x="126" y="41" width="11" height="9" rx="2" fill="#6fb0e8"/>
+            <circle cx="163" cy="30" r="3.5" fill="#f0a64a"/>
+            <text x="150" y="112" font-family="ui-monospace,monospace" font-size="8" fill="#8d96a5">author &#8594; approve</text>
+          </svg>
+        </span>
+        <span>
+          <span class="pcard-meta">
+            <span class="pill">Project 01 &middot; M.S. thesis</span>
+            <span class="pill review">Under review</span>
+          </span>
+          <span class="pcard-title">Multi-Robot Authoring Research</span>
+          <span class="pcard-q">How can someone with no robotics background author expressive motion for a robot team, and reuse it when the scenario changes?</span>
+        </span>
+        <span class="pcard-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
 
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">NSF REU Research Mentor, Digital Accessibility Program</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">May to Jul 2026</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">University of Michigan-Flint · NSF funded program</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Mentoring an undergraduate researcher on an AR based authoring tool enabling autistic users to program robot and IoT behaviors through spatial storytelling, visual cues, and structured interaction sequences.</li>
-                        <li>Co designing with autistic participants and evaluating accessibility centered HRI interaction patterns.</li>
-                        <li>Contributed a Python data analysis pipeline, seven publication figures, four statistical tables, and ML classification to a multi segment IMU signal analysis study on postural stability in older adults.</li>
-                    </ul>
-                </div>
+      <div class="pcard-body" id="body-thesis">
+        <div><div class="pcard-inner">
 
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">Graduate Student Research Assistant (Part Time)</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">Jan 2026 to Present</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">University of Michigan-Flint, Nursing Department</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Developed an AI assisted pipeline for producing short educational videos for NUR 316: LLM script generation, AI image prompting, HeyGen assembly, and Canvas LMS delivery.</li>
-                        <li>Designed the "Evidence Elevator" concept visualizing the evidence hierarchy from expert opinion to meta analysis.</li>
-                    </ul>
-                </div>
-
+          <h4 class="block">Try it: the model proposes, you decide</h4>
+          <div class="demo" data-plandemo>
+            <div class="demo-stage"><canvas role="img" aria-label="Three robots waiting at the left of an arena with a proposed plan drawn in blue. Approving the plan makes them execute it; rejecting it generates a different plan."></canvas></div>
+            <div class="demo-bar">
+              <span class="demo-status" data-plan-status><i></i> plan proposed &middot; awaiting your review</span>
+              <button class="demo-btn" type="button" data-plan-reject>Reject &amp; regenerate</button>
+              <button class="demo-btn is-primary" type="button" data-plan-approve>Approve &amp; run</button>
             </div>
-        </div>
-    </section>
+            <p class="demo-note">A miniature of the stance the system is built on: the robots do not move until a person approves the plan.</p>
+          </div>
 
-    <!-- Projects -->
-    <section id="projects" class="py-14 border-t border-[#1c2531]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-2 font-display">Selected Projects</h2>
-            <p class="text-[#8b98ab] mb-12 max-w-2xl">Research systems and applied engineering work, from LLM driven robot fleets to forensic ML and embedded hardware.</p>
+          <div class="pfacts">
+            <div><div class="k">Problem</div><p>Expressive behaviors were hand engineered for one scenario and could not travel to another.</p></div>
+            <div><div class="k">Method</div><p>Counterbalanced within subjects study comparing two ways of authoring, with think aloud, workload and usability measures, and interviews.</p></div>
+            <div><div class="k">Status</div><p>Full paper under review. Described in general terms here while review runs.</p></div>
+          </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-                <!-- EventMakAR -->
-                <div class="card rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-2 font-display">EventMakAR</h3>
-                    <p class="text-sm text-[#8b98ab] mb-4">
-                        AR storytelling authoring tool built as a standalone single file HTML/React app for the Super
-                        Friday workshop at UM-Flint. Generates <code class="font-mono text-xs">Events.txt</code> in the
-                        exact JSON format the Unity <code class="font-mono text-xs">buttonManager.cs</code> parser
-                        expects, with device specific action lists for five robot characters. Demonstrated live with
-                        student participants authoring AR stories using physical robots.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="tag px-2 py-1 rounded">AR</span>
-                        <span class="tag px-2 py-1 rounded">React</span>
-                        <span class="tag px-2 py-1 rounded">Unity</span>
-                    </div>
-                    <a href="https://github.com/ESulululu10/EventMakAR" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline"><i class="fab fa-github mr-1"></i>View on GitHub</a>
-                </div>
+          <h4 class="block">System</h4>
+          <p>
+            Novices author the motions themselves, either by <strong>sketching the path</strong> they want or by
+            <strong>demonstrating the motion physically</strong>. A language model composes those motions into a plan
+            for a scenario described in plain English, and the person reviews and edits that plan before any robot
+            moves.
+          </p>
 
-                <!-- Deepfake Detection Pipeline -->
-                <div class="card rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-2 font-display">Deepfake Detection Pipeline</h3>
-                    <p class="text-sm text-[#8b98ab] mb-4">
-                        A nine module forensic Python pipeline evaluated on ProGAN, BigGAN, and CycleGAN datasets.
-                        Found k=20 features optimal for AdaBoost, reaching 87.20% mean AUC. Delivered as a 16 slide
-                        forensic report.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="tag px-2 py-1 rounded">Python</span>
-                        <span class="tag px-2 py-1 rounded">Machine Learning</span>
-                        <span class="tag px-2 py-1 rounded">Forensics</span>
-                    </div>
-                    <a href="https://github.com/ESulululu10/DeepfakeDetectionPipeline" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline"><i class="fab fa-github mr-1"></i>View on GitHub</a>
-                </div>
+          <h4 class="block">My role</h4>
+          <p>
+            <strong>I built this end to end</strong>: the robots and their electronics, the localization and the
+            control server that drives them, both authoring interfaces, and the planning and validation layer behind
+            them. The interface work was as much of the problem as the hardware: it has to be usable by someone who has
+            never programmed a robot, in one sitting, under observation. I designed, ran and analyzed the user study.
+          </p>
 
-                <!-- Web Shield-AI -->
-                <div class="card rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-2 font-display">Web Shield-AI</h3>
-                    <p class="text-sm text-[#8b98ab] mb-4">
-                        Explainable ML system for web content filtering, with a human in the loop feedback mechanism
-                        for transparent, interpretable decisions, grounded in human centered AI design principles.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="tag px-2 py-1 rounded">Python</span>
-                        <span class="tag px-2 py-1 rounded">Explainable AI</span>
-                    </div>
-                    <a href="https://github.com/ESulululu10/Webshield-AI" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline"><i class="fab fa-github mr-1"></i>View on GitHub</a>
-                </div>
+          <p><a class="more" href="work.html#thesis">Full project page</a></p>
+        </div></div>
+      </div>
+    </article>
 
-                <!-- CNC Wood Carving Machine -->
-                <div class="card rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-2 font-display">CNC Wood Carving Machine</h3>
-                    <p class="text-sm text-[#8b98ab] mb-4">
-                        Bachelor's final year project, designed and built a functional 3 axis CNC wood carving
-                        machine from scratch, including mechanical assembly, motor control, and G code based path
-                        planning.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="tag px-2 py-1 rounded">Embedded Systems</span>
-                        <span class="tag px-2 py-1 rounded">G code</span>
-                        <span class="tag px-2 py-1 rounded">Hardware</span>
-                    </div>
-                    <p class="text-xs text-[#8b98ab]">London Metropolitan University · 2022–2023</p>
-                </div>
+    <!-- ---------- Card 02 · motion study ---------- -->
+    <article class="pcard reveal" data-item data-prox>
+      <button class="pcard-head" type="button" data-toggle aria-controls="body-express">
+        <span class="pcard-viz">
+          <img src="media/robot-thumb.jpg" width="445" height="591" loading="lazy"
+               alt="A robot from the motion study: a blue printed chassis on two wheels carrying servos, wiring and a circuit board, with an ArUco marker mounted above it.">
+        </span>
+        <span>
+          <span class="pcard-meta">
+            <span class="pill">Project 02 &middot; formative study</span>
+            <span class="pill">N = 11</span>
+          </span>
+          <span class="pcard-title">Expressive Robot Motion Study</span>
+          <span class="pcard-q">Can non experts tell what a robot is doing from its motion alone?</span>
+        </span>
+        <span class="pcard-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
 
-                <!-- EternalBlue CTF -->
-                <div class="card rounded-xl p-6">
-                    <h3 class="text-lg font-semibold text-white mb-2 font-display">EternalBlue (MS17-010) Win7 CTF</h3>
-                    <p class="text-sm text-[#8b98ab] mb-4">
-                        CTF style writeup covering MS17-010 (EternalBlue) exploitation and post exploitation on a
-                        Windows 7 lab environment, completed for UM-Flint CYB501.
-                    </p>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                        <span class="tag px-2 py-1 rounded">Security</span>
-                        <span class="tag px-2 py-1 rounded">CTF</span>
-                    </div>
-                    <a href="https://github.com/ESulululu10/EternalBlue-win7-CTF" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline"><i class="fab fa-github mr-1"></i>View on GitHub</a>
-                </div>
+      <div class="pcard-body" id="body-express">
+        <div><div class="pcard-inner">
+
+          <h4 class="block">The vocabulary: pick a primitive to watch it run</h4>
+          <div data-prims>
+            <div class="prims">
+              <button class="prim-btn" type="button" data-prim="Searching" aria-pressed="true">Searching</button>
+              <button class="prim-btn" type="button" data-prim="Delivering" aria-pressed="false">Delivering</button>
+              <button class="prim-btn" type="button" data-prim="Waiting" aria-pressed="false">Waiting</button>
+              <button class="prim-btn" type="button" data-prim="Urgent" aria-pressed="false">Urgent</button>
+              <button class="prim-btn" type="button" data-prim="Returning" aria-pressed="false">Returning</button>
+              <button class="prim-btn" type="button" data-prim="Error" aria-pressed="false">Error</button>
+              <button class="prim-btn" type="button" data-prim="Idle" aria-pressed="false">Idle</button>
             </div>
+            <div class="prim-stage"><canvas role="img" aria-label="A robot tracing the selected motion primitive inside a small arena."></canvas></div>
+            <p class="demo-note" style="padding:.6rem 0 0" data-prim-note>Each primitive is a movement pattern meant to be read at a glance rather than decoded.</p>
+          </div>
 
-            <!-- Additional Projects -->
-            <h3 class="text-xl font-semibold text-white mb-6 font-display">Additional Coursework Projects</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Network Intrusion Detection (Deep Learning)</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Deep learning based NIDS to detect cyber attacks.</p>
-                    <a href="https://github.com/ESulululu10/Network-Intrusion-Detection-System-NIDS-Using-Deep-Learning" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Covert Channel Data Hiding</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Digital Crime Investigation coursework exploring TCP/IP covert channels via Linux network simulation.</p>
-                    <a href="https://github.com/ESulululu10/covert-channel-data-hiding" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Cryptography &amp; Ciphers Research</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Report covering symmetric/asymmetric encryption, cipher design, and testing.</p>
-                    <a href="https://github.com/ESulululu10/cryptography-ciphers-research" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Online Casino Data Leak Report</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Ethical, legal, and social analysis of a real world Elasticsearch data breach.</p>
-                    <a href="https://github.com/ESulululu10/online-casino-data-leak-report" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">SQL Injection Demo Report</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Demonstrates SQL Injection using SQLMap and Kali Linux.</p>
-                    <a href="https://github.com/ESulululu10/Sql-injection-demo-report" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Pizza Store Inventory Management</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Python CLI system for managing recipes, inventory, and menus.</p>
-                    <a href="https://github.com/ESulululu10/pizza-store-inventory-management" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Cultural Heritage Safety, Nepal</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Cultural heritage preservation and community safety monitoring database system.</p>
-                    <a href="https://github.com/ESulululu10/cultural-heritage-safety-nepal" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Cybersecurity Risk Report</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Cybersecurity risk management report.</p>
-                    <a href="https://github.com/ESulululu10/cybersecurity-risk-report" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">Library Management System</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Python app for borrowing/returning books with stock tracking and overdue penalties.</p>
-                    <a href="https://github.com/ESulululu10/-Library-Management-System-Project-in-Python" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
-                <div class="card rounded-lg p-5">
-                    <h4 class="font-medium text-white mb-2">INGCollege Course Management</h4>
-                    <p class="text-sm text-[#8b98ab] mb-3">Java Swing/AWT GUI system for managing academic and non-academic courses.</p>
-                    <a href="https://github.com/ESulululu10/INGCollege-CourseManagement" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">View on GitHub</a>
-                </div>
+          <div class="pfacts">
+            <div><div class="k">System</div><p>Three robots at about $30 each, seven motion primitives, camera based ArUco tracking.</p></div>
+            <div><div class="k">Method</div><p>User study with 11 participants reporting what they believed each robot was doing.</p></div>
+            <div><div class="k">Result</div><p>Motion alone carried the state (SUS&nbsp;&asymp;&nbsp;70), but two primitives collided and none of them travelled to a new scenario.</p></div>
+          </div>
+
+          <figure class="diagram" style="margin:.4rem 0 1rem">
+            <div class="frame plate">
+              <img src="media/motion-primitives.png" width="1600" height="344" loading="lazy"
+                   alt="Left: the seven motion primitives drawn as colored path diagrams. Right: three photographs of the robots.">
             </div>
+            <figcaption>The seven primitives, and the fleet that performed them.</figcaption>
+          </figure>
 
-            <div class="text-center mt-12">
-                <a href="https://github.com/ESulululu10?tab=repositories" target="_blank" rel="noopener"
-                   class="inline-block border border-[#1c2531] hover:border-[#2dd4bf]/50 text-[#dbe3ee] px-6 py-3 rounded-md transition">
-                    View All Repositories on GitHub
-                </a>
-            </div>
-        </div>
-    </section>
+          <h4 class="block">Why it matters</h4>
+          <p>
+            If a designer hand authoring behaviors can still pick two that people confuse, the fix is not a
+            better designed vocabulary. It is letting the people who know the task author the motions
+            themselves. That is what the thesis work does.
+          </p>
 
-    <!-- Skills -->
-    <section id="skills" class="py-14 border-t border-[#1c2531] bg-[#0d1420]/40">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-12 font-display">Skills</h2>
+          <p><a class="more" href="work.html#motion-study">Full project page</a></p>
+        </div></div>
+      </div>
+    </article>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="card rounded-xl p-6">
-                    <h4 class="font-display font-semibold text-white mb-4"><i class="fas fa-robot text-[#2dd4bf] mr-2"></i>Robotics &amp; HRI</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag px-3 py-1.5 rounded-full">ROS</span>
-                        <span class="tag px-3 py-1.5 rounded-full">NodeMCU ESP8266</span>
-                        <span class="tag px-3 py-1.5 rounded-full">ArUco Navigation</span>
-                        <span class="tag px-3 py-1.5 rounded-full">FS90R Servos</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Multi Robot Fleet Control</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Motion Primitive Design</span>
-                        <span class="tag px-3 py-1.5 rounded-full">User Study Design</span>
-                    </div>
-                </div>
+    <!-- ---------- Card 03 · AR authoring ---------- -->
+    <article class="pcard reveal" data-item data-prox>
+      <button class="pcard-head" type="button" data-toggle aria-controls="body-ar">
+        <span class="pcard-viz" style="background:#fff">
+          <img src="media/eventmakar-thumb.jpg" width="760" height="358" loading="lazy" style="object-fit:cover"
+               alt="The EventMakAR interface showing the device picker: Car, House, Garage, Helicopter, Catapult, Train, Truck, Airplane.">
+        </span>
+        <span>
+          <span class="pcard-meta">
+            <span class="pill live">Project 03 &middot; deployed</span>
+            <span class="pill">Public workshop</span>
+          </span>
+          <span class="pcard-title">EventMakAR</span>
+          <span class="pcard-q">Can people who do not program author stories that cross between virtual characters and physical devices?</span>
+        </span>
+        <span class="pcard-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
 
-                <div class="card rounded-xl p-6">
-                    <h4 class="font-display font-semibold text-white mb-4"><i class="fas fa-brain text-[#2dd4bf] mr-2"></i>AI &amp; LLMs</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag px-3 py-1.5 rounded-full">Anthropic Claude API</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Google Gemini API</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Prompt Engineering</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Pydantic Schema Validation</span>
-                        <span class="tag px-3 py-1.5 rounded-full">JSON Repair</span>
-                    </div>
-                </div>
+      <div class="pcard-body" id="body-ar">
+        <div><div class="pcard-inner">
+          <div class="pfacts">
+            <div><div class="k">Problem</div><p>Driving an AR experience with real robots normally needs a programmer in the loop, so the story decisions sit with whoever can edit the project.</p></div>
+            <div><div class="k">System</div><p>A standalone browser tool: sequence actions across four virtual characters and eight physical devices, and it writes the exact events file the existing Unity runtime already parses.</p></div>
+            <div><div class="k">Outcome</div><p>Deployed live at the Super Friday workshop at UM Flint, where students authored and ran their own AR stories with physical robots.</p></div>
+          </div>
+          <h4 class="block">What this is and is not</h4>
+          <p>
+            A deployment, not a study: I did not collect measures at the workshop. Its value is as evidence that the
+            authoring model survives contact with real users, and that I can ship a system other people use.
+          </p>
+          <p><a class="more" href="work.html#eventmakar">Full project page</a></p>
+        </div></div>
+      </div>
+    </article>
+  </div>
+</section>
 
-                <div class="card rounded-xl p-6">
-                    <h4 class="font-display font-semibold text-white mb-4"><i class="fas fa-vr-cardboard text-[#2dd4bf] mr-2"></i>AR &amp; Frontend</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag px-3 py-1.5 rounded-full">AR Foundation (Unity)</span>
-                        <span class="tag px-3 py-1.5 rounded-full">ARCore</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Browser based AR Dashboards</span>
-                        <span class="tag px-3 py-1.5 rounded-full">React</span>
-                        <span class="tag px-3 py-1.5 rounded-full">HTML/CSS/JS</span>
-                    </div>
-                </div>
+<!-- ============================ 04 · PUBLICATIONS ============================ -->
+<section id="publications" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>04</b> Publications</p>
+    <h2 class="section-title">Publications &amp; manuscripts</h2>
+    <div class="arch" data-archive>
 
-                <div class="card rounded-xl p-6">
-                    <h4 class="font-display font-semibold text-white mb-4"><i class="fas fa-code text-[#2dd4bf] mr-2"></i>Programming</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag px-3 py-1.5 rounded-full">Python</span>
-                        <span class="tag px-3 py-1.5 rounded-full">JavaScript</span>
-                        <span class="tag px-3 py-1.5 rounded-full">C#</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Java</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Bash</span>
-                        <span class="tag px-3 py-1.5 rounded-full">PyTorch / TensorFlow (familiar)</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Git</span>
-                    </div>
-                </div>
-
-                <div class="card rounded-xl p-6 md:col-span-2">
-                    <h4 class="font-display font-semibold text-white mb-4"><i class="fas fa-flask text-[#2dd4bf] mr-2"></i>Research Methods</h4>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag px-3 py-1.5 rounded-full">HRI User Studies</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Mixed Methods</span>
-                        <span class="tag px-3 py-1.5 rounded-full">SUS / NASA-TLX</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Qualitative Coding</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Statistical Analysis</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Formative Studies</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Exploratory Studies</span>
-                        <span class="tag px-3 py-1.5 rounded-full">Cognitive Study</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Work Experience -->
-    <section id="experience" class="py-14 border-t border-[#1c2531]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-12 font-display">Work Experience</h2>
-
-            <div class="max-w-3xl space-y-14">
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">Assistant Faculty Supervisor (Part Time)</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">Aug 2025 to Present</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">UM-Flint Recreation Center</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Operations support, incident handling, and customer facing technical communication.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">UX Analyst Intern</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">May to Jul 2025</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">BizGees Ltd. · United Kingdom (Remote)</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Conducted accessibility testing and technical issue resolution alongside developers.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">Software Developer (Freelance)</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">Aug 2024 to Aug 2025</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">Talk the Taste Marketing Management · Dubai, UAE (Remote)</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Built responsive web apps using Python, Java, and MongoDB, improving UX and boosting engagement by 40%.</li>
-                        <li>Integrated real time WebSocket communication and developed RESTful APIs for third party integrations.</li>
-                        <li>Implemented automated testing and CI/CD pipelines, cutting deployment time by 30%.</li>
-                        <li>Worked cross functionally with designers and product to reduce churn through faster iteration.</li>
-                    </ul>
-                </div>
-
-                <div class="timeline-item">
-                    <div class="flex flex-col md:flex-row md:justify-between md:items-baseline mb-1">
-                        <h3 class="text-lg font-semibold text-white font-display">QA &amp; IT Support</h3>
-                        <span class="font-mono text-xs text-[#2dd4bf]">Sep 2022 to Jan 2024</span>
-                    </div>
-                    <p class="text-sm text-[#8b98ab] mb-3">Danfe Solution Pvt. Ltd. · Kathmandu, Nepal</p>
-                    <ul class="list-disc pl-5 space-y-2 text-sm text-[#8b98ab]">
-                        <li>Resolved 50+ weekly technical and security issues.</li>
-                        <li>Assisted with firewall configuration, VPNs, and vulnerability reporting.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Awards -->
-            <div class="max-w-3xl mt-16">
-                <h3 class="text-xl font-semibold text-white mb-6 font-display">Awards &amp; Recognition</h3>
-                <ul class="space-y-3 text-sm text-[#8b98ab]">
-                    <li class="flex items-start gap-3"><i class="fas fa-award text-[#2dd4bf] mt-1"></i>4.0 GPA, University of Michigan-Flint, MS Computer Science</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-award text-[#2dd4bf] mt-1"></i>GSRA Research Funding, University of Michigan-Flint</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-award text-[#2dd4bf] mt-1"></i>Google Cybersecurity Professional Certificate</li>
-                    <li class="flex items-start gap-3"><i class="fas fa-award text-[#2dd4bf] mt-1"></i>AWS Academy Cloud Foundations</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Certifications -->
-    <section id="certifications" class="py-14 border-t border-[#1c2531] bg-[#0d1420]/40">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-12 font-display">Certifications &amp; Credentials</h2>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="card rounded-xl p-6 flex flex-col">
-                    <img src="aws-academy-graduate-aws-academy-cloud-foundations.png" alt="AWS Academy Cloud Foundations Badge" class="w-12 h-12 mb-4 rounded">
-                    <h4 class="font-semibold text-white mb-1">AWS Academy Graduate, Cloud Foundations</h4>
-                    <p class="text-xs text-[#8b98ab] mb-3">AWS</p>
-                    <p class="text-sm text-[#8b98ab] mb-4 flex-1">Foundational knowledge of AWS Cloud concepts, services, security, architecture, pricing, and support.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs text-[#8b98ab] font-mono">Apr 2022</span>
-                        <a href="https://www.credly.com/badges/749d5676-9ca6-4d48-abe7-d7ea7cb34221/public_url" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">Verify</a>
-                    </div>
-                </div>
-
-                <div class="card rounded-xl p-6 flex flex-col">
-                    <img src="aws-academy-graduate-aws-academy-data-center-technician.png" alt="AWS Academy Data Center Technician Badge" class="w-12 h-12 mb-4 rounded">
-                    <h4 class="font-semibold text-white mb-1">AWS Academy Graduate, Data Center Technician</h4>
-                    <p class="text-xs text-[#8b98ab] mb-3">AWS</p>
-                    <p class="text-sm text-[#8b98ab] mb-4 flex-1">Data center operations, cloud infrastructure, and AWS best practices for technical roles.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs text-[#8b98ab] font-mono">Jul 2022</span>
-                        <a href="https://www.credly.com/badges/95f6a4e6-b13a-4fa9-9a15-a039a408ec02/public_url" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">Verify</a>
-                    </div>
-                </div>
-
-                <div class="card rounded-xl p-6 flex flex-col">
-                    <img src="introduction to cybersecurity.png" alt="Introduction to Cybersecurity Badge" class="w-12 h-12 mb-4 rounded">
-                    <h4 class="font-semibold text-white mb-1">Introduction to Cybersecurity</h4>
-                    <p class="text-xs text-[#8b98ab] mb-3">Cisco</p>
-                    <p class="text-sm text-[#8b98ab] mb-4 flex-1">Essential cybersecurity concepts, threats, and defense strategies.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs text-[#8b98ab] font-mono">Jul 2022</span>
-                        <a href="https://www.credly.com/badges/c328643a-0bec-460d-a3c0-9f2118243477/public_url" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">Verify</a>
-                    </div>
-                </div>
-
-                <div class="card rounded-xl p-6 flex flex-col">
-                    <img src="Google-G_360x360.png" alt="Google Cybersecurity Badge" class="w-12 h-12 mb-4 rounded">
-                    <h4 class="font-semibold text-white mb-1">Google Cybersecurity Professional</h4>
-                    <p class="text-xs text-[#8b98ab] mb-3">Google</p>
-                    <p class="text-sm text-[#8b98ab] mb-4 flex-1">Professional level certification in cybersecurity, risk management, and incident response.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-xs text-[#8b98ab] font-mono">Dec 2024</span>
-                        <a href="https://coursera.org/share/1b971182c4f8a63c9493eba0f3b03576" target="_blank" rel="noopener" class="text-[#2dd4bf] text-sm hover:underline">Verify</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="py-14 border-t border-[#1c2531]">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="w-10 h-1 bg-[#2dd4bf] rounded-full mb-4"></div>
-            <h2 class="text-3xl font-bold text-white mb-12 font-display">Get In Touch</h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl">
-                <a href="mailto:Gaurabk@umich.edu" class="card rounded-xl p-6 flex flex-col items-start">
-                    <i class="fas fa-envelope text-[#2dd4bf] text-xl mb-3"></i>
-                    <h4 class="font-semibold text-white mb-1">Email</h4>
-                    <p class="text-sm text-[#8b98ab]">Gaurabk@umich.edu</p>
-                </a>
-                <a href="https://www.linkedin.com/in/gaurabk/" target="_blank" rel="noopener" class="card rounded-xl p-6 flex flex-col items-start">
-                    <i class="fab fa-linkedin text-[#2dd4bf] text-xl mb-3"></i>
-                    <h4 class="font-semibold text-white mb-1">LinkedIn</h4>
-                    <p class="text-sm text-[#8b98ab]">/in/gaurabk</p>
-                </a>
-                <a href="https://github.com/ESulululu10" target="_blank" rel="noopener" class="card rounded-xl p-6 flex flex-col items-start">
-                    <i class="fab fa-github text-[#2dd4bf] text-xl mb-3"></i>
-                    <h4 class="font-semibold text-white mb-1">GitHub</h4>
-                    <p class="text-sm text-[#8b98ab]">@ESulululu10</p>
-                </a>
-            </div>
-
-            <p class="text-[#8b98ab] mt-8 max-w-xl">
-                Based in Flint, MI. Open to research collaborations, HRI/robotics conversations, and relevant
-                internship or research opportunities.
+    <div class="pub-group">
+      <h3>Under review</h3>
+      <div class="pubrow" data-item>
+        <button class="pubrow-head" type="button" data-toggle aria-controls="pub-s1">
+          <span class="pub-year">2026</span>
+          <span>
+            <span class="pub-title-x">Title withheld during review</span>
+            <span class="authors" style="display:block"><em>Gaurab Khadka</em> and advisor</span>
+          </span>
+          <span class="pub-venue">
+            a peer reviewed venue<br>full paper
+            <span class="status-chip review"><i></i> Submitted &middot; under review</span>
+          </span>
+          <span class="pcard-toggle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <span class="pub-motif" aria-hidden="true"><svg viewBox="0 0 190 74" preserveAspectRatio="none"><path class="tr" d="M6 60 C 44 8, 92 68, 128 22 S 172 30, 184 14"/></svg></span>
+        <div class="pubrow-body" id="pub-s1">
+          <div><div class="pubrow-inner">
+            <p>
+              On my thesis work. The paper title, the system and results figures, and video of the fleet are held back
+              while the review process runs. The project page describes the work in general terms. I am glad to
+              send figures and a demo to faculty who ask.
             </p>
+            <p style="margin-bottom:0">
+              <a class="more" href="work.html#thesis">Project page</a> &nbsp;
+              <a class="more" href="mailto:gaurabk@umich.edu">Request figures</a>
+            </p>
+          </div></div>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="border-t border-[#1c2531] py-10">
-        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div>
-                <span class="font-display font-semibold text-white">Gaurab Khadka</span>
-                <p class="text-sm text-[#8b98ab] mt-1">MS Computer Science · Multi Human Robot Interaction</p>
-            </div>
-            <div class="flex items-center gap-5">
-                <a href="https://www.linkedin.com/in/gaurabk/" target="_blank" rel="noopener" class="text-[#8b98ab] hover:text-[#2dd4bf] transition"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/ESulululu10" target="_blank" rel="noopener" class="text-[#8b98ab] hover:text-[#2dd4bf] transition"><i class="fab fa-github"></i></a>
-                <p class="text-sm text-[#8b98ab]">© 2026 Gaurab Khadka</p>
-            </div>
+    <div class="pub-group">
+      <h3>In preparation</h3>
+      <div class="pubrow" data-item>
+        <button class="pubrow-head" type="button" data-toggle aria-controls="pub-m1">
+          <span class="pub-year">2026</span>
+          <span>
+            <span class="pub-title-x">Social Web-Inspired Video to Support Student Attainment of AACN Essentials</span>
+            <span class="authors" style="display:block">Beverly Dabney and <em>Gaurab Khadka</em></span>
+          </span>
+          <span class="pub-venue">
+            School of Nursing, University of Michigan Flint
+            <span class="status-chip prep"><i></i> Manuscript in preparation</span>
+          </span>
+          <span class="pcard-toggle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <span class="pub-motif" aria-hidden="true"><svg viewBox="0 0 190 74" preserveAspectRatio="none"><path class="tr" d="M8 64 H 76 M30 46 H 110 M54 28 H 146 M78 10 H 182"/></svg></span>
+        <div class="pubrow-body" id="pub-m1">
+          <div><div class="pubrow-inner">
+            <p>
+              <strong>My contribution:</strong> I designed and built the AI assisted production pipeline (script
+              generation written to the competency each video serves, image prompting, assembly, and delivery through
+              the course&rsquo;s LMS), and designed the &ldquo;Evidence Elevator&rdquo; device for teaching the
+              hierarchy of evidence.
+            </p>
+            <p style="margin-bottom:0"><a class="more" href="work.html#video">Project page</a></p>
+          </div></div>
         </div>
-    </footer>
+      </div>
+    </div>
 
-    <!-- Back to top -->
-    <button id="backToTop" class="fixed bottom-8 right-8 bg-[#2dd4bf] text-[#0a0e14] p-3 rounded-full shadow-lg opacity-0 invisible transition-all duration-300 z-40">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    </div>
+    <p style="font-size:.86rem;color:var(--ink-faint);margin-top:1.2rem;max-width:66ch">
+      Nothing on this page is peer reviewed and accepted yet; status labels are updated as decisions arrive.
+    </p>
+  </div>
+</section>
 
-    <script>
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+<!-- ============================ 05 · BACKGROUND ============================ -->
+<section id="background" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>05</b> Background</p>
 
-        const backToTopButton = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-            } else {
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
-        backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    <div class="split">
+      <div>
+        <h2 class="section-title">Appointments</h2>
+        <div class="rows">
+          <div class="row">
+            <div class="row-head">
+              <h3>Graduate Student Research Assistant, PLAYLab</h3>
+              <span class="when">Aug 2025 &ndash; present</span>
+            </div>
+            <p class="where">University of Michigan Flint</p>
+            <p>
+              Design and build end user authoring tools for multi robot teams, and run the studies that evaluate them.
+              That includes the hardware: I build the robot fleets themselves, their localization, and the control
+              software that drives them.
+            </p>
+          </div>
+          <div class="row">
+            <div class="row-head">
+              <h3>Graduate Student Research Assistant (part time)</h3>
+              <span class="when">Jan 2026 &ndash; present</span>
+            </div>
+            <p class="where">School of Nursing, University of Michigan Flint &middot; PI: Dr.&nbsp;Beverly Dabney</p>
+            <p><a href="work.html#video">Social web inspired video for nursing education</a>. I designed and built the AI assisted production pipeline. Manuscript in preparation.</p>
+          </div>
+          <div class="row">
+            <div class="row-head">
+              <h3>Research Mentor, NSF REU Site in Digital Accessibility</h3>
+              <span class="when">May &ndash; Jul 2026</span>
+            </div>
+            <p class="where">University of Michigan Flint</p>
+            <p>
+              Mentored an undergraduate researcher on an AR authoring tool that lets autistic users program robot and
+              IoT behaviors through spatial storytelling and visual cues, and guided co design sessions with autistic
+              participants.
+            </p>
+          </div>
+          <div class="row">
+            <div class="row-head">
+              <h3>Student Volunteer, ACM RecSys 2026</h3>
+              <span class="when">2026</span>
+            </div>
+            <p class="where">Minneapolis, MN</p>
+          </div>
+        </div>
+      </div>
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    e.preventDefault();
-                    window.scrollTo({ top: targetElement.offsetTop - 64, behavior: 'smooth' });
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-        });
-    </script>
+      <div>
+        <h2 class="section-title">Trajectory</h2>
+        <div class="globe-wrap" data-globe>
+          <div class="globe-stage">
+            <canvas role="img" aria-label="A slowly rotating globe. Each node is a chapter of the work, joined in the order it happened. Drag to spin it, or use the buttons beside it to read each chapter."></canvas>
+            <span class="globe-hint">Drag to spin &middot; click a node</span>
+          </div>
+          <div>
+            <div class="globe-tabs" role="group" aria-label="Chapters"></div>
+            <div class="globe-panel" aria-live="polite"></div>
+            <ol class="globe-list">
+              <li data-short="PLAYLab" data-lat="34" data-lon="-38">
+                <span class="when">Aug 2025</span><span class="what">Joined PLAYLab, University of Michigan Flint</span>
+                <p class="why">Started the M.S. in Computer Science and a graduate research assistantship. GPA 4.0 / 4.0, expected May 2027.</p>
+              </li>
+              <li data-short="Motion study" data-lat="8" data-lon="12">
+                <span class="when">2025</span><span class="what">Expressive motion study: first fleet, first study</span>
+                <p class="why">Built a three robot fleet with seven motion primitives and ran a study with 11 participants. It worked, and it exposed the limitation that set up the thesis.</p>
+              </li>
+              <li data-short="EventMakAR" data-lat="-22" data-lon="58">
+                <span class="when">2025 &ndash; 2026</span><span class="what">EventMakAR deployed at a public workshop</span>
+                <p class="why">Students authored and ran their own AR stories with physical robots, the first time the authoring model met users outside the lab.</p>
+              </li>
+              <li data-short="Nursing video" data-lat="26" data-lon="108">
+                <span class="when">Jan 2026</span><span class="what">School of Nursing assistantship</span>
+                <p class="why">Designed and built an AI assisted pipeline for short form educational video. Manuscript in preparation.</p>
+              </li>
+              <li data-short="NSF REU" data-lat="-14" data-lon="158">
+                <span class="when">May &ndash; Jul 2026</span><span class="what">Mentored an NSF REU researcher</span>
+                <p class="why">Accessible AR authoring for autistic users, including co design sessions with autistic participants.</p>
+              </li>
+              <li data-short="Paper submitted" data-lat="44" data-lon="-152">
+                <span class="when">Sep 2026</span><span class="what">Full paper submitted for review</span>
+                <p class="why">Novices author the motions, a model composes the plan, the person approves before anything moves. Under review.</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 06 · WHAT I WANT TO STUDY NEXT ============================ -->
+<section id="next" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>06</b> What I want to study next</p>
+    <h2 class="section-title">Questions that came directly from my own projects</h2>
+    <p class="prose" style="margin-bottom:1.4rem">
+      The systems I have built solved some problems, but they also showed me what I still do not understand. These
+      are the questions I want to explore during a PhD.
+    </p>
+
+    <div class="qgrid">
+      <div class="qcard reveal" data-prox>
+        <span class="n">Question 01</span>
+        <h3>What can people really check before a robot acts?</h3>
+        <p>
+          In one of my recent projects, a model helps create a multi robot plan, but a person reviews and approves it
+          before the robots move. I want to understand what people actually notice during that review, what kinds of
+          mistakes they miss, and how interfaces can better support that decision.
+        </p>
+      </div>
+      <div class="qcard reveal" data-prox>
+        <span class="n">Question 02</span>
+        <h3>Will other people understand the motion?</h3>
+        <p>
+          In an earlier study, some robot motions that were designed to communicate different states were still
+          confused by participants. That made me interested in how we can help people create robot motions that are
+          understandable not only to the person who made them, but also to someone seeing them for the first time.
+        </p>
+      </div>
+      <div class="qcard reveal" data-prox>
+        <span class="n">Question 03</span>
+        <h3>How can robot authoring work for more people?</h3>
+        <p>
+          My current work explores sketching and physical demonstration as ways to create robot behavior. But people
+          have different abilities, preferences, and ways of interacting. I want to study how robot authoring tools
+          can be designed for that range from the beginning.
+        </p>
+      </div>
+    </div>
+  </section>
+
+<!-- ============================ 07 · CONTACT ============================ -->
+<section id="contact" class="env-dark" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>07</b> Contact</p>
+    <h2 class="section-title">Get in touch</h2>
+    <p class="prose">
+      I am applying to PhD programs in HCI, HRI and human AI interaction for Fall&nbsp;2027 entry, and I am glad
+      to talk about end user robot programming, multi robot studies, or the hardware behind any of it.
+    </p>
+    <div class="contact-grid">
+      <div>
+        <div class="k">Email</div>
+        <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a>
+      </div>
+      <div>
+        <div class="k">Location</div>
+        <div>Flint, Michigan, USA</div>
+      </div>
+      <div>
+        <div class="k">CV</div>
+        <a href="Gaurab_Khadka_CV.pdf">PDF</a>
+      </div>
+      <div>
+        <div class="k">Elsewhere</div>
+        <a href="https://github.com/ESulululu10" rel="noopener">GitHub</a> &middot;
+        <a href="https://www.linkedin.com/in/gaurabk/" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Gaurab Khadka</span>
+    <span>University of Michigan Flint &middot; <a href="engineering.html">Technical background</a></span>
+  </div>
+</footer>
+
+<script src="app.js?v=3" defer></script>
+<script src="art-direction.js?v=3" defer></script>
+<script src="instruments.js?v=3" defer></script>
+<script src="globe.js?v=3" defer></script>
+<script src="nav.js?v=3" defer></script>
 </body>
 </html>
