@@ -12,7 +12,7 @@
   var ACCENT = '#e8873a', STEEL = '#8a94a6';
 
   /* ============================================================
-     AR LENS — EventMakAR
+     AR LENS — the AR authoring tool
      The arena is plain until you look at it through the lens.
      That is the project: overlays registered onto real robots.
      ============================================================ */
@@ -24,7 +24,7 @@
     var ctx = canvas.getContext('2d');
     var W = 0, H = 0, mx = -999, my = -999, target = -999, ty = -999, raf = 0;
 
-    // five characters on the floor, the cast EventMakAR drives
+    // five characters on the floor, the cast the AR authoring tool drives
     var cast = [
       { x: .18, y: .34, tag: 'ROBOT 1', act: 'enters' },
       { x: .40, y: .62, tag: 'ROBOT 2', act: 'searches' },

@@ -21,9 +21,9 @@
     { l: 'Contact',                  h: 'index.html#contact',    k: '06',   t: 'email get in touch' },
 
     { l: 'Work &mdash; all four systems', h: 'work.html',        k: 'PAGE', t: 'projects' },
-    { l: 'Authoring motion for robot teams', h: 'work.html#thesis',   k: 'PROJ', t: 'thesis hri 2027 plan approve reject' },
-    { l: 'ExpressBot',               h: 'work.html#expressbot',  k: 'PROJ', t: 'motion primitives seven states study n=11' },
-    { l: 'EventMakAR',               h: 'work.html#eventmakar',  k: 'PROJ', t: 'augmented reality workshop authoring' },
+    { l: 'Multi-Robot Authoring Research', h: 'work.html#thesis', k: 'PROJ', t: 'thesis hri 2027 plan approve reject authoring motion' },
+    { l: 'Expressive Robot Motion Study', h: 'work.html#motion-study', k: 'PROJ', t: 'motion primitives seven states study n=11 legible' },
+    { l: 'Human-Centered Robot Programming', h: 'work.html#ar-authoring', k: 'PROJ', t: 'augmented reality ar workshop authoring stories' },
     { l: 'Social web inspired video',h: 'work.html#video',       k: 'PROJ', t: 'nursing aacn pipeline dabney' },
 
     { l: 'Technical background',     h: 'engineering.html',      k: 'PAGE', t: 'stack blueprint esp32 vive llm schematic skills' },

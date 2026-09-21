@@ -484,7 +484,7 @@
   }
 
   /* ============================================================
-     3. MOTION PRIMITIVES — the ExpressBot vocabulary, playable
+     3. MOTION PRIMITIVES — the the motion study vocabulary, playable
      ============================================================ */
   function initPrimitives() {
     var root = document.querySelector('[data-prims]');

@@ -100,7 +100,7 @@
         <h3>Authoring interface</h3>
         <p>The surface a non expert actually touches: a canvas to draw a motion on, a library of what they have authored, and a plan they can read and edit before anything runs. Usable in one sitting, by someone who has never programmed a robot, while being observed.</p>
         <div class="stack"><span>HTML / CSS / JS</span><span>React</span><span>Canvas 2D</span><span>SVG</span></div>
-        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#eventmakar">EventMakAR</a></p>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#ar-authoring">the AR authoring tool</a></p>
       </div>
       <div data-for="llm">
         <div class="k">Component</div>
@@ -114,42 +114,42 @@
         <h3>Augmented reality layer</h3>
         <p>Spatial overlays registered to the room, driven by the same event file a non programmer authored in the browser. The runtime parses the file and drives the physical characters, so authored stories run without anyone opening the Unity project.</p>
         <div class="stack"><span>Unity</span><span>AR Foundation</span><span>ARCore</span><span>C#</span></div>
-        <p class="used">Used in <a href="work.html#eventmakar">EventMakAR</a></p>
+        <p class="used">Used in <a href="work.html#ar-authoring">the AR authoring tool</a></p>
       </div>
       <div data-for="control">
         <div class="k">Component</div>
         <h3>Control server</h3>
         <p>The centre of the fleet: takes an approved plan, splits it per robot, dispatches commands and watches what comes back. Also where an emergency stop lives, which matters when the robots are on the floor of a room with participants in it.</p>
         <div class="stack"><span>Python</span><span>WebSockets</span><span>REST</span><span>Serial</span></div>
-        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#expressbot">ExpressBot</a></p>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
       </div>
       <div data-for="tracking">
         <div class="k">Component</div>
         <h3>Localization</h3>
         <p>Knowing where each robot actually is, not where it was told to be. Without accurate position you cannot tell whether a robot performed the motion a person authored, which makes the whole study unanswerable. My first localization approach was not accurate enough and I replaced it.</p>
         <div class="stack"><span>HTC Vive Tracker</span><span>SteamVR</span><span>ArUco markers</span><span>OpenCV</span></div>
-        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#expressbot">ExpressBot</a></p>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
       </div>
       <div data-for="esp32">
         <div class="k">Component</div>
         <h3>Robot controllers</h3>
         <p>The robots themselves. Microcontroller firmware driving motors and servos over wifi, on a chassis built for roughly thirty dollars a unit so a study can use a fleet rather than one robot.</p>
         <div class="stack"><span>ESP32 / NodeMCU</span><span>C++ (Arduino)</span><span>PWM motor control</span><span>3D printed chassis</span></div>
-        <p class="used">Used in <a href="work.html#expressbot">ExpressBot</a> &middot; <a href="work.html#thesis">thesis work</a></p>
+        <p class="used">Used in <a href="work.html#motion-study">the motion study</a> &middot; <a href="work.html#thesis">thesis work</a></p>
       </div>
       <div data-for="data">
         <div class="k">Component</div>
         <h3>Study instrumentation</h3>
         <p>What a session leaves behind: authoring logs, execution traces, questionnaire responses and interview recordings, captured so that what someone said while authoring can be read against what they reported once they were done.</p>
         <div class="stack"><span>Think aloud protocol</span><span>SUS</span><span>NASA-TLX</span><span>Semi structured interviews</span></div>
-        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#expressbot">ExpressBot</a></p>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
       </div>
       <div data-for="analysis">
         <div class="k">Component</div>
         <h3>Analysis</h3>
         <p>Turning sessions into findings: counterbalanced within subjects comparison, descriptive and inferential statistics, and qualitative coding of what participants said, plus the figures that report it.</p>
         <div class="stack"><span>Python</span><span>pandas</span><span>matplotlib</span><span>Qualitative coding</span></div>
-        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#expressbot">ExpressBot</a></p>
+        <p class="used">Used in <a href="work.html#thesis">thesis work</a> &middot; <a href="work.html#motion-study">the motion study</a></p>
       </div>
   </div>
 </section>
