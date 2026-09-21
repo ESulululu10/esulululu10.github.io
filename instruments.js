@@ -251,3 +251,129 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
 })();
+
+/* ============================================================
+   ARCHIVE + TRAVELLING TIMELINE
+   Appended as a second module so the earlier instruments are
+   untouched.
+   ============================================================ */
+(function () {
+  'use strict';
+  var RM = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var reduced = function () { return RM.matches; };
+
+  /* ---------- publications: depth on scroll ---------- */
+  function initArchive() {
+    var arch = document.querySelector('[data-archive]');
+    if (!arch || reduced()) return;
+    var rows = Array.prototype.slice.call(arch.querySelectorAll('.pubrow'));
+    if (!rows.length) return;
+    var queued = false;
+    function apply() {
+      queued = false;
+      var mid = window.innerHeight * 0.52;
+      rows.forEach(function (r) {
+        var b = r.getBoundingClientRect();
+        // entries that have travelled above the reading line sink back
+        var above = Math.max(0, mid - (b.top + b.height / 2));
+        var d = Math.min(above / (window.innerHeight * 0.9), 1);
+        r.style.setProperty('--depth', d.toFixed(3));
+      });
+    }
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+    window.addEventListener('resize', apply);
+    apply();
+  }
+
+  /* ---------- background: scroll drives horizontal travel ---------- */
+  function initTravel() {
+    var wrap = document.querySelector('[data-travel]');
+    if (!wrap) return;
+    var track = wrap.querySelector('.trav-track');
+    var stops = Array.prototype.slice.call(wrap.querySelectorAll('.tstop'));
+    if (!track || !stops.length) return;
+
+    var narrow = function () {
+      return window.matchMedia('(max-width: 820px)').matches || reduced();
+    };
+
+    function size() {
+      if (narrow()) { wrap.style.height = ''; track.style.transform = ''; stops.forEach(function (s) { s.classList.add('live'); }); return; }
+      // the track must travel its own overflow while the stage is pinned
+      var travel = Math.max(0, track.scrollWidth - window.innerWidth);
+      wrap.style.height = (window.innerHeight + travel) + 'px';
+    }
+
+    var queued = false;
+    function apply() {
+      queued = false;
+      if (narrow()) return;
+      var r = wrap.getBoundingClientRect();
+      var travel = Math.max(0, track.scrollWidth - window.innerWidth);
+      var p = Math.min(Math.max(-r.top / (wrap.offsetHeight - window.innerHeight || 1), 0), 1);
+      track.style.transform = 'translate3d(' + (-p * travel).toFixed(1) + 'px,0,0)';
+      // whichever stop is nearest the middle of the screen is the live one
+      var mid = window.innerWidth / 2, best = null, bestD = 1e9;
+      stops.forEach(function (s) {
+        var b = s.getBoundingClientRect();
+        var d = Math.abs(b.left + b.width / 2 - mid);
+        if (d < bestD) { bestD = d; best = s; }
+      });
+      stops.forEach(function (s) { s.classList.toggle('live', s === best); });
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!queued) { queued = true; requestAnimationFrame(apply); }
+    }, { passive: true });
+    window.addEventListener('resize', function () { size(); apply(); });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { size(); apply(); });
+    size(); apply();
+    setTimeout(function () { size(); apply(); }, 400);
+  }
+
+  function boot() { initArchive(); initTravel(); }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+/* ---------- CV: index tracking + hover preview ---------- */
+(function () {
+  'use strict';
+  var grid = document.querySelector('[data-cv]');
+  if (!grid) return;
+  var links = Array.prototype.slice.call(grid.querySelectorAll('.cv-index a'));
+  var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+
+  function onScroll() {
+    var y = window.scrollY + window.innerHeight * 0.3;
+    var active = 0;
+    secs.forEach(function (s, i) { if (s && s.offsetTop <= y) active = i; });
+    links.forEach(function (a, i) { a.classList.toggle('on', i === active); });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // preview panel follows the pointer over items that declare one
+  var peek = document.createElement('div');
+  peek.className = 'peek';
+  document.body.appendChild(peek);
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if (!fine) return;
+
+  grid.querySelectorAll('[data-peek]').forEach(function (it) {
+    function show(e) {
+      peek.innerHTML = '<div class="k">' + (it.getAttribute('data-peek-k') || '') + '</div>' +
+                       '<div class="t">' + (it.getAttribute('data-peek-t') || '') + '</div>' +
+                       '<div class="d">' + (it.getAttribute('data-peek') || '') + '</div>';
+      var x = Math.min(e.clientX + 18, window.innerWidth - 246);
+      var y = Math.min(e.clientY + 14, window.innerHeight - 150);
+      peek.style.left = x + 'px'; peek.style.top = y + 'px';
+      peek.classList.add('on');
+    }
+    it.addEventListener('pointerenter', show);
+    it.addEventListener('pointermove', show);
+    it.addEventListener('pointerleave', function () { peek.classList.remove('on'); });
+  });
+})();
