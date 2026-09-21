@@ -554,3 +554,44 @@
   .frame, .scrub-handle, .work-nav a { transition: none; }
   .sframe.now { transform: none; }
 }
+
+/* ============================================================
+   LIVE DEMO — the real tool, running on the page
+   The screenshot is the default. React loads only when someone
+   asks for it, so the page costs nothing until then.
+   ============================================================ */
+.live { position: relative; }
+.live-shot { display: block; }
+.live-launch {
+  position: absolute; left: 50%; bottom: 1.4rem; transform: translateX(-50%);
+  display: inline-flex; align-items: center; gap: .5rem; cursor: pointer;
+  font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+  background: var(--accent); color: #17120c; border: 0; border-radius: 3px;
+  padding: .6rem 1.1rem; box-shadow: 0 10px 30px -12px rgba(0,0,0,.5);
+  transition: transform .2s var(--snap), filter .2s var(--ease);
+}
+.live-launch:hover { filter: brightness(1.08); transform: translateX(-50%) translateY(-2px); }
+.live-launch:active { transform: translateX(-50%) scale(.97); }
+.live-launch[disabled] { opacity: .6; cursor: default; }
+
+.live-host {
+  display: none; background: #fff; max-height: 640px; overflow-y: auto;
+  border-radius: 3px; padding: 4px;
+}
+.live.is-on .live-host { display: block; }
+.live.is-on .live-shot, .live.is-on .live-launch { display: none; }
+.live-host .step-section { margin: 0 0 14px; }
+.live-host .entity-btn { cursor: pointer; }
+
+.live-bar {
+  display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+  padding: .7rem .9rem; border-top: 1px solid rgba(255,255,255,.1); background: #0d0f13;
+}
+.live-bar .instr-label { margin-right: auto; }
+.live-reset {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+  background: none; border: 1px solid rgba(255,255,255,.2); color: #9aa0aa;
+  border-radius: 3px; padding: .32rem .6rem; cursor: pointer;
+}
+.live-reset:hover { color: #fff; border-color: #fff; }
+@media (prefers-reduced-motion: reduce) { .live-launch { transition: none; } }

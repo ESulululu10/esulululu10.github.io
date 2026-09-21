@@ -211,13 +211,24 @@
         <span class="instr-label">Move across the arena to look through the AR layer</span>
       </div>
     </div>
-    <figure class="diagram" style="margin:0 0 1.4rem">
-      <div class="frame plate" style="border-radius:3px">
-        <img src="media/eventmakar-ui.jpg" width="1000" height="1658" loading="lazy"
+    <div class="instr live" data-live>
+      <div class="live-shot">
+        <img src="media/eventmakar-ui.jpg" width="1000" height="1658" loading="lazy" style="display:block;width:100%;background:#fff"
              alt="The EventMakAR authoring interface: a four step form. Subject is set to Physical with the Catapult chosen and its action set to Spin; Target is set to Virtual with the Skeleton chosen and its action set to Attack.">
+        <button class="live-launch" type="button" data-live-launch>Run the real tool</button>
       </div>
-      <figcaption>The tool itself, mid authoring: a Catapult spinning triggers a Skeleton attacking &mdash; one physical to virtual event.</figcaption>
-    </figure>
+      <div class="live-host"></div>
+      <div class="live-bar" data-live-bar hidden>
+        <span class="instr-label">The actual authoring tool, running here</span>
+        <button class="live-reset" type="button" data-live-reset>Start over</button>
+      </div>
+    </div>
+    <p class="instr-note">
+      Not a mock: this is the component from the repository, compiled and running on the page. Build an event and it
+      will show you its type &mdash; physical to virtual, virtual to physical, or either staying in its own world.
+    </p>
+
+    
 
     <p class="instr-note">The devices are in the room. The characters are not &mdash; they exist only through AR. Authoring a story means sequencing events that cross between the two.</p>
 
@@ -328,6 +339,7 @@
 <script src="app.js" defer></script>
 <script src="art-direction.js" defer></script>
 <script src="work.js" defer></script>
+<script src="demo/live.js" defer></script>
 <script>
   // mark the project you are reading in the sticky project nav
   document.addEventListener('DOMContentLoaded', function () {
