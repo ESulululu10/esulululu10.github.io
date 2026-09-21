@@ -1,0 +1,129 @@
+/* ============================================================
+   WAYFINDING
+   A command palette, a real mobile menu, scroll progress and
+   smooth page changes. Usability first; the styling follows the
+   rest of the system.
+   ============================================================ */
+
+/* ---- smooth page changes where the browser supports it ---- */
+@view-transition { navigation: auto; }
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+}
+
+/* ---- scroll progress, riding the bottom edge of the header ---- */
+.progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 100%;
+  transform-origin: 0 50%; transform: scaleX(0);
+  background: var(--accent); z-index: 55; pointer-events: none;
+}
+.home .progress { mix-blend-mode: normal; }
+
+/* ---- the trigger sitting in the header ---- */
+.cmd-open {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase;
+  background: none; border: 1px solid var(--rule); color: var(--ink-faint);
+  border-radius: 3px; padding: .3rem .5rem; cursor: pointer;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.cmd-open:hover { color: var(--ink); border-color: var(--ink-faint); }
+.cmd-open kbd {
+  font: inherit; border: 1px solid currentColor; border-radius: 2px;
+  padding: 0 .2rem; opacity: .7;
+}
+.site-head.on-dark .cmd-open { border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.6); }
+.site-head.on-dark .cmd-open:hover { color: #fff; border-color: rgba(255,255,255,.5); }
+@media (max-width: 680px) { .cmd-open kbd { display: none; } }
+
+/* ---- the palette ---- */
+.cmd {
+  position: fixed; inset: 0; z-index: 120; display: none;
+  background: color-mix(in srgb, var(--void) 62%, transparent);
+  backdrop-filter: blur(3px);
+  padding: clamp(3rem, 12vh, 9rem) 20px 20px;
+}
+.cmd.open { display: block; }
+.cmd-box {
+  max-width: 560px; margin: 0 auto; background: var(--card);
+  border: 1px solid var(--rule); border-radius: 4px; box-shadow: 0 30px 80px -30px rgba(0,0,0,.55);
+  overflow: hidden;
+}
+.cmd-input {
+  width: 100%; border: 0; border-bottom: 1px solid var(--rule); background: none;
+  font-family: var(--sans); font-size: 1rem; color: var(--ink);
+  padding: 1rem 1.1rem; outline: none;
+}
+.cmd-input::placeholder { color: var(--ink-faint); }
+.cmd-list { max-height: min(56vh, 420px); overflow-y: auto; padding: .4rem; margin: 0; list-style: none; }
+.cmd-item {
+  display: grid; grid-template-columns: auto minmax(0,1fr) auto; gap: .7rem; align-items: center;
+  padding: .6rem .7rem; border-radius: 3px; cursor: pointer; scroll-margin: .5rem;
+}
+.cmd-item[aria-selected="true"] { background: var(--accent-soft); }
+.cmd-item .ico {
+  width: 20px; height: 20px; border: 1px solid var(--rule); border-radius: 2px;
+  display: grid; place-items: center; color: var(--ink-faint);
+  font-family: var(--mono); font-size: .54rem;
+}
+.cmd-item[aria-selected="true"] .ico { border-color: var(--accent); color: var(--accent); }
+.cmd-item .lbl { font-size: .92rem; color: var(--ink); }
+.cmd-item .hint {
+  font-family: var(--mono); font-size: .56rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint); white-space: nowrap;
+}
+.cmd-empty { padding: 1.4rem 1.1rem; font-size: .9rem; color: var(--ink-faint); }
+.cmd-foot {
+  display: flex; gap: 1rem; padding: .55rem 1.1rem; border-top: 1px solid var(--rule);
+  font-family: var(--mono); font-size: .54rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* ---- mobile menu: nothing is unreachable on a phone ---- */
+.menu-btn {
+  display: none; width: 30px; height: 30px; border: 1px solid var(--rule); border-radius: 3px;
+  background: none; color: var(--ink-soft); cursor: pointer; place-items: center; padding: 0;
+}
+.menu-btn svg { width: 15px; height: 15px; }
+.site-head.on-dark .menu-btn { border-color: rgba(255,255,255,.2); color: rgba(255,255,255,.65); }
+@media (max-width: 720px) {
+  .menu-btn { display: grid; }
+  .site-nav > a { display: none; }
+}
+.sheet {
+  position: fixed; inset: 0; z-index: 110; display: none;
+  background: var(--paper); padding: 4.6rem 22px 2rem;
+}
+.sheet.open { display: block; }
+.sheet a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  font-family: var(--display); font-size: 1.7rem; color: var(--ink); text-decoration: none;
+  padding: .75rem 0; border-bottom: 1px solid var(--rule);
+}
+.sheet a span {
+  font-family: var(--mono); font-size: .56rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.sheet a:active { color: var(--accent); }
+.sheet-close {
+  position: absolute; top: 1rem; right: 20px; width: 32px; height: 32px;
+  border: 1px solid var(--rule); border-radius: 3px; background: none; color: var(--ink-soft);
+  display: grid; place-items: center; cursor: pointer;
+}
+
+/* ---- back to top, appears once you are well down the page ---- */
+.totop {
+  position: fixed; right: max(14px, 2vw); bottom: max(14px, 2vw); z-index: 58;
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid var(--rule); background: var(--card); color: var(--ink-soft);
+  display: grid; place-items: center; cursor: pointer;
+  opacity: 0; transform: translateY(8px); pointer-events: none;
+  transition: opacity .3s var(--ease), transform .3s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.totop.on { opacity: 1; transform: none; pointer-events: auto; }
+.totop:hover { color: var(--accent); border-color: var(--accent); }
+.totop svg { width: 15px; height: 15px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .totop, .cmd-open, .cmd-item { transition: none; }
+}
