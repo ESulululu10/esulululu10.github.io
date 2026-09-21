@@ -574,15 +574,23 @@
 .live-launch:active { transform: translateX(-50%) scale(.97); }
 .live-launch[disabled] { opacity: .6; cursor: default; }
 
-.live-host {
-  display: none; background: #fff;
-  border-radius: 3px; padding: 6px;
+/* Shown as the device it is used on: a phone sized screen on the dark
+   panel. Scrolling inside it reads as a phone rather than as a scrollbox
+   embedded in a page. */
+.live-host { display: none; background: #0c0e12; padding: 26px 14px; }
+.live.is-on .live-host { display: flex; justify-content: center; }
+.live-host > div {
+  width: 390px; max-width: 100% !important;
+  height: 760px; overflow-y: auto; overscroll-behavior: contain;
+  background: #fff; border-radius: 26px;
+  padding: 16px 12px !important;
+  box-shadow: 0 0 0 9px #1b1f26, 0 0 0 10px #2b313a, 0 30px 70px -28px rgba(0,0,0,.85);
+  scrollbar-width: thin;
 }
-/* the component caps itself at 520px, which makes a tall narrow column
-   inside a wide frame. Let it use the panel so it stands at its own
-   height instead of scrolling inside a box. */
-.live-host > div { max-width: 100% !important; }
-@media (min-width: 760px) { .live-host > div { padding-left: 4%; padding-right: 4%; } }
+@media (max-width: 460px) {
+  .live-host { padding: 14px 6px; }
+  .live-host > div { height: 620px; border-radius: 20px; box-shadow: 0 0 0 5px #1b1f26; }
+}
 .live.is-on .live-host { display: block; }
 .live.is-on .live-shot, .live.is-on .live-launch { display: none; }
 .live-host .step-section { margin: 0 0 14px; }
