@@ -1,5 +1,5 @@
 /* ============================================================
-   INSTRUMENTS — per-page interaction concepts.
+   INSTRUMENTS: per-page interaction concepts.
    Each page gets its own movement, inside one visual identity.
 
      research   : force-field constellation
@@ -50,9 +50,13 @@
 .cons-read {
   position: absolute; left: 0; bottom: -.4rem; max-width: 40ch;
   pointer-events: none; opacity: 0; transform: translateY(6px);
-  transition: opacity .4s var(--ease), transform .4s var(--ease);
+  /* visibility, not just opacity: until a node is picked the readout holds an
+     empty link, and hiding it this way keeps that out of the tab order and
+     out of the accessibility tree */
+  visibility: hidden;
+  transition: opacity .4s var(--ease), transform .4s var(--ease), visibility 0s .4s;
 }
-.cons-read.on { opacity: 1; transform: none; }
+.cons-read.on { opacity: 1; transform: none; visibility: visible; transition-delay: 0s; }
 .cons-read .q {
   font-family: var(--display); font-size: 1.15rem; line-height: 1.2; color: var(--ink);
 }
@@ -156,7 +160,7 @@
 }
 
 /* ============================================================
-   3. PUBLICATIONS — kinetic archive
+   3. PUBLICATIONS: kinetic archive
    Strips, not list items. Hover shifts the title and slides a
    trajectory motif out of the side. Scroll pushes older work back.
    ============================================================ */
@@ -211,7 +215,7 @@
 }
 
 /* ============================================================
-   4. BACKGROUND — travelling timeline
+   4. BACKGROUND: travelling timeline
    Vertical scrolling drives horizontal travel along one path.
    ============================================================ */
 .trav-wrap { position: relative; }
@@ -282,7 +286,7 @@
 }
 
 /* ============================================================
-   5. CV — structured living document
+   5. CV: structured living document
    Fixed index, dates on a rail, precise mechanical reveals.
    ============================================================ */
 .cv-grid { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
@@ -351,7 +355,7 @@
 }
 
 /* ============================================================
-   4b. BACKGROUND — rotating globe
+   4b. BACKGROUND: rotating globe
    The trajectory is literal: the places the work happened in.
    Replaces the horizontal track, which needed too much scrolling.
    ============================================================ */
@@ -482,7 +486,7 @@
 }
 
 /* ============================================================
-   WORK — four projects, four instruments
+   WORK: four projects, four instruments
    ============================================================ */
 .work-nav {
   position: sticky; top: 54px; z-index: 40; background: var(--paper);
@@ -556,12 +560,22 @@
 }
 
 /* ============================================================
-   LIVE DEMO — the real tool, running on the page
+   LIVE DEMO: the real tool, running on the page
    The screenshot is the default. React loads only when someone
    asks for it, so the page costs nothing until then.
    ============================================================ */
 .live { position: relative; }
-.live-shot { display: block; }
+.live-idle {
+  display: grid; place-items: center; gap: 1rem;
+  min-height: 300px; background: #0c0e12;
+}
+.live-idle-label {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; color: #6b717b;
+}
+.live.is-on .live-idle { display: none; }
+.live-launch { position: static; transform: none; }
+.live-launch:hover { transform: translateY(-2px); }
+.live-launch:active { transform: scale(.97); }
 .live-launch {
   position: absolute; left: 50%; bottom: 1.4rem; transform: translateX(-50%);
   display: inline-flex; align-items: center; gap: .5rem; cursor: pointer;

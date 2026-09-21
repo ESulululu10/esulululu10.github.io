@@ -1,5 +1,5 @@
 /* ============================================================
-   INSTRUMENTS — one interaction concept per page.
+   INSTRUMENTS: one interaction concept per page.
      Constellation : research, a force field of areas and projects
      Blueprint     : technical, a schematic you inspect
    Both are additive: without JS the fallback markup is readable.

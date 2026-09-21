@@ -20,8 +20,8 @@
     { l: 'What I want to study next',h: 'index.html#next',       k: '05',   t: 'questions phd direction' },
     { l: 'Contact',                  h: 'index.html#contact',    k: '06',   t: 'email get in touch' },
 
-    { l: 'Work &mdash; all four systems', h: 'work.html',        k: 'PAGE', t: 'projects' },
-    { l: 'Multi-Robot Authoring Research', h: 'work.html#thesis', k: 'PROJ', t: 'thesis hri 2027 plan approve reject authoring motion' },
+    { l: 'Work &middot; all four systems', h: 'work.html',        k: 'PAGE', t: 'projects' },
+    { l: 'Multi-Robot Authoring Research', h: 'work.html#thesis', k: 'PROJ', t: 'thesis under review plan approve reject authoring motion' },
     { l: 'Expressive Robot Motion Study', h: 'work.html#motion-study', k: 'PROJ', t: 'motion primitives seven states study n=11 legible' },
     { l: 'EventMakAR', h: 'work.html#eventmakar', k: 'PROJ', t: 'augmented reality ar workshop authoring stories' },
     { l: 'Social web inspired video',h: 'work.html#video',       k: 'PROJ', t: 'nursing aacn pipeline dabney' },

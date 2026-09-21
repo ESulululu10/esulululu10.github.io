@@ -120,7 +120,7 @@
   }
 
   /* ============================================================
-     1. HERO ARENA — drag to author a path, a robot follows it
+     1. HERO ARENA: drag to author a path, a robot follows it
      ============================================================ */
   function initArena() {
     var stage = document.querySelector('[data-arena]');
@@ -261,7 +261,7 @@
       ctx.clearRect(0, 0, W, H);
       drawGrid(ctx, W, H, Math.max(26, Math.round(W / 14)));
 
-      // authored paths, amber, dashed — the human's input
+      // authored paths, amber, dashed: the human's input
       ctx.save();
       ctx.lineWidth = 1.5; ctx.setLineDash([4, 4]); ctx.lineJoin = 'round'; ctx.lineCap = 'round';
       agents.forEach(function (a) {
@@ -278,7 +278,7 @@
         ctx.restore();
       }
 
-      // executed trajectories, blue, fading — the machine carrying it out
+      // executed trajectories, blue, fading: the machine carrying it out
       ctx.save();
       ctx.lineWidth = 2; ctx.lineCap = 'round';
       agents.forEach(function (a) {
@@ -341,7 +341,7 @@
   }
 
   /* ============================================================
-     2. PLAN DEMO — a model proposes, nothing moves until approved
+     2. PLAN DEMO: a model proposes, nothing moves until approved
      ============================================================ */
   function initPlanDemo() {
     var root = document.querySelector('[data-plandemo]');
@@ -484,7 +484,7 @@
   }
 
   /* ============================================================
-     3. MOTION PRIMITIVES — the the motion study vocabulary, playable
+     3. MOTION PRIMITIVES: the the motion study vocabulary, playable
      ============================================================ */
   function initPrimitives() {
     var root = document.querySelector('[data-prims]');
@@ -503,9 +503,13 @@
         return p;
       },
       Delivering: function () { return [{ x: 0.1, y: 0.7 }, { x: 0.5, y: 0.55 }, { x: 0.9, y: 0.38 }]; },
-      Waking: function () {
+      Waiting: function () {
+        // holding position: a slow shift one way and back, going nowhere
         var p = [], i;
-        for (i = 0; i <= 26; i++) { var t = i / 26; p.push({ x: 0.3 + t * 0.4, y: 0.72 - t * 0.34 * (1 - t * 0.35) }); }
+        for (i = 0; i <= 40; i++) {
+          var t = i / 40;
+          p.push({ x: 0.44 + Math.sin(t * Math.PI * 2) * 0.09, y: 0.52 + Math.sin(t * Math.PI * 4) * 0.015 });
+        }
         return p;
       },
       Urgent: function () {
@@ -529,9 +533,9 @@
         return p;
       }
     };
-    var SPEED = { Searching: .5, Delivering: .45, Waking: .4, Urgent: 1.25, Returning: .5, Error: 1.5, Idle: .18 };
+    var SPEED = { Searching: .5, Delivering: .45, Waiting: .22, Urgent: 1.25, Returning: .5, Error: 1.5, Idle: .18 };
     var NOTE = {
-      Urgent: 'Participants regularly confused <strong>Urgent</strong> with <strong>Searching</strong> — both are fast and repetitive. That confusion is one of the findings that motivated the thesis work.',
+      Urgent: 'Participants regularly confused <strong>Urgent</strong> with <strong>Searching</strong>, both are fast and repetitive. That confusion is one of the findings that motivated the thesis work.',
       Searching: 'Participants regularly confused <strong>Searching</strong> with <strong>Urgent</strong>. The distinction designed into them was not the distinction people perceived.'
     };
 
@@ -619,7 +623,7 @@
   }
 
   /* ============================================================
-     4. DISCLOSURES — cards, publications, timeline
+     4. DISCLOSURES: cards, publications, timeline
      ============================================================ */
   function initDisclosures() {
     document.querySelectorAll('[data-toggle]').forEach(function (btn) {
@@ -634,7 +638,7 @@
   }
 
   /* ============================================================
-     5. RESEARCH MAP — hovering a field lights its projects
+     5. RESEARCH MAP: hovering a field lights its projects
      ============================================================ */
   function initMap() {
     var map = document.querySelector('[data-map]');

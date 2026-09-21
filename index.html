@@ -19,11 +19,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
-<link rel="stylesheet" href="system.css">
-<link rel="stylesheet" href="art-direction.css">
-<link rel="stylesheet" href="instruments.css">
-<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet" href="styles.css?v=3">
+<link rel="stylesheet" href="system.css?v=3">
+<link rel="stylesheet" href="art-direction.css?v=3">
+<link rel="stylesheet" href="instruments.css?v=3">
+<link rel="stylesheet" href="nav.css?v=3">
 
 <script>
   // Set the stored theme before first paint so the page does not flash.
@@ -109,11 +109,11 @@
   <div class="wrap">
     <div class="hero-comp">
       <div class="hero-name">
-        <p class="annot" style="margin:0 0 1.5rem">Gaurab Khadka &mdash; HRI / HCI &mdash; 2026</p>
+        <p class="annot" style="margin:0 0 1.5rem">Gaurab Khadka &middot; Graduate researcher</p>
         <h1 id="hero-name"><span class="ln"><i>Gaurab</i></span><span class="ln"><i>Khadka</i></span></h1>
         <p class="hero-sub">
           I build tools that let <span class="hl-human">people without robotics expertise author</span>
-          the behavior of robot teams &mdash; where a <span class="hl-machine">model composes the plan</span>
+          the behavior of robot teams, where a <span class="hl-machine">model composes the plan</span>
           and the person keeps the last word.
         </p>
       </div>
@@ -171,7 +171,7 @@
           interaction. My <a href="work.html#thesis">thesis work</a> grew out of a concrete failure in my earlier system:
           expressive robot behaviors had to be rebuilt by hand for every new scenario. So I built a system where
           <em>novices author the motions</em>, by sketching or by physical demonstration, and an LLM reuses that motion
-          library across scenarios &mdash; with the person reviewing and editing the plan before any robot moves.
+          library across scenarios, with the person reviewing and editing the plan before any robot moves.
         </p>
         <p>
           I care about the human side of that loop: what people can author, what they can read off a robot&rsquo;s
@@ -195,7 +195,7 @@
           <button class="cnode area" data-id="isys"  data-x="76" data-y="77">Interactive Systems</button>
 
           <button class="cnode proj" data-id="p-thesis" data-x="44" data-y="40" data-rel="hri eup multi hai"
-                  data-meta="M.S. thesis &middot; HRI 2027, under review" data-href="work.html#thesis"
+                  data-meta="M.S. thesis &middot; under review" data-href="work.html#thesis"
                   data-q="How can someone with no robotics background author expressive motion for a robot team, and reuse it when the scenario changes?">Authoring motion</button>
 
           <button class="cnode proj" data-id="p-express" data-x="70" data-y="60" data-rel="expr hri multi"
@@ -267,10 +267,10 @@
         <span>
           <span class="pcard-meta">
             <span class="pill">Project 01 &middot; M.S. thesis</span>
-            <span class="pill review">HRI 2027 &middot; under review</span>
+            <span class="pill review">Under review</span>
           </span>
           <span class="pcard-title">Multi-Robot Authoring Research</span>
-          <span class="pcard-q">How can someone with no robotics background author expressive motion for a robot team &mdash; and reuse it when the scenario changes?</span>
+          <span class="pcard-q">How can someone with no robotics background author expressive motion for a robot team, and reuse it when the scenario changes?</span>
         </span>
         <span class="pcard-toggle" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -280,7 +280,7 @@
       <div class="pcard-body" id="body-thesis">
         <div><div class="pcard-inner">
 
-          <h4 class="block">Try it &mdash; the model proposes, you decide</h4>
+          <h4 class="block">Try it: the model proposes, you decide</h4>
           <div class="demo" data-plandemo>
             <div class="demo-stage"><canvas role="img" aria-label="Three robots waiting at the left of an arena with a proposed plan drawn in blue. Approving the plan makes them execute it; rejecting it generates a different plan."></canvas></div>
             <div class="demo-bar">
@@ -294,12 +294,12 @@
           <div class="pfacts">
             <div><div class="k">Problem</div><p>Expressive behaviors were hand engineered for one scenario and could not travel to another.</p></div>
             <div><div class="k">Method</div><p>Counterbalanced within subjects study comparing two ways of authoring, with think aloud, workload and usability measures, and interviews.</p></div>
-            <div><div class="k">Status</div><p>Full paper under review at HRI&nbsp;2027. Described in general terms here while review runs.</p></div>
+            <div><div class="k">Status</div><p>Full paper under review. Described in general terms here while review runs.</p></div>
           </div>
 
           <h4 class="block">System</h4>
           <p>
-            Novices author the motions themselves &mdash; either by <strong>sketching the path</strong> they want or by
+            Novices author the motions themselves, either by <strong>sketching the path</strong> they want or by
             <strong>demonstrating the motion physically</strong>. A language model composes those motions into a plan
             for a scenario described in plain English, and the person reviews and edits that plan before any robot
             moves.
@@ -307,7 +307,7 @@
 
           <h4 class="block">My role</h4>
           <p>
-            <strong>I built this end to end</strong> &mdash; the robots and their electronics, the localization and the
+            <strong>I built this end to end</strong>: the robots and their electronics, the localization and the
             control server that drives them, both authoring interfaces, and the planning and validation layer behind
             them. The interface work was as much of the problem as the hardware: it has to be usable by someone who has
             never programmed a robot, in one sitting, under observation. I designed, ran and analyzed the user study.
@@ -341,12 +341,12 @@
       <div class="pcard-body" id="body-express">
         <div><div class="pcard-inner">
 
-          <h4 class="block">The vocabulary &mdash; pick a primitive to watch it run</h4>
+          <h4 class="block">The vocabulary: pick a primitive to watch it run</h4>
           <div data-prims>
             <div class="prims">
               <button class="prim-btn" type="button" data-prim="Searching" aria-pressed="true">Searching</button>
               <button class="prim-btn" type="button" data-prim="Delivering" aria-pressed="false">Delivering</button>
-              <button class="prim-btn" type="button" data-prim="Waking" aria-pressed="false">Waking</button>
+              <button class="prim-btn" type="button" data-prim="Waiting" aria-pressed="false">Waiting</button>
               <button class="prim-btn" type="button" data-prim="Urgent" aria-pressed="false">Urgent</button>
               <button class="prim-btn" type="button" data-prim="Returning" aria-pressed="false">Returning</button>
               <button class="prim-btn" type="button" data-prim="Error" aria-pressed="false">Error</button>
@@ -359,7 +359,7 @@
           <div class="pfacts">
             <div><div class="k">System</div><p>Three robots at about $30 each, seven motion primitives, camera based ArUco tracking.</p></div>
             <div><div class="k">Method</div><p>User study with 11 participants reporting what they believed each robot was doing.</p></div>
-            <div><div class="k">Result</div><p>Motion alone carried the state (SUS&nbsp;&asymp;&nbsp;70) &mdash; but two primitives collided and none of them travelled to a new scenario.</p></div>
+            <div><div class="k">Result</div><p>Motion alone carried the state (SUS&nbsp;&asymp;&nbsp;70), but two primitives collided and none of them travelled to a new scenario.</p></div>
           </div>
 
           <figure class="diagram" style="margin:.4rem 0 1rem">
@@ -373,7 +373,7 @@
           <h4 class="block">Why it matters</h4>
           <p>
             If a designer hand authoring behaviors can still pick two that people confuse, the fix is not a
-            better designed vocabulary &mdash; it is letting the people who know the task author the motions
+            better designed vocabulary. It is letting the people who know the task author the motions
             themselves. That is what the thesis work does.
           </p>
 
@@ -438,7 +438,7 @@
             <span class="authors" style="display:block"><em>Gaurab Khadka</em> and advisor</span>
           </span>
           <span class="pub-venue">
-            ACM/IEEE International Conference on Human-Robot Interaction (HRI&nbsp;2027)<br>full paper
+            a peer reviewed venue<br>full paper
             <span class="status-chip review"><i></i> Submitted &middot; under review</span>
           </span>
           <span class="pcard-toggle" aria-hidden="true">
@@ -450,7 +450,7 @@
           <div><div class="pubrow-inner">
             <p>
               On my thesis work. The paper title, the system and results figures, and video of the fleet are held back
-              while the review process runs &mdash; the project page describes the work in general terms. I am glad to
+              while the review process runs. The project page describes the work in general terms. I am glad to
               send figures and a demo to faculty who ask.
             </p>
             <p style="margin-bottom:0">
@@ -483,9 +483,9 @@
         <div class="pubrow-body" id="pub-m1">
           <div><div class="pubrow-inner">
             <p>
-              <strong>My contribution:</strong> I designed and built the AI assisted production pipeline &mdash; script
+              <strong>My contribution:</strong> I designed and built the AI assisted production pipeline (script
               generation written to the competency each video serves, image prompting, assembly, and delivery through
-              the course&rsquo;s LMS &mdash; and designed the &ldquo;Evidence Elevator&rdquo; device for teaching the
+              the course&rsquo;s LMS), and designed the &ldquo;Evidence Elevator&rdquo; device for teaching the
               hierarchy of evidence.
             </p>
             <p style="margin-bottom:0"><a class="more" href="work.html#video">Project page</a></p>
@@ -512,7 +512,7 @@
         <div class="rows">
           <div class="row">
             <div class="row-head">
-              <h3>Graduate Student Research Assistant &mdash; PLAYLab</h3>
+              <h3>Graduate Student Research Assistant, PLAYLab</h3>
               <span class="when">Aug 2025 &ndash; present</span>
             </div>
             <p class="where">University of Michigan Flint</p>
@@ -528,11 +528,11 @@
               <span class="when">Jan 2026 &ndash; present</span>
             </div>
             <p class="where">School of Nursing, University of Michigan Flint &middot; PI: Dr.&nbsp;Beverly Dabney</p>
-            <p><a href="work.html#video">Social web inspired video for nursing education</a> &mdash; I designed and built the AI assisted production pipeline. Manuscript in preparation.</p>
+            <p><a href="work.html#video">Social web inspired video for nursing education</a>. I designed and built the AI assisted production pipeline. Manuscript in preparation.</p>
           </div>
           <div class="row">
             <div class="row-head">
-              <h3>Research Mentor &mdash; NSF REU Site in Digital Accessibility</h3>
+              <h3>Research Mentor, NSF REU Site in Digital Accessibility</h3>
               <span class="when">May &ndash; Jul 2026</span>
             </div>
             <p class="where">University of Michigan Flint</p>
@@ -568,7 +568,7 @@
                 <p class="why">Started the M.S. in Computer Science and a graduate research assistantship. GPA 4.0 / 4.0, expected May 2027.</p>
               </li>
               <li data-short="Motion study" data-lat="8" data-lon="12">
-                <span class="when">2025</span><span class="what">Expressive motion study &mdash; first fleet, first study</span>
+                <span class="when">2025</span><span class="what">Expressive motion study: first fleet, first study</span>
                 <p class="why">Built a three robot fleet with seven motion primitives and ran a study with 11 participants. It worked, and it exposed the limitation that set up the thesis.</p>
               </li>
               <li data-short="EventMakAR" data-lat="-22" data-lon="58">
@@ -583,8 +583,8 @@
                 <span class="when">May &ndash; Jul 2026</span><span class="what">Mentored an NSF REU researcher</span>
                 <p class="why">Accessible AR authoring for autistic users, including co design sessions with autistic participants.</p>
               </li>
-              <li data-short="HRI 2027" data-lat="44" data-lon="-152">
-                <span class="when">Sep 2026</span><span class="what">Full paper submitted to HRI 2027</span>
+              <li data-short="Paper submitted" data-lat="44" data-lon="-152">
+                <span class="when">Sep 2026</span><span class="what">Full paper submitted for review</span>
                 <p class="why">Novices author the motions, a model composes the plan, the person approves before anything moves. Under review.</p>
               </li>
             </ol>
@@ -676,10 +676,10 @@
   </div>
 </footer>
 
-<script src="app.js" defer></script>
-<script src="art-direction.js" defer></script>
-<script src="instruments.js" defer></script>
-<script src="globe.js" defer></script>
-<script src="nav.js" defer></script>
+<script src="app.js?v=3" defer></script>
+<script src="art-direction.js?v=3" defer></script>
+<script src="instruments.js?v=3" defer></script>
+<script src="globe.js?v=3" defer></script>
+<script src="nav.js?v=3" defer></script>
 </body>
 </html>

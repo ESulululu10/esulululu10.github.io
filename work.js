@@ -1,5 +1,5 @@
 /* ============================================================
-   WORK — one instrument per project.
+   WORK: one instrument per project.
      AR LENS   : move a lens over the arena, overlays appear
      SCRUB     : drag through the stages of the video pipeline
    The other two projects reuse the plan review and the motion
@@ -12,7 +12,7 @@
   var ACCENT = '#e8873a', STEEL = '#8a94a6';
 
   /* ============================================================
-     AR LENS — EventMakAR
+     AR LENS: EventMakAR
      The arena is plain until you look at it through the lens.
      That is the project: overlays registered onto real robots.
      ============================================================ */
@@ -141,7 +141,7 @@
   }
 
   /* ============================================================
-     SCRUB — the nursing video pipeline
+     SCRUB: the nursing video pipeline
      Drag the handle and the topic moves through production.
      ============================================================ */
   function initScrub() {

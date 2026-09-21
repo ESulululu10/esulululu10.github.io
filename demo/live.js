@@ -41,9 +41,20 @@
       })
       .catch(function () {
         btn.disabled = false;
-        btn.textContent = 'Could not load \u2014 try again';
+        btn.textContent = 'Could not load. Try again';
       });
   });
+
+  // start it when the section is reached, so nobody has to ask twice
+  if ('IntersectionObserver' in window) {
+    var io2 = new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting && !wrap.classList.contains('is-on') && !btn.disabled) {
+        io2.disconnect();
+        btn.click();
+      }
+    }, { rootMargin: '200px' });
+    io2.observe(wrap);
+  }
 
   var reset = wrap.querySelector('[data-live-reset]');
   if (reset) reset.addEventListener('click', function () {

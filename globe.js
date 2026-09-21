@@ -1,5 +1,5 @@
 /* ============================================================
-   BACKGROUND — the trajectory globe
+   BACKGROUND: the trajectory globe
    The sphere is a design surface, not a map. Each node is a
    chapter of the work, spaced around the globe and joined in the
    order it happened. Colour runs from the earliest chapter to the

@@ -1,5 +1,5 @@
 /* ============================================================
-   TRACE — art direction behaviours.
+   TRACE: art direction behaviours.
    Loads after app.js. Adds: the boot sequence, the single
    trajectory that threads the document, the proximity field,
    the index navigation, and the full-bleed moment.
@@ -18,7 +18,7 @@
   function clamp(v, a, b) { return v < a ? a : v > b ? b : v; }
 
   /* ============================================================
-     BOOT — three systems initialise, then hand over.
+     BOOT: three systems initialise, then hand over.
      The markup ships hidden; only JS reveals it, so a JS failure
      can never leave a black screen over the content.
      ============================================================ */
@@ -47,7 +47,7 @@
   }
 
   /* ============================================================
-     THE TRACE — one path through the whole document.
+     THE TRACE: one path through the whole document.
      Anchored to the sections, drawn as you scroll.
      ============================================================ */
   function initSpine() {
@@ -146,7 +146,7 @@
   }
 
   /* ============================================================
-     PROXIMITY — one interaction grammar.
+     PROXIMITY: one interaction grammar.
      Each registered element gets --prox in [0,1].
      ============================================================ */
   function initProximity() {
@@ -227,7 +227,7 @@
   }
 
   /* ============================================================
-     MOMENT — one trajectory filling the viewport
+     MOMENT: one trajectory filling the viewport
      ============================================================ */
   function initMoment() {
     var wrap = document.querySelector('[data-moment]');
