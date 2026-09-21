@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gaurab Khadka</title>
-<meta name="description" content="Gaurab Khadka is an M.S. student at the University of Michigan-Flint working on end-user authoring for human-multi-robot interaction: tools that let people without robotics expertise author and understand the behavior of robot teams.">
+<meta name="description" content="Gaurab Khadka is an M.S. student at the University of Michigan Flint working on end user authoring for human-multi robot interaction: tools that let people without robotics expertise author and understand the behavior of robot teams.">
 <link rel="canonical" href="https://esulululu10.github.io/">
 
 <meta property="og:type" content="profile">
 <meta property="og:title" content="Gaurab Khadka">
-<meta property="og:description" content="End-user authoring for human-multi-robot interaction. M.S. student, University of Michigan-Flint (PLAYLab).">
+<meta property="og:description" content="End user authoring for human-multi robot interaction. M.S. student, University of Michigan Flint (PLAYLab).">
 <meta property="og:url" content="https://esulululu10.github.io/">
 <meta property="og:image" content="https://esulululu10.github.io/1.jpg">
 <meta name="twitter:card" content="summary">
@@ -18,8 +18,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="art-direction.css">
+<link rel="stylesheet" href="instruments.css">
 
 <script>
   // Set the stored theme before first paint so the page does not flash.
@@ -39,11 +42,11 @@
   "jobTitle": "Graduate Student Research Assistant",
   "affiliation": {
     "@type": "CollegeOrUniversity",
-    "name": "University of Michigan-Flint"
+    "name": "University of Michigan Flint"
   },
   "knowsAbout": [
-    "Human-Robot Interaction",
-    "End-user robot programming",
+    "Human Robot Interaction",
+    "End user robot programming",
     "Human-Computer Interaction",
     "Large language models for robot behavior",
     "Augmented reality"
@@ -55,17 +58,25 @@
 }
 </script>
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#main">Skip to content</a>
+
+<div class="boot" hidden>
+  <div class="boot-inner">
+    <span class="boot-row"><i></i> system 01 &middot; fleet</span>
+    <span class="boot-row"><i></i> system 02 &middot; authoring</span>
+    <span class="boot-row"><i></i> system 03 &middot; review</span>
+  </div>
+</div>
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="#research">Research</a>
       <a href="#publications" class="hide-xs">Publications</a>
-      <a href="#experience" class="hide-sm">Experience</a>
-      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="#background" class="hide-sm">Background</a>
+      <a href="engineering.html" class="hide-sm">Technical</a>
       <a href="Gaurab_Khadka_CV.pdf">CV</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -77,381 +88,595 @@
   </div>
 </header>
 
+<nav class="index-nav" aria-label="Section index">
+  <a href="#about"><b>01</b><s></s><span>About</span></a>
+  <a href="#research"><b>02</b><s></s><span>Systems</span></a>
+  <a href="#publications"><b>03</b><s></s><span>Papers</span></a>
+  <a href="#background"><b>04</b><s></s><span>Background</span></a>
+  <a href="#contact"><b>05</b><s></s><span>Contact</span></a>
+</nav>
+
 <main id="main">
 
-<!-- ======================= HERO ======================= -->
-<section class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
-      <div>
-        <h1>Gaurab Khadka</h1>
-        <p class="lede">
-          I build tools that let people without robotics expertise author and understand
-          the behavior of robot teams &mdash; with LLMs composing robot motion while humans
-          stay in control of the plan.
-        </p>
-        <p class="affil">
-          M.S. Computer Science, <strong>University of Michigan&ndash;Flint</strong><br>
-          Graduate Student Research Assistant, <strong>PLAYLab</strong> &middot; advised by Dr.&nbsp;Ananya Ipsita
-        </p>
+<!-- ============================ 01 · WHO I AM ============================ -->
+<section class="hero arena-hero" data-anchor aria-labelledby="hero-name">
 
-        <div class="links">
-          <a class="primary" href="Gaurab_Khadka_CV.pdf">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg>
-            Curriculum Vitae
-          </a>
-          <a href="mailto:gaurabk@umich.edu">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg>
-            gaurabk@umich.edu
-          </a>
-          
-          <a href="https://github.com/ESulululu10" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5A11.5 11.5 0 0 0 .5 12a11.5 11.5 0 0 0 7.86 10.92c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.56-.29-5.25-1.28-5.25-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.58.23 2.75.12 3.04.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.4-5.26 5.69.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12 11.5 11.5 0 0 0 12 .5z"></path></svg>
-            GitHub
-          </a>
-          <a href="https://www.linkedin.com/in/gaurabk/" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.76-2.05C20.6 8.65 22 10.9 22 14.3V21h-4v-6c0-1.5-.03-3.4-2.08-3.4-2.08 0-2.4 1.62-2.4 3.3V21H9z"></path></svg>
-            LinkedIn
-          </a>
-        </div>
+  <div class="hero-stage" data-arena>
+    <canvas role="img" aria-label="An arena of robots following authored paths, leaving trajectory traces. Drag anywhere inside it to author a new path and a robot will follow it."></canvas>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-comp">
+      <div class="hero-name">
+        <p class="annot" style="margin:0 0 1.5rem">Gaurab Khadka &mdash; HRI / HCI &mdash; 2026</p>
+        <h1 id="hero-name"><span class="ln"><i>Gaurab</i></span><span class="ln"><i>Khadka</i></span></h1>
+        <p class="hero-sub">
+          I build tools that let <span class="hl-human">people without robotics expertise author</span>
+          the behavior of robot teams &mdash; where a <span class="hl-machine">model composes the plan</span>
+          and the person keeps the last word.
+        </p>
       </div>
 
-      <img class="portrait" src="1.jpg" alt="Portrait of Gaurab Khadka" width="190" height="190">
+      <div class="hero-meta">
+        <dl>
+          <dt>Position</dt>
+          <dd>M.S. Computer Science<br>University of Michigan Flint</dd>
+        </dl>
+        <dl>
+          <dt>Lab</dt>
+          <dd>PLAYLab<br>University of Michigan Flint</dd>
+        </dl>
+        <dl>
+          <dt>Fields</dt>
+          <dd>Human Robot Interaction<br>HCI &middot; Human AI Interaction</dd>
+        </dl>
+        <dl>
+          <dt>Index</dt>
+          <dd>
+            <a href="Gaurab_Khadka_CV.pdf">Curriculum Vitae</a><br>
+            <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a><br>
+            <a href="https://github.com/ESulululu10" rel="noopener">GitHub</a> &middot;
+            <a href="https://www.linkedin.com/in/gaurabk/" rel="noopener">LinkedIn</a>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-tools">
+    <div class="wrap">
+      <span class="hero-hint"><i></i> drag anywhere to author a path</span>
+      <button class="arena-reset" type="button" data-arena-demo>Run demo path</button>
+      <button class="arena-reset" type="button" data-arena-reset>Reset</button>
+      <span class="arena-legend hero-legend">
+        <span><i class="h"></i> authored by a person</span>
+        <span><i class="m"></i> executed by the fleet</span>
+      </span>
     </div>
   </div>
 </section>
 
-<!-- ======================= ABOUT ======================= -->
-<section id="about">
-  <div class="wrap prose">
-    <p class="eyebrow">About</p>
-    <p>
-      I am a master&rsquo;s student in Computer Science at the University of Michigan&ndash;Flint, where I work with
-      <strong>Dr.&nbsp;Ananya Ipsita</strong> in PLAYLab on end-user authoring for human&ndash;multi-robot interaction.
-      My <a href="thesis.html">thesis work</a> grew out of a concrete failure in my earlier system:
-      expressive robot behaviors had to be re-engineered by hand for every new scenario. So I built a system where
-      <em>novices author the motions</em>, by sketching or by physical demonstration, and an LLM reuses that motion
-      library across scenarios &mdash; with the person reviewing and editing the plan before any robot moves.
-    </p>
-    <p>
-      I care about the human side of that loop: what people can author, what they can read off a robot&rsquo;s motion,
-      and where they need to intervene when a model proposes something wrong. I also mentor an undergraduate researcher
-      on accessible AR authoring through UM&ndash;Flint&rsquo;s NSF REU Site in Digital Accessibility.
-      
-      I am applying to PhD programs in HCI and HRI for Fall&nbsp;2027 entry.
-    </p>
+<!-- ============================ 02 · WHAT I STUDY ============================ -->
+<section id="about" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>02</b> What I study</p>
 
-    <div class="kw" style="margin-top:1.1rem">
-      <span>End-user robot programming</span>
-      <span>Human&ndash;multi-robot interaction</span>
-      <span>Legible robot motion</span>
-      <span>Human oversight of LLM-generated robot behavior</span>
+    <div class="split">
+      <div>
+        <h2 class="section-title">One question, from four directions</h2>
+        <p>
+          I am a master&rsquo;s student in Computer Science at the University of Michigan Flint, where I work in
+          PLAYLab on end user authoring for human multi robot
+          interaction. My <a href="thesis.html">thesis work</a> grew out of a concrete failure in my earlier system:
+          expressive robot behaviors had to be rebuilt by hand for every new scenario. So I built a system where
+          <em>novices author the motions</em>, by sketching or by physical demonstration, and an LLM reuses that motion
+          library across scenarios &mdash; with the person reviewing and editing the plan before any robot moves.
+        </p>
+        <p>
+          I care about the human side of that loop: what people can author, what they can read off a robot&rsquo;s
+          motion, and where they need to intervene when a model proposes something wrong. I also mentor an
+          undergraduate researcher on accessible AR authoring through UM Flint&rsquo;s NSF REU Site in Digital
+          Accessibility. I am applying to PhD programs in HCI and HRI for Fall&nbsp;2027 entry.
+        </p>
+      </div>
+
+      <div>
+        <!-- Research constellation: areas and projects in one force field.
+             Hover lights the connections, clicking a project reorganises the field. -->
+        <div class="cons" data-constellation>
+          <svg class="cons-edges" aria-hidden="true" preserveAspectRatio="none"></svg>
+
+          <button class="cnode area" data-id="hri"   data-x="22" data-y="16">Human Robot Interaction</button>
+          <button class="cnode area" data-id="hai"   data-x="78" data-y="14">Human AI Interaction</button>
+          <button class="cnode area" data-id="eup"   data-x="13" data-y="47">End User Programming</button>
+          <button class="cnode area" data-id="expr"  data-x="84" data-y="46">Expressive Motion</button>
+          <button class="cnode area" data-id="multi" data-x="26" data-y="78">Multi Robot Systems</button>
+          <button class="cnode area" data-id="isys"  data-x="76" data-y="77">Interactive Systems</button>
+
+          <button class="cnode proj" data-id="p-thesis" data-x="44" data-y="40" data-rel="hri eup multi hai"
+                  data-meta="M.S. thesis &middot; HRI 2027, under review" data-href="thesis.html"
+                  data-q="How can someone with no robotics background author expressive motion for a robot team, and reuse it when the scenario changes?">Authoring motion</button>
+
+          <button class="cnode proj" data-id="p-express" data-x="70" data-y="60" data-rel="expr hri multi"
+                  data-meta="Formative study &middot; N = 11" data-href="expressbot.html"
+                  data-q="Can non experts tell what a robot is doing from its motion alone?">ExpressBot</button>
+
+          <button class="cnode proj" data-id="p-ar" data-x="32" data-y="61" data-rel="hri isys eup"
+                  data-meta="Deployed &middot; public workshop" data-href="eventmakar.html"
+                  data-q="Can people who do not program author AR stories that drive physical robots?">EventMakAR</button>
+
+          <button class="cnode proj" data-id="p-video" data-x="60" data-y="26" data-rel="hai isys"
+                  data-meta="Manuscript in preparation" data-href="social-web-video.html"
+                  data-q="Can the short video format students already watch carry course competencies?">Nursing video</button>
+
+          <div class="cons-read"><div class="m"></div><div class="q"></div><a class="more" href="#"></a></div>
+        </div>
+        <p class="cons-hint">Hover an area to light its work &middot; click a project to reorganise the field</p>
+
+        <!-- Same information without hover or JS. -->
+        <div class="cons-fallback">
+          <h4>Research interests</h4>
+          <div class="kw">
+            <span>End user robot programming</span>
+            <span>Human multi robot interaction</span>
+            <span>Legible robot motion</span>
+            <span>Human oversight of LLM generated robot behavior</span>
+          </div>
+          <p>
+            Six areas meet in the same question: <a href="thesis.html">my thesis work</a> and
+            <a href="expressbot.html">ExpressBot</a> sit in HRI, expressive motion and multi robot systems,
+            <a href="eventmakar.html">EventMakAR</a> in authoring and interactive systems, and the
+            <a href="social-web-video.html">nursing video work</a> in human AI interaction.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= NEWS ======================= -->
-<section id="news">
+<!-- ============================ 03 · SYSTEMS I HAVE BUILT ============================ -->
+<section id="research" class="env-light" data-anchor>
   <div class="wrap">
-    <p class="eyebrow">News</p>
-    
-    <ul class="news">
-      <li>
-        <time datetime="2026-09">Sep 2026</time>
-        <span>Submitted a full paper on <a href="thesis.html">my thesis work</a> to <strong>HRI&nbsp;2027</strong>.
-        </span>
-      </li>
-      <li>
-        <time datetime="2026-07">Jul 2026</time>
-        <span>Wrapped up mentoring an undergraduate researcher on accessible AR authoring in UM&ndash;Flint&rsquo;s
-        <strong>NSF REU Site in Digital Accessibility</strong>.</span>
-      </li>
-      <li>
-        <time datetime="2026-01">Jan 2026</time>
-        <span>Joined Dr.&nbsp;Beverly Dabney&rsquo;s group in the School of Nursing part-time, working on AI-assisted
-        educational video for evidence-based practice.</span>
-      </li>
-      <li>
-        <time datetime="2025-08">Aug 2025</time>
-        <span>Started as a graduate student research assistant in <strong>PLAYLab</strong> at the University of
-        Michigan&ndash;Flint.</span>
-      </li>
-    </ul>
-  </div>
-</section>
-
-<!-- ======================= RESEARCH ======================= -->
-<section id="research">
-  <div class="wrap">
-    <p class="eyebrow">Research</p>
-    <h2 class="section-title">One question, three systems</h2>
+    <p class="tag-num"><b>03</b> Systems I have built &amp; studied</p>
+    <h2 class="section-title">Three systems, one question</h2>
     <p class="prose" style="margin-bottom:1.6rem">
-      Each project below answers a piece of the same question: how does a person who is not a roboticist tell a team of
-      robots what to do, and know what they are doing? Each page states the problem, the system, the study, and what it
-      changed about the next project.
+      Each answers a piece of the same problem: how does a person who is not a roboticist tell a team of robots what to
+      do, and know what they are doing? Open a card for the problem, the system, my role, the method and the result.
     </p>
 
-    <!-- ---- Thesis: authoring motion for robot teams ---- -->
-    <div class="entry">
-      <div class="entry-fig">
-        <svg viewBox="0 0 240 150" role="img" aria-label="Schematic: an authored path on a canvas feeds a planner that assigns motions to a five-robot fleet">
-          <rect class="dg-box" x="12" y="12" width="102" height="66" rx="5" stroke-width="1.5"/>
-          <path class="dg-accent-line" d="M26 66 C 42 26, 64 78, 100 30" stroke-width="2" stroke-dasharray="4 3" stroke-linecap="round"/>
-          <circle class="dg-arrow" cx="26" cy="66" r="3"/>
-          <circle class="dg-box-accent" cx="100" cy="30" r="4" stroke-width="1.5"/>
-          <path class="dg-line" d="M120 45 H 152" stroke-width="1.5"/>
-          <path class="dg-arrow" d="M152 41 l 8 4 -8 4 z"/>
-          <circle class="dg-box-accent" cx="180" cy="45" r="14" stroke-width="1.5"/>
-          <path class="dg-accent-line" d="M174 45 h 12 M180 39 v 12" stroke-width="1.5" stroke-linecap="round"/>
-          <g class="dg-line" stroke-width="1" opacity=".85">
-            <path d="M180 59 C 150 78, 70 84, 30 104"/>
-            <path d="M180 59 C 165 80, 110 86, 78 104"/>
-            <path d="M180 59 V 104"/>
-            <path d="M180 59 C 190 80, 200 90, 210 104"/>
-            <path d="M180 59 C 168 80, 135 90, 126 104"/>
-          </g>
-          <g class="dg-box" stroke-width="1.5">
-            <rect x="18" y="104" width="24" height="18" rx="3"/>
-            <rect x="66" y="104" width="24" height="18" rx="3"/>
-            <rect x="114" y="104" width="24" height="18" rx="3"/>
-            <rect x="162" y="104" width="24" height="18" rx="3"/>
-            <rect x="198" y="104" width="24" height="18" rx="3"/>
-          </g>
-          <g class="dg-arrow">
-            <circle cx="30" cy="113" r="2"/><circle cx="78" cy="113" r="2"/><circle cx="126" cy="113" r="2"/>
-            <circle cx="174" cy="113" r="2"/><circle cx="210" cy="113" r="2"/>
-          </g>
-        </svg>
-      </div>
-      <div>
-        <div class="meta">
-          <span class="pill">M.S. thesis</span>
-          <span class="pill review">HRI 2027 &middot; under review</span>
-        </div>
-        <h3><a href="thesis.html">Authoring motion for robot teams</a></h3>
-        <p class="q">How can someone with no robotics background author expressive motion for a robot team &mdash; and reuse it when the scenario changes?</p>
-        <p>
-          <strong>Novices author the motions themselves</strong> &mdash; either by sketching the path they want, or by
-          demonstrating the motion physically. A language model then composes those motions into a plan for a scenario
-          described in plain English, and <strong>the person reviews and edits that plan before any robot moves</strong>.
-          I built the whole stack end to end &mdash; the robots, the localization and control server, both authoring
-          interfaces and the planner &mdash; and evaluated it in a counterbalanced within-subjects study comparing the
-          two ways of authoring.
-        </p>
-        <p style="font-size:.88rem;color:var(--ink-faint)">
-          Described in general terms while the paper is under review. Full detail is in my
-          <a href="Gaurab_Khadka_CV.pdf">CV</a>.
-        </p>
-        <a class="more" href="thesis.html">What I am building</a>
-      </div>
-    </div>
+    <!-- ---------- Card 01 · thesis ---------- -->
+    <article class="pcard reveal" data-item data-prox>
+      <button class="pcard-head" type="button" data-toggle aria-controls="body-thesis">
+        <span class="pcard-viz" aria-hidden="true">
+          <svg viewBox="0 0 200 125">
+            <rect x="0" y="0" width="200" height="125" fill="#0b0d11"/>
+            <g stroke="rgba(255,255,255,.06)" stroke-width="1">
+              <path d="M40 0V125M80 0V125M120 0V125M160 0V125M0 31H200M0 62H200M0 93H200"/>
+            </g>
+            <path class="viz-auth" d="M24 96 C 60 34, 96 108, 132 46" fill="none" stroke="#f0a64a"
+                  stroke-width="2" stroke-dasharray="4 4" stroke-linecap="round"/>
+            <path class="viz-exec" d="M24 96 C 60 34, 96 108, 132 46" fill="none" stroke="#6fb0e8"
+                  stroke-width="2.4" stroke-linecap="round"
+                  pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+            <rect class="viz-bot" x="126" y="41" width="11" height="9" rx="2" fill="#6fb0e8"/>
+            <circle cx="163" cy="30" r="3.5" fill="#f0a64a"/>
+            <text x="150" y="112" font-family="ui-monospace,monospace" font-size="8" fill="#8d96a5">author &#8594; approve</text>
+          </svg>
+        </span>
+        <span>
+          <span class="pcard-meta">
+            <span class="pill">Project 01 &middot; M.S. thesis</span>
+            <span class="pill review">HRI 2027 &middot; under review</span>
+          </span>
+          <span class="pcard-title">Authoring motion for robot teams</span>
+          <span class="pcard-q">How can someone with no robotics background author expressive motion for a robot team &mdash; and reuse it when the scenario changes?</span>
+        </span>
+        <span class="pcard-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
 
-    <!-- ---- ExpressBot ---- -->
-    <div class="entry">
-      <div class="entry-fig" style="background:#fff">
-        <img src="media/expressbot-robot-thumb.jpg" width="445" height="591" loading="lazy"
-             alt="An ExpressBot robot: a blue printed chassis on two wheels, carrying servos, wiring and a circuit board, with an ArUco marker mounted above it.">
-      </div>
-      <div>
-        <div class="meta">
-          <span class="pill">Formative study</span>
-          <span class="pill">N = 11</span>
-        </div>
-        <h3><a href="expressbot.html">ExpressBot</a></h3>
-        <p class="q">Can non-experts tell what a robot is doing from its motion alone?</p>
-        <p>
-          A three-robot fleet (about <strong>$30 per robot</strong>) with seven motion primitives &mdash; Searching,
-          Delivering, Urgent and others &mdash; navigating by camera-based ArUco tracking. In a user study
-          (<strong>N&nbsp;=&nbsp;11</strong>), non-experts could read robot state from motion alone
-          (SUS&nbsp;&asymp;&nbsp;70). Two failures drove the next project: the behaviors were locked to a single
-          scenario, and <em>Urgent</em> and <em>Searching</em> were regularly confused for each other.
-        </p>
-        <a class="more" href="expressbot.html">What it showed, and what broke</a>
-      </div>
-    </div>
+      <div class="pcard-body" id="body-thesis">
+        <div><div class="pcard-inner">
 
-    <!-- ---- EventMakAR ---- -->
-    <div class="entry">
-      <div class="entry-fig">
-        <svg viewBox="0 0 240 150" role="img" aria-label="Schematic: a phone showing an AR scene above a timeline of authored events">
-          <rect class="dg-box" x="86" y="10" width="68" height="102" rx="9" stroke-width="1.5"/>
-          <rect class="dg-box-accent" x="94" y="22" width="52" height="60" rx="4" stroke-width="1.2"/>
-          <path class="dg-line" d="M94 68 H 146" stroke-width="1.2"/>
-          <g class="dg-arrow">
-            <rect x="103" y="56" width="10" height="11" rx="2"/>
-            <rect x="127" y="52" width="10" height="15" rx="2"/>
-          </g>
-          <circle class="dg-line" cx="120" cy="38" r="7" stroke-width="1.4"/>
-          <path class="dg-line" d="M120 31 v -6 M113 38 h -6 M127 38 h 6" stroke-width="1.2" stroke-linecap="round"/>
-          <path class="dg-line" d="M110 96 h 20" stroke-width="2" stroke-linecap="round"/>
-          <path class="dg-line" d="M20 128 H 220" stroke-width="1.2"/>
-          <g class="dg-box" stroke-width="1.4">
-            <rect x="20" y="120" width="34" height="16" rx="3"/>
-            <rect x="66" y="120" width="34" height="16" rx="3"/>
-            <rect x="158" y="120" width="34" height="16" rx="3"/>
-          </g>
-          <rect class="dg-box-accent" x="112" y="120" width="34" height="16" rx="3" stroke-width="1.4"/>
-        </svg>
+          <h4 class="block">Try it &mdash; the model proposes, you decide</h4>
+          <div class="demo" data-plandemo>
+            <div class="demo-stage"><canvas role="img" aria-label="Three robots waiting at the left of an arena with a proposed plan drawn in blue. Approving the plan makes them execute it; rejecting it generates a different plan."></canvas></div>
+            <div class="demo-bar">
+              <span class="demo-status" data-plan-status><i></i> plan proposed &middot; awaiting your review</span>
+              <button class="demo-btn" type="button" data-plan-reject>Reject &amp; regenerate</button>
+              <button class="demo-btn is-primary" type="button" data-plan-approve>Approve &amp; run</button>
+            </div>
+            <p class="demo-note">A miniature of the stance the system is built on: the robots do not move until a person approves the plan.</p>
+          </div>
+
+          <div class="pfacts">
+            <div><div class="k">Problem</div><p>Expressive behaviors were hand engineered for one scenario and could not travel to another.</p></div>
+            <div><div class="k">Method</div><p>Counterbalanced within subjects study comparing two ways of authoring, with think aloud, workload and usability measures, and interviews.</p></div>
+            <div><div class="k">Status</div><p>Full paper under review at HRI&nbsp;2027. Described in general terms here while review runs.</p></div>
+          </div>
+
+          <h4 class="block">System</h4>
+          <p>
+            Novices author the motions themselves &mdash; either by <strong>sketching the path</strong> they want or by
+            <strong>demonstrating the motion physically</strong>. A language model composes those motions into a plan
+            for a scenario described in plain English, and the person reviews and edits that plan before any robot
+            moves.
+          </p>
+
+          <h4 class="block">My role</h4>
+          <p>
+            <strong>I built this end to end</strong> &mdash; the robots and their electronics, the localization and the
+            control server that drives them, both authoring interfaces, and the planning and validation layer behind
+            them. The interface work was as much of the problem as the hardware: it has to be usable by someone who has
+            never programmed a robot, in one sitting, under observation. I designed, ran and analyzed the user study.
+          </p>
+
+          <p><a class="more" href="thesis.html">Full project page</a></p>
+        </div></div>
       </div>
-      <div>
-        <div class="meta">
-          <span class="pill live">Deployed</span>
-          <span class="pill">Public workshop</span>
-        </div>
-        <h3><a href="eventmakar.html">EventMakAR</a></h3>
-        <p class="q">Can people who do not program author AR stories that drive physical robots?</p>
-        <p>
-          A web-based authoring tool for creating AR stories with <strong>five robot characters</strong>, with no
-          programming involved. It was deployed live at the Super Friday workshop at UM&ndash;Flint, where students
-          authored and ran their own AR stories with physical robots &mdash; the first time this authoring model was
-          put in front of users outside the lab.
-        </p>
-        <a class="more" href="eventmakar.html">How it works</a>
+    </article>
+
+    <!-- ---------- Card 02 · ExpressBot ---------- -->
+    <article class="pcard reveal" data-item data-prox>
+      <button class="pcard-head" type="button" data-toggle aria-controls="body-express">
+        <span class="pcard-viz">
+          <img src="media/expressbot-robot-thumb.jpg" width="445" height="591" loading="lazy"
+               alt="An ExpressBot robot: a blue printed chassis on two wheels carrying servos, wiring and a circuit board, with an ArUco marker mounted above it.">
+        </span>
+        <span>
+          <span class="pcard-meta">
+            <span class="pill">Project 02 &middot; formative study</span>
+            <span class="pill">N = 11</span>
+          </span>
+          <span class="pcard-title">ExpressBot</span>
+          <span class="pcard-q">Can non experts tell what a robot is doing from its motion alone?</span>
+        </span>
+        <span class="pcard-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+
+      <div class="pcard-body" id="body-express">
+        <div><div class="pcard-inner">
+
+          <h4 class="block">The vocabulary &mdash; pick a primitive to watch it run</h4>
+          <div data-prims>
+            <div class="prims">
+              <button class="prim-btn" type="button" data-prim="Searching" aria-pressed="true">Searching</button>
+              <button class="prim-btn" type="button" data-prim="Delivering" aria-pressed="false">Delivering</button>
+              <button class="prim-btn" type="button" data-prim="Waking" aria-pressed="false">Waking</button>
+              <button class="prim-btn" type="button" data-prim="Urgent" aria-pressed="false">Urgent</button>
+              <button class="prim-btn" type="button" data-prim="Returning" aria-pressed="false">Returning</button>
+              <button class="prim-btn" type="button" data-prim="Error" aria-pressed="false">Error</button>
+              <button class="prim-btn" type="button" data-prim="Idle" aria-pressed="false">Idle</button>
+            </div>
+            <div class="prim-stage"><canvas role="img" aria-label="A robot tracing the selected motion primitive inside a small arena."></canvas></div>
+            <p class="demo-note" style="padding:.6rem 0 0" data-prim-note>Each primitive is a movement pattern meant to be read at a glance rather than decoded.</p>
+          </div>
+
+          <div class="pfacts">
+            <div><div class="k">System</div><p>Three robots at about $30 each, seven motion primitives, camera based ArUco tracking.</p></div>
+            <div><div class="k">Method</div><p>User study with 11 participants reporting what they believed each robot was doing.</p></div>
+            <div><div class="k">Result</div><p>Motion alone carried the state (SUS&nbsp;&asymp;&nbsp;70) &mdash; but two primitives collided and none of them travelled to a new scenario.</p></div>
+          </div>
+
+          <figure class="diagram" style="margin:.4rem 0 1rem">
+            <div class="frame plate">
+              <img src="media/expressbot-figure.png" width="1600" height="344" loading="lazy"
+                   alt="Left: the seven motion primitives drawn as colored path diagrams. Right: three photographs of the ExpressBot robots.">
+            </div>
+            <figcaption>The seven primitives, and the fleet that performed them.</figcaption>
+          </figure>
+
+          <h4 class="block">Why it matters</h4>
+          <p>
+            If a designer hand authoring behaviors can still pick two that people confuse, the fix is not a
+            better designed vocabulary &mdash; it is letting the people who know the task author the motions
+            themselves. That is what the thesis work does.
+          </p>
+
+          <p><a class="more" href="expressbot.html">Full project page</a></p>
+        </div></div>
       </div>
-    </div>
+    </article>
+
+    <!-- ---------- Card 03 · EventMakAR ---------- -->
+    <article class="pcard reveal" data-item data-prox>
+      <button class="pcard-head" type="button" data-toggle aria-controls="body-ar">
+        <span class="pcard-viz" aria-hidden="true">
+          <svg viewBox="0 0 200 125">
+            <rect x="0" y="0" width="200" height="125" fill="#0b0d11"/>
+            <g stroke="rgba(255,255,255,.06)" stroke-width="1"><path d="M50 0V125M100 0V125M150 0V125M0 42H200M0 84H200"/></g>
+            <rect x="74" y="14" width="52" height="66" rx="6" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="1.5"/>
+            <rect x="80" y="22" width="40" height="40" rx="3" fill="rgba(111,176,232,.14)" stroke="#6fb0e8" stroke-width="1"/>
+            <circle cx="100" cy="36" r="5" fill="none" stroke="#6fb0e8" stroke-width="1.2"/>
+            <rect x="88" y="46" width="8" height="9" rx="2" fill="#8d96a5"/>
+            <rect x="104" y="43" width="8" height="12" rx="2" fill="#8d96a5"/>
+            <g class="viz-events">
+              <rect x="24" y="96" width="28" height="13" rx="3" fill="none" stroke="rgba(255,255,255,.25)"/>
+              <rect x="60" y="96" width="28" height="13" rx="3" fill="none" stroke="rgba(255,255,255,.25)"/>
+              <rect x="96" y="96" width="28" height="13" rx="3" fill="#f0a64a" opacity=".85"/>
+              <rect x="132" y="96" width="28" height="13" rx="3" fill="none" stroke="rgba(255,255,255,.25)"/>
+            </g>
+            <text x="24" y="122" font-family="ui-monospace,monospace" font-size="7.5" fill="#8d96a5">authored events</text>
+          </svg>
+        </span>
+        <span>
+          <span class="pcard-meta">
+            <span class="pill live">Project 03 &middot; deployed</span>
+            <span class="pill">Public workshop</span>
+          </span>
+          <span class="pcard-title">EventMakAR</span>
+          <span class="pcard-q">Can people who do not program author AR stories that drive physical robots?</span>
+        </span>
+        <span class="pcard-toggle" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        </span>
+      </button>
+
+      <div class="pcard-body" id="body-ar">
+        <div><div class="pcard-inner">
+          <div class="pfacts">
+            <div><div class="k">Problem</div><p>Driving an AR experience with real robots normally needs a programmer in the loop, so the story decisions sit with whoever can edit the project.</p></div>
+            <div><div class="k">System</div><p>A standalone browser tool: pick actions for five robot characters, and it writes the exact events file the existing Unity runtime already parses.</p></div>
+            <div><div class="k">Outcome</div><p>Deployed live at the Super Friday workshop at UM Flint, where students authored and ran their own AR stories with physical robots.</p></div>
+          </div>
+          <h4 class="block">What this is and is not</h4>
+          <p>
+            A deployment, not a study: I did not collect measures at the workshop. Its value is as evidence that the
+            authoring model survives contact with real users, and that I can ship a system other people use.
+          </p>
+          <p><a class="more" href="eventmakar.html">Full project page</a></p>
+        </div></div>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ======================= PUBLICATIONS ======================= -->
-<section id="publications">
+<!-- ============================ THE MOMENT ============================ -->
+<section class="moment" data-moment data-anchor aria-label="Research stance">
+  <canvas aria-hidden="true"></canvas>
   <div class="wrap">
-    <p class="eyebrow">Publications</p>
+    <blockquote>The model composes.<br><em>The person decides.</em></blockquote>
+    <p class="annot">Human in the loop authoring &middot; the stance every system here is built on</p>
+  </div>
+</section>
+
+<!-- ============================ 04 · PUBLICATIONS ============================ -->
+<section id="publications" class="env-light" data-anchor>
+  <div class="wrap">
+    <p class="tag-num"><b>04</b> Publications</p>
     <h2 class="section-title">Publications &amp; manuscripts</h2>
 
     <div class="pub-group">
       <h3>Under review</h3>
-      <div class="pub">
-        <div class="tagno">[S1]</div>
-        <div>
-          
-          <div class="title">Title withheld during review</div>
-          <div class="authors"><em>Gaurab Khadka</em> and Ananya Ipsita.</div>
-          <div class="venue">Full paper submitted to the ACM/IEEE International Conference on Human-Robot Interaction (<strong>HRI&nbsp;2027</strong>).</div>
-          <div class="note">On my thesis work &mdash; described in general terms on the <a href="thesis.html">project page</a> while the paper is under review.</div>
+      <div class="pubrow" data-item>
+        <button class="pubrow-head" type="button" data-toggle aria-controls="pub-s1">
+          <span class="tagno">[S1]</span>
+          <span>
+            <span class="pub-title-x">Title withheld during review</span>
+            <span class="authors" style="display:block"><em>Gaurab Khadka</em> and advisor</span>
+            <span class="venue" style="display:block">ACM/IEEE International Conference on Human-Robot Interaction (HRI&nbsp;2027) &middot; full paper</span>
+            <span class="status-chip review" style="margin-top:.45rem"><i></i> Submitted &middot; under review</span>
+          </span>
+          <span class="pcard-toggle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="pubrow-body" id="pub-s1">
+          <div><div class="pubrow-inner">
+            <p>
+              On my thesis work. The paper title, the system and results figures, and video of the fleet are held back
+              while the review process runs &mdash; the project page describes the work in general terms. I am glad to
+              send figures and a demo to faculty who ask.
+            </p>
+            <p style="margin-bottom:0">
+              <a class="more" href="thesis.html">Project page</a> &nbsp;
+              <a class="more" href="mailto:gaurabk@umich.edu">Request figures</a>
+            </p>
+          </div></div>
         </div>
       </div>
     </div>
 
     <div class="pub-group">
       <h3>In preparation</h3>
-      <div class="pub">
-        <div class="tagno">[M1]</div>
-        <div>
-          <div class="title">Social Web-Inspired Video to Support Student Attainment of AACN Essentials</div>
-          <div class="authors">Beverly Dabney and <em>Gaurab Khadka</em>.
-            </div>
-          <div class="venue">Manuscript in preparation. School of Nursing, University of Michigan&ndash;Flint.</div>
-          <div class="note">I designed and built the AI-assisted production pipeline &mdash;
-            <a href="social-web-video.html">about the project</a>.</div>
+      <div class="pubrow" data-item>
+        <button class="pubrow-head" type="button" data-toggle aria-controls="pub-m1">
+          <span class="tagno">[M1]</span>
+          <span>
+            <span class="pub-title-x">Social Web-Inspired Video to Support Student Attainment of AACN Essentials</span>
+            <span class="authors" style="display:block">Beverly Dabney and <em>Gaurab Khadka</em></span>
+            <span class="venue" style="display:block">School of Nursing, University of Michigan Flint</span>
+            <span class="status-chip prep" style="margin-top:.45rem"><i></i> Manuscript in preparation</span>
+          </span>
+          <span class="pcard-toggle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="pubrow-body" id="pub-m1">
+          <div><div class="pubrow-inner">
+            <p>
+              <strong>My contribution:</strong> I designed and built the AI assisted production pipeline &mdash; script
+              generation written to the competency each video serves, image prompting, assembly, and delivery through
+              the course&rsquo;s LMS &mdash; and designed the &ldquo;Evidence Elevator&rdquo; device for teaching the
+              hierarchy of evidence.
+            </p>
+            <p style="margin-bottom:0"><a class="more" href="social-web-video.html">Project page</a></p>
+          </div></div>
         </div>
       </div>
     </div>
 
-    <p class="note" style="font-size:.86rem;color:var(--ink-faint);margin-top:1.2rem;max-width:66ch">
-      Nothing on this page is peer-reviewed and accepted yet; status labels are updated as decisions arrive.
+    <p style="font-size:.86rem;color:var(--ink-faint);margin-top:1.2rem;max-width:66ch">
+      Nothing on this page is peer reviewed and accepted yet; status labels are updated as decisions arrive.
     </p>
   </div>
 </section>
 
-<!-- ======================= EXPERIENCE ======================= -->
-<section id="experience">
+<!-- ============================ 05 · BACKGROUND ============================ -->
+<section id="background" class="env-light" data-anchor>
   <div class="wrap">
-    <p class="eyebrow">Research experience</p>
-    <h2 class="section-title">Appointments</h2>
+    <p class="tag-num"><b>05</b> Background</p>
 
-    <div class="rows">
-      <div class="row">
-        <div class="row-head">
-          <h3>Graduate Student Research Assistant &mdash; PLAYLab</h3>
-          <span class="when">Aug 2025 &ndash; present</span>
+    <div class="split">
+      <div>
+        <h2 class="section-title">Appointments</h2>
+        <div class="rows">
+          <div class="row">
+            <div class="row-head">
+              <h3>Graduate Student Research Assistant &mdash; PLAYLab</h3>
+              <span class="when">Aug 2025 &ndash; present</span>
+            </div>
+            <p class="where">University of Michigan Flint</p>
+            <p>
+              Design and build end user authoring tools for multi robot teams, and run the studies that evaluate them.
+              That includes the hardware: I build the robot fleets themselves, their localization, and the control
+              software that drives them.
+            </p>
+          </div>
+          <div class="row">
+            <div class="row-head">
+              <h3>Graduate Student Research Assistant (part time)</h3>
+              <span class="when">Jan 2026 &ndash; present</span>
+            </div>
+            <p class="where">School of Nursing, University of Michigan Flint &middot; PI: Dr.&nbsp;Beverly Dabney</p>
+            <p><a href="social-web-video.html">Social web inspired video for nursing education</a> &mdash; I designed and built the AI assisted production pipeline. Manuscript in preparation.</p>
+          </div>
+          <div class="row">
+            <div class="row-head">
+              <h3>Research Mentor &mdash; NSF REU Site in Digital Accessibility</h3>
+              <span class="when">May &ndash; Jul 2026</span>
+            </div>
+            <p class="where">University of Michigan Flint</p>
+            <p>
+              Mentored an undergraduate researcher on an AR authoring tool that lets autistic users program robot and
+              IoT behaviors through spatial storytelling and visual cues, and guided co design sessions with autistic
+              participants.
+            </p>
+          </div>
+          <div class="row">
+            <div class="row-head">
+              <h3>Student Volunteer, ACM RecSys 2026</h3>
+              <span class="when">2026</span>
+            </div>
+            <p class="where">Minneapolis, MN</p>
+          </div>
         </div>
-        <p class="where">University of Michigan&ndash;Flint &middot; PI: Dr.&nbsp;Ananya Ipsita</p>
-        <p>
-          Design and build end-user authoring tools for multi-robot teams, and run the studies that evaluate them:
-          <a href="thesis.html">my thesis system</a> (HRI 2027 submission),
-          <a href="expressbot.html">ExpressBot</a> (formative study, N&nbsp;=&nbsp;11), and
-          <a href="eventmakar.html">EventMakAR</a> (deployed at a public workshop). That includes the hardware:
-          I build the robot fleets themselves, their localization, and the control software that drives them.
-        </p>
       </div>
 
-      <div class="row">
-        <div class="row-head">
-          <h3>Graduate Student Research Assistant (part-time)</h3>
-          <span class="when">Jan 2026 &ndash; present</span>
+      <div>
+        <h2 class="section-title">Trajectory</h2>
+        <div class="tl">
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-1">
+              <span class="tl-when">2020&ndash;2023</span>
+              <span class="tl-what">B.Sc. (Hons), London Metropolitan University</span>
+            </button>
+            <div class="tl-body" id="tl-1"><div><p>Computer Networking &amp; IT Security. Final year project: a working three axis CNC machine built from scratch &mdash; mechanical assembly, motor control and G code path planning.</p></div></div>
+          </div>
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-2">
+              <span class="tl-when">Aug 2025</span>
+              <span class="tl-what">Joined PLAYLab, UM Flint</span>
+            </button>
+            <div class="tl-body" id="tl-2"><div><p>Started the M.S. in Computer Science and a graduate research assistantship in PLAYLab. GPA 4.0/4.0. Expected May&nbsp;2027.</p></div></div>
+          </div>
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-3">
+              <span class="tl-when">2025</span>
+              <span class="tl-what">ExpressBot &mdash; first fleet, first study</span>
+            </button>
+            <div class="tl-body" id="tl-3"><div><p>Built a three robot fleet with seven motion primitives and ran a study with 11 participants. It worked, and it exposed the limitation that set up the thesis.</p></div></div>
+          </div>
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-4">
+              <span class="tl-when">2025&ndash;2026</span>
+              <span class="tl-what">EventMakAR deployed at a public workshop</span>
+            </button>
+            <div class="tl-body" id="tl-4"><div><p>An authoring tool used by students at the Super Friday workshop to build AR stories driven by physical robots &mdash; the first time the authoring model met users outside the lab.</p></div></div>
+          </div>
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-5">
+              <span class="tl-when">May&ndash;Jul 2026</span>
+              <span class="tl-what">Mentored an NSF REU researcher</span>
+            </button>
+            <div class="tl-body" id="tl-5"><div><p>Accessible AR authoring for autistic users, including co design sessions with autistic participants.</p></div></div>
+          </div>
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-6">
+              <span class="tl-when">Sep 2026</span>
+              <span class="tl-what">Full paper submitted to HRI 2027</span>
+            </button>
+            <div class="tl-body" id="tl-6"><div><p>The thesis system: novices author the motions, a model composes the plan, the person approves before anything moves. Under review.</p></div></div>
+          </div>
+          <div class="tl-item" data-item>
+            <button class="tl-head" type="button" data-toggle aria-controls="tl-7">
+              <span class="tl-when">Next</span>
+              <span class="tl-what">PhD, Fall 2027 entry</span>
+            </button>
+            <div class="tl-body" id="tl-7"><div><p>Applying in HCI, HRI and human AI interaction.</p></div></div>
+          </div>
         </div>
-        <p class="where">School of Nursing, University of Michigan&ndash;Flint &middot; PI: Dr.&nbsp;Beverly Dabney</p>
-        <p>
-          <a href="social-web-video.html">Social Web-Inspired Video to Support Student Attainment of AACN
-          Essentials</a>: I designed and built an AI-assisted production pipeline that turns a competency topic into a
-          short, social-web-format video delivered through the course&rsquo;s LMS, and designed the
-          &ldquo;Evidence Elevator&rdquo; device for teaching the hierarchy of evidence. Manuscript in preparation.
-        </p>
-      </div>
-
-      <div class="row">
-        <div class="row-head">
-          <h3>Research Mentor &mdash; NSF REU Site in Digital Accessibility</h3>
-          <span class="when">May &ndash; Jul 2026</span>
-        </div>
-        <p class="where">University of Michigan&ndash;Flint</p>
-        <p>
-          Mentored an undergraduate researcher on an AR authoring tool that lets autistic users program robot and IoT
-          behaviors through spatial storytelling and visual cues, and guided co-design sessions with autistic
-          participants.
-          
-        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= EDUCATION / SERVICE ======================= -->
-<section id="education">
+<!-- ============================ 06 · WHAT I WANT TO STUDY NEXT ============================ -->
+<section id="next" class="env-light" data-anchor>
   <div class="wrap">
-    <p class="eyebrow">Education &amp; service</p>
+    <p class="tag-num"><b>06</b> What I want to study next</p>
+    <h2 class="section-title">Three questions my own results left open</h2>
+    <p class="prose" style="margin-bottom:1.4rem">
+      Each of these came out of something that did not work in a system I built, which is why they are the questions I
+      want to spend a PhD on.
+    </p>
 
-    <div class="rows">
-      <div class="row">
-        <div class="row-head">
-          
-          <h3>M.S. in Computer Science</h3>
-          <span class="when">Aug 2025 &ndash; May 2027 (expected)</span>
-        </div>
-        <p class="where">University of Michigan&ndash;Flint &middot; GPA 4.0 / 4.0</p>
-        <p>Thesis: <em>LLM-driven authoring for human&ndash;multi-robot collaboration</em>, advised by Dr.&nbsp;Ananya Ipsita.</p>
+    <div class="qgrid">
+      <div class="qcard reveal" data-prox>
+        <span class="n">Question 01</span>
+        <h3>What can a person actually verify?</h3>
+        <p>
+          My systems put a human approval step between the model and the robots. But approving is only meaningful if
+          the person can tell a good plan from a bad one. What does someone actually check, what do they miss, and what
+          would an interface have to show them to make that judgment real rather than ceremonial?
+        </p>
       </div>
-
-      <div class="row">
-        <div class="row-head">
-          <h3>B.Sc. (Hons) Computer Networking &amp; IT Security</h3>
-          <span class="when">2020 &ndash; 2023</span>
-        </div>
-        <p class="where">London Metropolitan University, London, UK</p>
-        <p>Final-year project: a working three-axis CNC wood-carving machine &mdash; mechanical build, motor control and
-          G-code path planning. Earlier security and systems work is on the
-          <a href="engineering.html">engineering page</a>.</p>
+      <div class="qcard reveal" data-prox>
+        <span class="n">Question 02</span>
+        <h3>Legible to whom?</h3>
+        <p>
+          In ExpressBot, two motions I had designed to be distinct were read as the same thing. Motion authored by one
+          person still has to be read by everyone else in the room. How should authoring tools help an author see what
+          their motion will mean to a bystander who never saw them make it?
+        </p>
       </div>
-
-      <div class="row">
-        <div class="row-head">
-          <h3>Student Volunteer, ACM Conference on Recommender Systems (RecSys 2026)</h3>
-          <span class="when">2026</span>
-        </div>
-        <p class="where">Minneapolis, MN</p>
+      <div class="qcard reveal" data-prox>
+        <span class="n">Question 03</span>
+        <h3>Authoring for different bodies and minds</h3>
+        <p>
+          Sketching and physical demonstration both assume particular abilities. Mentoring on accessible AR authoring
+          made that assumption impossible to ignore. What does end user robot programming look like when the range of
+          people doing the authoring is taken as the starting point rather than an adaptation?
+        </p>
       </div>
     </div>
+    <p style="font-size:.86rem;color:var(--ink-faint);margin-top:1.1rem;max-width:66ch">
+      These are directions, not results &mdash; worth rewriting in your own words once your statement of purpose settles.
+    </p>
   </div>
 </section>
 
-<!-- ======================= CONTACT ======================= -->
-<section id="contact">
+<!-- ============================ 07 · CONTACT ============================ -->
+<section id="contact" class="env-dark" data-anchor>
   <div class="wrap">
-    <p class="eyebrow">Contact</p>
+    <p class="tag-num"><b>07</b> Contact</p>
     <h2 class="section-title">Get in touch</h2>
     <p class="prose">
-      I am applying to PhD programs in HCI, HRI and human&ndash;AI interaction for Fall&nbsp;2027 entry, and I am glad to
-      talk about end-user robot programming, multi-robot studies, or the hardware behind any of it.
+      I am applying to PhD programs in HCI, HRI and human AI interaction for Fall&nbsp;2027 entry, and I am glad
+      to talk about end user robot programming, multi robot studies, or the hardware behind any of it.
     </p>
     <div class="contact-grid">
       <div>
@@ -480,23 +705,12 @@
 <footer class="site-foot">
   <div class="wrap">
     <span>&copy; 2026 Gaurab Khadka</span>
-    <span>University of Michigan&ndash;Flint &middot; <a href="engineering.html">Engineering &amp; coursework</a></span>
+    <span>University of Michigan Flint &middot; <a href="engineering.html">Technical background</a></span>
   </div>
 </footer>
 
-<script>
-  (function () {
-    var btn = document.getElementById('themeBtn');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      var root = document.documentElement;
-      var isDark = root.getAttribute('data-theme') === 'dark' ||
-        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      var next = isDark ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-    });
-  })();
-</script>
+<script src="app.js" defer></script>
+<script src="art-direction.js" defer></script>
+<script src="instruments.js" defer></script>
 </body>
 </html>

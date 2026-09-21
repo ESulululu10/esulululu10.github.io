@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ExpressBot &mdash; Gaurab Khadka</title>
-<meta name="description" content="ExpressBot: a three-robot fleet with seven motion primitives, studied with 11 non-experts to ask whether people can read a robot's state from its motion alone. Formative study behind his current thesis work.">
+<meta name="description" content="ExpressBot: a three robot fleet with seven motion primitives, studied with 11 non experts to ask whether people can read a robot's state from its motion alone. Formative study behind his current thesis work.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="art-direction.css">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -19,12 +21,12 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="index.html#research">Research</a>
       <a href="index.html#publications" class="hide-xs">Publications</a>
       <a href="index.html#experience" class="hide-sm">Experience</a>
-      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="engineering.html" class="hide-sm">Technical</a>
       <a href="Gaurab_Khadka_CV.pdf">CV</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -43,7 +45,7 @@
     <a class="back" href="index.html#research">All research</a>
     <h1>ExpressBot</h1>
     <p class="sub">
-      A low-cost robot fleet that communicates what it is doing through motion alone &mdash; and the study that
+      A low cost robot fleet that communicates what it is doing through motion alone &mdash; and the study that
       showed both that this works and where it stops working.
     </p>
 
@@ -58,7 +60,7 @@
       </div>
       <div>
         <div class="k">Where</div>
-        <div class="v">PLAYLab, University of Michigan&ndash;Flint</div>
+        <div class="v">PLAYLab, University of Michigan Flint</div>
       </div>
       <div>
         <div class="k">Evaluation</div>
@@ -79,7 +81,7 @@
 
     <h2>The system</h2>
     <p>
-      A fleet of three robots, built for about <strong>$30 each</strong>, navigating by camera-based ArUco marker
+      A fleet of three robots, built for about <strong>$30 each</strong>, navigating by camera based ArUco marker
       tracking. I designed <strong>seven motion primitives</strong> &mdash; <em>Searching</em>, <em>Delivering</em>,
       <em>Waking</em>, <em>Urgent</em>, <em>Returning</em>, <em>Error</em> and <em>Idle</em> &mdash; each one a movement
       pattern meant to be read at a glance rather than decoded.
@@ -93,7 +95,7 @@
       <figcaption>
         <strong>(a)</strong> The seven motion primitives. <strong>(b)</strong> The robots: a printed chassis, an
         ArUco marker for overhead tracking, and about $30 of parts each. <em>Searching</em> and <em>Urgent</em> are
-        both agitated, back-and-forth motions &mdash; which turned out to matter.
+        both agitated, back and forth motions &mdash; which turned out to matter.
       </figcaption>
     </figure>
 
@@ -104,7 +106,7 @@
     </p>
     <ul>
       <li>
-        <strong>Motion alone carried the state.</strong> Non-experts could read what a robot was doing from how it
+        <strong>Motion alone carried the state.</strong> Non experts could read what a robot was doing from how it
         moved, without a screen, a label or an explanation, and rated the system usable (SUS&nbsp;&asymp;&nbsp;70).
       </li>
       <li>
@@ -114,14 +116,14 @@
       </li>
       <li>
         <strong>The behaviors did not travel.</strong> Every primitive was tuned by hand for one scenario. Moving to a
-        different task meant re-engineering the vocabulary, which no end user could do.
+        different task meant rebuilding the vocabulary, which no end user could do.
       </li>
     </ul>
 
     <div class="callout">
       <p>
-        <strong>Why this matters for the next project.</strong> If a designer hand-authoring behaviors can still pick
-        two that people confuse, the fix is not a better-designed vocabulary &mdash; it is letting the people who know
+        <strong>Why this matters for the next project.</strong> If a designer hand authoring behaviors can still pick
+        two that people confuse, the fix is not a better designed vocabulary &mdash; it is letting the people who know
         the task author the motions themselves, and making those motions reusable when the scenario changes. That is
         <a href="thesis.html">my current thesis work</a>.
       </p>

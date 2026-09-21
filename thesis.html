@@ -5,12 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Current thesis work &mdash; Gaurab Khadka</title>
-<meta name="description" content="Gaurab Khadka's M.S. thesis work on end-user authoring for human-multi-robot interaction: people author the motions, a model composes them for new scenarios, and nobody moves a robot until the person approves the plan.">
+<meta name="description" content="Gaurab Khadka's M.S. thesis work on end user authoring for human-multi robot interaction: people author the motions, a model composes them for new scenarios, and nobody moves a robot until the person approves the plan.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="art-direction.css">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -20,12 +22,12 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="index.html#research">Research</a>
       <a href="index.html#publications" class="hide-xs">Publications</a>
       <a href="index.html#experience" class="hide-sm">Experience</a>
-      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="engineering.html" class="hide-sm">Technical</a>
       <a href="Gaurab_Khadka_CV.pdf">CV</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -59,11 +61,11 @@
       </div>
       <div>
         <div class="k">Where</div>
-        <div class="v">PLAYLab, University of Michigan&ndash;Flint &middot; advised by Dr.&nbsp;Ananya Ipsita</div>
+        <div class="v">PLAYLab, University of Michigan Flint</div>
       </div>
       <div>
         <div class="k">Evaluation</div>
-        <div class="v">Controlled within-subjects user study</div>
+        <div class="v">Controlled within subjects user study</div>
       </div>
     </div>
   </div>
@@ -82,7 +84,7 @@
     <h2>The problem</h2>
     <p>
       Expressive robot motion works: a robot that moves the right way can tell a bystander what it is doing without a
-      screen or a voice. But in the systems I had built and read about, those behaviors were hand-engineered for one
+      screen or a voice. But in the systems I had built and read about, those behaviors were hand engineered for one
       scenario. Change the task &mdash; a different room, a different set of robots, a different job &mdash; and a
       researcher has to go back and author the motion again. That is a bottleneck no end user can get past, and it is
       exactly what my earlier system, <a href="expressbot.html">ExpressBot</a>, ran into: the behaviors were legible,
@@ -103,7 +105,7 @@
     <figure class="diagram">
       <div class="frame">
         <svg viewBox="0 0 620 150" role="img" aria-label="Three stages: the person authors the motion vocabulary, the model composes a plan from it, and the person approves the plan before any robot moves.">
-          <rect class="dg-box-accent" x="10" y="26" width="178" height="74" rx="8" stroke-width="1.5"/>
+          <rect x="10" y="26" width="178" height="74" rx="8" stroke-width="1.5" fill="rgba(240,166,74,.12)" stroke="#c2701c"/>
           <text class="dg-text" x="30" y="56" font-size="14.5" font-weight="600">The person authors</text>
           <text class="dg-sub" x="30" y="76" font-size="12">the motion vocabulary</text>
           <text class="dg-sub" x="30" y="120" font-size="11">human</text>
@@ -111,7 +113,7 @@
           <path class="dg-line" d="M192 63 H 214" stroke-width="1.5"/>
           <path class="dg-arrow" d="M214 59 l 9 4 -9 4 z"/>
 
-          <rect class="dg-box" x="228" y="26" width="164" height="74" rx="8" stroke-width="1.5"/>
+          <rect x="228" y="26" width="164" height="74" rx="8" stroke-width="1.5" fill="rgba(111,176,232,.1)" stroke="#2f6ca8"/>
           <text class="dg-text" x="248" y="56" font-size="14.5" font-weight="600">The model</text>
           <text class="dg-sub" x="248" y="76" font-size="12">composes a plan</text>
           <text class="dg-sub" x="248" y="120" font-size="11">machine</text>
@@ -119,15 +121,17 @@
           <path class="dg-line" d="M396 63 H 418" stroke-width="1.5"/>
           <path class="dg-arrow" d="M418 59 l 9 4 -9 4 z"/>
 
-          <rect class="dg-box-accent" x="432" y="26" width="178" height="74" rx="8" stroke-width="1.5"/>
+          <rect x="432" y="26" width="178" height="74" rx="8" stroke-width="1.5" fill="rgba(240,166,74,.12)" stroke="#c2701c"/>
           <text class="dg-text" x="452" y="56" font-size="14.5" font-weight="600">The person approves</text>
           <text class="dg-sub" x="452" y="76" font-size="12">before anything moves</text>
           <text class="dg-sub" x="452" y="120" font-size="11">human</text>
         </svg>
       </div>
       <figcaption>
-        The division of labor the work is built on. The model never gets the last word: the vocabulary it draws from
-        is the user&rsquo;s, and the plan it proposes is reviewed and editable before execution.
+        The division of labor the work is built on &mdash; <span style="color:var(--human)">amber where a person
+        decides</span>, <span style="color:var(--machine)">blue where the model proposes</span>. The model never gets
+        the last word: the vocabulary it draws from is the user&rsquo;s, and the plan it proposes is reviewed and
+        editable before execution.
       </figcaption>
     </figure>
 
@@ -145,13 +149,13 @@
         conditions in the study &mdash; the same authoring task, done through a screen or through the body.
       </li>
       <li>
-        <strong>A planning stage</strong> that turns a scenario written in plain English into per-robot assignments
+        <strong>A planning stage</strong> that turns a scenario written in plain English into per robot assignments
         drawn from the user&rsquo;s own motions, and that refuses and regenerates output which does not hold up
         structurally, rather than passing it to the robots.
       </li>
       <li>
-        <strong>The robot fleet and its tracking</strong> &mdash; a multi-robot platform with a central control server
-        and motion-capture-grade localization. That stack is itself a finding: the first localization approach I built
+        <strong>The robot fleet and its tracking</strong> &mdash; a multi robot platform with a central control server
+        and motion capture grade localization. That stack is itself a finding: the first localization approach I built
         on was not accurate enough to tell whether a robot had actually performed the motion the user authored, so I
         replaced it.
       </li>
@@ -159,9 +163,9 @@
 
     <h2>The study</h2>
     <p>
-      I designed and ran a counterbalanced, within-subjects study comparing the two authoring methods, combining
-      think-aloud protocol during authoring with standard workload and usability instruments afterwards and
-      semi-structured interviews at the end &mdash; so that what people said while authoring can be read against what
+      I designed and ran a counterbalanced, within subjects study comparing the two authoring methods, combining
+      think aloud protocol during authoring with standard workload and usability instruments afterwards and
+      semi structured interviews at the end &mdash; so that what people said while authoring can be read against what
       they reported once they were done. Participant counts, measures and results are in my CV and in the paper.
     </p>
 
@@ -171,7 +175,7 @@
       and the control server that drives them, both authoring interfaces, and the planning and validation layer
       behind them. The interface work was as much of the problem as the hardware: it has to be usable by someone
       who has never programmed a robot, in one sitting, under observation. I then designed, ran and analyzed the
-      user study. Advised by Dr.&nbsp;Ananya Ipsita in PLAYLab.</p>
+      user study. Carried out in PLAYLab.</p>
     </div>
 
     <p style="margin-top:2rem">

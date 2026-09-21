@@ -4,12 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>EventMakAR &mdash; Gaurab Khadka</title>
-<meta name="description" content="EventMakAR: a browser-based authoring tool that lets people with no programming background build AR stories driven by five physical robot characters. Deployed at the Super Friday workshop at UM-Flint.">
+<meta name="description" content="EventMakAR: a browser based authoring tool that lets people with no programming background build AR stories driven by five physical robot characters. Deployed at the Super Friday workshop at UM Flint.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="art-direction.css">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -19,12 +21,12 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="index.html#research">Research</a>
       <a href="index.html#publications" class="hide-xs">Publications</a>
       <a href="index.html#experience" class="hide-sm">Experience</a>
-      <a href="engineering.html" class="hide-sm">Engineering</a>
+      <a href="engineering.html" class="hide-sm">Technical</a>
       <a href="Gaurab_Khadka_CV.pdf">CV</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -43,7 +45,7 @@
     <a class="back" href="index.html#research">All research</a>
     <h1>EventMakAR</h1>
     <p class="sub">
-      A browser-based authoring tool for AR stories performed by physical robots &mdash; built so that a student with
+      A browser based authoring tool for AR stories performed by physical robots &mdash; built so that a student with
       no programming background can write one, and run it, in a single workshop session.
     </p>
 
@@ -58,7 +60,7 @@
       </div>
       <div>
         <div class="k">Where</div>
-        <div class="v">PLAYLab, University of Michigan&ndash;Flint</div>
+        <div class="v">PLAYLab, University of Michigan Flint</div>
       </div>
       <div>
         <div class="k">Code</div>
@@ -125,11 +127,11 @@
     <h2>How it works</h2>
     <ul>
       <li>
-        A standalone single-file HTML/React application &mdash; no install, no build step, no server. It runs from a
+        A standalone single file HTML/React application &mdash; no install, no build step, no server. It runs from a
         file on a laptop in a workshop room, which is the environment it had to survive.
       </li>
       <li>
-        Five robot characters, each with its own device-specific action list, so the author picks from what that
+        Five robot characters, each with its own device specific action list, so the author picks from what that
         character can actually do rather than from a generic menu.
       </li>
       <li>
@@ -140,7 +142,7 @@
 
     <h2>Deployment</h2>
     <p>
-      EventMakAR was used live at the <strong>Super Friday workshop</strong> at UM&ndash;Flint, where student
+      EventMakAR was used live at the <strong>Super Friday workshop</strong> at UM Flint, where student
       participants authored their own AR stories and ran them with physical robots. That was the first time this
       authoring model met users outside the lab, and it is the reason the current thesis work assumes authoring has to
       survive a novice, a time limit and a room full of people.

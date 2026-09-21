@@ -3,13 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Engineering &amp; coursework &mdash; Gaurab Khadka</title>
+<title>Technical background &mdash; Gaurab Khadka</title>
 <meta name="description" content="Engineering, machine learning and security work behind Gaurab Khadka's research: a forensic deepfake detection pipeline, explainable web filtering, a CNC machine built from scratch, and earlier industry roles.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="art-direction.css">
+<link rel="stylesheet" href="instruments.css">
 <script>
   try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
 </script>
@@ -19,12 +22,12 @@
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="index.html">Gaurab Khadka <span>Human-Robot Interaction</span></a>
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
     <nav class="site-nav" aria-label="Primary">
       <a href="index.html#research">Research</a>
       <a href="index.html#publications" class="hide-xs">Publications</a>
       <a href="index.html#experience" class="hide-sm">Experience</a>
-      <a href="engineering.html" aria-current="page" class="hide-sm">Engineering</a>
+      <a href="engineering.html" aria-current="page" class="hide-sm">Technical</a>
       <a href="Gaurab_Khadka_CV.pdf">CV</a>
       <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
@@ -41,7 +44,7 @@
 
   <div class="page-head">
     <a class="back" href="index.html">Home</a>
-    <h1>Engineering &amp; coursework</h1>
+    <h1>Technical background</h1>
     <p class="sub">
       The work that is not part of my research line, kept here rather than on the front page: machine learning,
       embedded hardware, security, and the industry roles I held before graduate school. It is the background that
@@ -51,6 +54,105 @@
 
   <article class="body" style="max-width:none">
 
+  </article>
+</div>
+</main>
+
+<section class="bp-wrap" data-blueprint aria-label="System schematic">
+  <div class="wrap">
+    <p class="annot" style="margin-bottom:1.6rem">The stack I build with &mdash; hover or tap a component</p>
+    <div class="bp-grid">
+
+      <div class="bp">
+        <svg class="bp-wires" aria-hidden="true" preserveAspectRatio="none"></svg>
+        <div class="bnode core" style="left:50%;top:50%">A robot study,<br>end to end</div>
+          <button class="bnode" type="button" data-part="interface" style="left:16%;top:18%">INTERFACE</button>
+          <button class="bnode" type="button" data-part="llm" style="left:50%;top:9%">LLM</button>
+          <button class="bnode" type="button" data-part="ar" style="left:84%;top:18%">AR</button>
+          <button class="bnode" type="button" data-part="control" style="left:12%;top:50%">CONTROL</button>
+          <button class="bnode" type="button" data-part="tracking" style="left:88%;top:50%">TRACKING</button>
+          <button class="bnode" type="button" data-part="esp32" style="left:18%;top:84%">ESP32</button>
+          <button class="bnode" type="button" data-part="data" style="left:50%;top:92%">DATA</button>
+          <button class="bnode" type="button" data-part="analysis" style="left:84%;top:84%">ANALYSIS</button>
+      </div>
+
+      <div>
+        <div class="bp-list">
+        <button class="bnode" type="button" data-part="interface">INTERFACE</button>
+        <button class="bnode" type="button" data-part="llm">LLM</button>
+        <button class="bnode" type="button" data-part="ar">AR</button>
+        <button class="bnode" type="button" data-part="control">CONTROL</button>
+        <button class="bnode" type="button" data-part="tracking">TRACKING</button>
+        <button class="bnode" type="button" data-part="esp32">ESP32</button>
+        <button class="bnode" type="button" data-part="data">DATA</button>
+        <button class="bnode" type="button" data-part="analysis">ANALYSIS</button>
+        </div>
+        <div class="bp-panel"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="bp-data" hidden>
+      <div data-for="interface">
+        <div class="k">Component</div>
+        <h3>Authoring interface</h3>
+        <p>The surface a non expert actually touches: a canvas to draw a motion on, a library of what they have authored, and a plan they can read and edit before anything runs. Usable in one sitting, by someone who has never programmed a robot, while being observed.</p>
+        <div class="stack"><span>HTML / CSS / JS</span><span>React</span><span>Canvas 2D</span><span>SVG</span></div>
+        <p class="used">Used in <a href="thesis.html">thesis work</a> &middot; <a href="eventmakar.html">EventMakAR</a></p>
+      </div>
+      <div data-for="llm">
+        <div class="k">Component</div>
+        <h3>Scenario engine</h3>
+        <p>Turns a scenario written in plain English into assignments drawn from the user's own motion library. Output that does not hold up structurally is refused and regenerated rather than passed downstream, and the result is always shown to a person before it reaches hardware.</p>
+        <div class="stack"><span>Claude API</span><span>Gemini API</span><span>Structured output validation</span><span>Schema repair</span></div>
+        <p class="used">Used in <a href="thesis.html">thesis work</a> &middot; <a href="social-web-video.html">nursing video</a></p>
+      </div>
+      <div data-for="ar">
+        <div class="k">Component</div>
+        <h3>Augmented reality layer</h3>
+        <p>Spatial overlays registered to the room, driven by the same event file a non programmer authored in the browser. The runtime parses the file and drives the physical characters, so authored stories run without anyone opening the Unity project.</p>
+        <div class="stack"><span>Unity</span><span>AR Foundation</span><span>ARCore</span><span>C#</span></div>
+        <p class="used">Used in <a href="eventmakar.html">EventMakAR</a></p>
+      </div>
+      <div data-for="control">
+        <div class="k">Component</div>
+        <h3>Control server</h3>
+        <p>The centre of the fleet: takes an approved plan, splits it per robot, dispatches commands and watches what comes back. Also where an emergency stop lives, which matters when the robots are on the floor of a room with participants in it.</p>
+        <div class="stack"><span>Python</span><span>WebSockets</span><span>REST</span><span>Serial</span></div>
+        <p class="used">Used in <a href="thesis.html">thesis work</a> &middot; <a href="expressbot.html">ExpressBot</a></p>
+      </div>
+      <div data-for="tracking">
+        <div class="k">Component</div>
+        <h3>Localization</h3>
+        <p>Knowing where each robot actually is, not where it was told to be. Without accurate position you cannot tell whether a robot performed the motion a person authored, which makes the whole study unanswerable. My first localization approach was not accurate enough and I replaced it.</p>
+        <div class="stack"><span>HTC Vive Tracker</span><span>SteamVR</span><span>ArUco markers</span><span>OpenCV</span></div>
+        <p class="used">Used in <a href="thesis.html">thesis work</a> &middot; <a href="expressbot.html">ExpressBot</a></p>
+      </div>
+      <div data-for="esp32">
+        <div class="k">Component</div>
+        <h3>Robot controllers</h3>
+        <p>The robots themselves. Microcontroller firmware driving motors and servos over wifi, on a chassis built for roughly thirty dollars a unit so a study can use a fleet rather than one robot.</p>
+        <div class="stack"><span>ESP32 / NodeMCU</span><span>C++ (Arduino)</span><span>PWM motor control</span><span>3D printed chassis</span></div>
+        <p class="used">Used in <a href="expressbot.html">ExpressBot</a> &middot; <a href="thesis.html">thesis work</a></p>
+      </div>
+      <div data-for="data">
+        <div class="k">Component</div>
+        <h3>Study instrumentation</h3>
+        <p>What a session leaves behind: authoring logs, execution traces, questionnaire responses and interview recordings, captured so that what someone said while authoring can be read against what they reported once they were done.</p>
+        <div class="stack"><span>Think aloud protocol</span><span>SUS</span><span>NASA-TLX</span><span>Semi structured interviews</span></div>
+        <p class="used">Used in <a href="thesis.html">thesis work</a> &middot; <a href="expressbot.html">ExpressBot</a></p>
+      </div>
+      <div data-for="analysis">
+        <div class="k">Component</div>
+        <h3>Analysis</h3>
+        <p>Turning sessions into findings: counterbalanced within subjects comparison, descriptive and inferential statistics, and qualitative coding of what participants said, plus the figures that report it.</p>
+        <div class="stack"><span>Python</span><span>pandas</span><span>matplotlib</span><span>Qualitative coding</span></div>
+        <p class="used">Used in <a href="thesis.html">thesis work</a> &middot; <a href="expressbot.html">ExpressBot</a></p>
+      </div>
+  </div>
+</section>
+<main><div class="wrap"><article class="body" style="max-width:none">
     <h2>Technical skills</h2>
     <div class="kw" style="margin-bottom:1.6rem">
       <span>Python</span><span>JavaScript / React</span><span>C#</span><span>C++ (Arduino)</span><span>Java</span><span>Git</span>
@@ -66,7 +168,7 @@
       <div class="card">
         <h3>Deepfake detection pipeline</h3>
         <p>
-          A nine-module forensic pipeline in Python, evaluated on ProGAN, BigGAN and CycleGAN datasets. Feature
+          A nine module forensic pipeline in Python, evaluated on ProGAN, BigGAN and CycleGAN datasets. Feature
           selection at k&nbsp;=&nbsp;20 was optimal for AdaBoost, reaching <strong>87.20% mean AUC</strong>. Delivered
           with a written forensic report.
         </p>
@@ -76,17 +178,17 @@
       <div class="card">
         <h3>Web Shield-AI</h3>
         <p>
-          Explainable machine learning for web content filtering, with a human-in-the-loop feedback mechanism so that
+          Explainable machine learning for web content filtering, with a human in the loop feedback mechanism so that
           filtering decisions can be inspected and corrected rather than just accepted.
         </p>
         <p class="foot"><a href="https://github.com/ESulululu10/Webshield-AI" rel="noopener">Code on GitHub</a></p>
       </div>
 
       <div class="card">
-        <h3>CNC wood-carving machine</h3>
+        <h3>CNC wood carving machine</h3>
         <p>
-          Bachelor&rsquo;s final-year project: a working three-axis CNC machine built from scratch &mdash; mechanical
-          assembly, motor control and G-code path planning. My first experience of debugging a system where the bug
+          Bachelor&rsquo;s final year project: a working three axis CNC machine built from scratch &mdash; mechanical
+          assembly, motor control and G code path planning. My first experience of debugging a system where the bug
           can be mechanical.
         </p>
         <p class="foot">London Metropolitan University &middot; 2022&ndash;2023</p>
@@ -95,7 +197,7 @@
       <div class="card">
         <h3>Network intrusion detection</h3>
         <p>
-          A deep-learning intrusion detection system for classifying network attacks, built as graduate coursework.
+          A deep learning intrusion detection system for classifying network attacks, built as a graduate course project.
         </p>
         <p class="foot"><a href="https://github.com/ESulululu10/Network-Intrusion-Detection-System-NIDS-Using-Deep-Learning" rel="noopener">Code on GitHub</a></p>
       </div>
@@ -122,18 +224,18 @@
       </div>
     </div>
 
-    <h2 style="margin-top:2.4rem">Coursework and security writeups</h2>
+    <h2 style="margin-top:2.4rem">Course projects and writeups</h2>
     <p style="max-width:66ch">
-      Graduate and undergraduate coursework, kept for completeness rather than as research output.
+      Graduate and undergraduate course projects, kept for completeness rather than as research output.
     </p>
     <ul class="compact">
-      <li><strong>EternalBlue (MS17-010) Windows 7 CTF</strong> &mdash; exploitation and post-exploitation writeup in a lab environment (UM&ndash;Flint CYB 501). <a href="https://github.com/ESulululu10/EternalBlue-win7-CTF" rel="noopener">GitHub</a></li>
+      <li><strong>EternalBlue (MS17-010) Windows 7 CTF</strong> &mdash; exploitation and post exploitation writeup in a lab environment (UM Flint CYB 501). <a href="https://github.com/ESulululu10/EternalBlue-win7-CTF" rel="noopener">GitHub</a></li>
       <li><strong>Covert channel data hiding</strong> &mdash; TCP/IP covert channels in a Linux network simulation. <a href="https://github.com/ESulululu10/covert-channel-data-hiding" rel="noopener">GitHub</a></li>
       <li><strong>Cryptography &amp; ciphers</strong> &mdash; symmetric and asymmetric encryption, cipher design and testing. <a href="https://github.com/ESulululu10/cryptography-ciphers-research" rel="noopener">GitHub</a></li>
       <li><strong>SQL injection demonstration</strong> &mdash; SQLMap against a deliberately vulnerable target. <a href="https://github.com/ESulululu10/Sql-injection-demo-report" rel="noopener">GitHub</a></li>
       <li><strong>Data breach analysis</strong> &mdash; ethical, legal and social analysis of a real Elasticsearch exposure. <a href="https://github.com/ESulululu10/online-casino-data-leak-report" rel="noopener">GitHub</a></li>
       <li><strong>Cultural heritage safety, Nepal</strong> &mdash; a database system for heritage preservation and community safety monitoring. <a href="https://github.com/ESulululu10/cultural-heritage-safety-nepal" rel="noopener">GitHub</a></li>
-      <li><strong>Java and Python systems</strong> &mdash; course projects: a Swing course-management GUI, a library management system, an inventory CLI. <a href="https://github.com/ESulululu10?tab=repositories" rel="noopener">All repositories</a></li>
+      <li><strong>Java and Python systems</strong> &mdash; course projects: a Swing course management GUI, a library management system, an inventory CLI. <a href="https://github.com/ESulululu10?tab=repositories" rel="noopener">All repositories</a></li>
     </ul>
 
     <h2 style="margin-top:2.4rem">Certifications</h2>
@@ -171,5 +273,7 @@
     });
   })();
 </script>
+<script src="art-direction.js" defer></script>
+<script src="instruments.js" defer></script>
 </body>
 </html>

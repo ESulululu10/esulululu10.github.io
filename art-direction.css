@@ -1,0 +1,386 @@
+/* ============================================================
+   TRACE — art direction layer
+   Loads after styles.css + system.css and takes over the visual
+   system. One idea: a single authored trajectory threads the
+   document. Everything else gets out of its way.
+
+   Palette is deliberately one accent. The human/machine encoding
+   survives as amber (accent) vs steel (near-neutral).
+   ============================================================ */
+
+:root {
+  --void:       #08090b;
+  --void-soft:  #101216;
+  --paper:      #f4f1ec;      /* warmer than before: editorial, not clinical */
+  --paper-alt:  #eae5dd;
+  --card:       #fbf9f6;
+  --ink:        #14161a;
+  --ink-soft:   #4c525c;
+  --ink-faint:  #8d8579;
+  --rule:       #ded7cc;
+
+  --accent:      #e8873a;     /* the only real colour on the site */
+  --accent-soft: #fbeade;
+  --steel:       #8a94a6;     /* machine: intentionally almost neutral */
+
+  --human:        var(--accent);
+  --human-bright: #f09a52;
+  --machine:      var(--steel);
+  --machine-bright: #a7b0be;
+  --mark:         #b4551f;
+
+  --arena-bg:   #08090b;
+  --arena-ink:  #ece7df;
+  --arena-dim:  #7d8490;
+  --arena-line: rgba(255,255,255,.14);
+  --arena-grid: rgba(255,255,255,.05);
+
+  --display: "Instrument Serif", "Source Serif 4", Georgia, serif;
+
+  --ease:   cubic-bezier(.22, 1, .36, 1);
+  --ease-io:cubic-bezier(.65, 0, .35, 1);
+
+  --gut: clamp(18px, 4vw, 56px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d0f12; --paper-alt: #131619; --card: #14171b;
+    --ink: #eceadf; --ink-soft: #b4b0a6; --ink-faint: #8b877e; --rule: #262a30;
+    --accent-soft: #241a12;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d0f12; --paper-alt: #131619; --card: #14171b;
+  --ink: #eceadf; --ink-soft: #b4b0a6; --ink-faint: #8b877e; --rule: #262a30;
+  --accent-soft: #241a12;
+}
+
+body { background: var(--paper); font-size: 16.5px; }
+
+/* ============================================================
+   LOADER — three systems initialise, then hand over
+   ============================================================ */
+.boot {
+  position: fixed; inset: 0; z-index: 200; background: var(--void);
+  display: grid; place-items: center; gap: 0;
+  transition: opacity .7s var(--ease), visibility .7s;
+}
+.boot[hidden] { display: none; }
+.boot.is-done { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot-inner { display: flex; flex-direction: column; gap: .55rem; }
+.boot-row {
+  display: flex; align-items: center; gap: .7rem;
+  font-family: var(--mono); font-size: .64rem; letter-spacing: .22em;
+  text-transform: uppercase; color: #5d636e;
+  opacity: 0; transform: translateY(4px);
+  animation: bootIn .5s var(--ease) forwards;
+}
+.boot-row:nth-child(2) { animation-delay: .13s; }
+.boot-row:nth-child(3) { animation-delay: .26s; }
+.boot-row i { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: .25; }
+.boot-row.on { color: var(--arena-ink); }
+.boot-row.on i { opacity: 1; }
+@keyframes bootIn { to { opacity: 1; transform: none; } }
+
+/* ============================================================
+   NAVIGATION — fixed index, edge aligned
+   ============================================================ */
+.site-head { background: transparent; border-bottom: 0; mix-blend-mode: normal; }
+.site-head .wrap { height: 54px; }
+.brand { font-family: var(--display); font-size: 1.15rem; letter-spacing: .01em; }
+.arena-hero ~ * .brand { color: var(--ink); }
+.site-nav a { font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; }
+
+/* head sits over the dark hero until you scroll past it */
+.site-head.on-dark { background: transparent; }
+.site-head.on-dark .brand { color: #fff; }
+.site-head.on-dark .site-nav a { color: rgba(255,255,255,.62); }
+.site-head.on-dark .site-nav a:hover { color: #fff; }
+.site-head.on-dark .theme-btn { border-color: rgba(255,255,255,.22); color: rgba(255,255,255,.62); }
+.site-head.scrolled {
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.index-nav {
+  position: fixed; left: max(14px, 2vw); top: 50%; transform: translateY(-50%);
+  z-index: 60; display: flex; flex-direction: column; gap: .55rem;
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .14em;
+}
+@media (max-width: 1180px) { .index-nav { display: none; } }
+.index-nav a {
+  display: flex; align-items: center; gap: .5rem; text-decoration: none;
+  color: var(--ink-faint); opacity: .55; transition: opacity .3s var(--ease), color .3s var(--ease);
+}
+.index-nav a b { font-weight: 400; font-variant-numeric: tabular-nums; }
+.index-nav a s {
+  width: 10px; height: 1px; background: currentColor; text-decoration: none;
+  transition: width .4s var(--ease);
+}
+.index-nav a span {
+  text-transform: uppercase; opacity: 0; transform: translateX(-4px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease); white-space: nowrap;
+}
+.index-nav:hover a { opacity: .85; }
+.index-nav:hover a span, .index-nav a:focus-visible span { opacity: 1; transform: none; }
+.index-nav a.is-active { opacity: 1; color: var(--accent); }
+.index-nav a.is-active s { width: 26px; }
+.index-nav.on-dark a { color: #aeb4bd; }
+.index-nav.on-dark a.is-active { color: var(--accent); }
+
+/* ============================================================
+   THE TRACE — one path through the whole document
+   ============================================================ */
+.spine {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; overflow: visible;
+}
+.spine path.track { fill: none; stroke: var(--rule); stroke-width: 1; opacity: .5; }
+.spine path.drawn { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; }
+.spine circle.head { fill: var(--accent); }
+.spine circle.halo { fill: none; stroke: var(--accent); opacity: .3; }
+main { position: relative; }
+main > section { position: relative; z-index: 1; }
+
+/* ============================================================
+   ENVIRONMENTS
+   ============================================================ */
+.env-dark {
+  background: var(--void); color: var(--arena-ink);
+  --ink: #ece7df; --ink-soft: #a8adb6; --ink-faint: #6f757f;
+  --rule: rgba(255,255,255,.12); --card: #101216; --paper-alt: #101216;
+  --accent-soft: rgba(232,135,58,.12);
+}
+.env-dark .section-title, .env-dark h2, .env-dark h3 { color: #fff; }
+.env-light { background: var(--paper); }
+section { border-top: 0; padding: clamp(4rem, 9vw, 8rem) 0; }
+
+/* ============================================================
+   TYPE — exhibition catalogue
+   ============================================================ */
+h1, h2, h3, h4, .section-title, .pcard-title, .pub-title-x, .qcard h3, .tl-what {
+  font-family: var(--display); font-weight: 400; letter-spacing: -.012em;
+}
+.section-title { font-size: clamp(2rem, 4.6vw, 3.6rem); line-height: 1.02; margin-bottom: 1.6rem; }
+.eyebrow, .tag-num { font-family: var(--mono); font-size: .6rem; letter-spacing: .24em; }
+.tag-num b { color: var(--accent); }
+
+.annot {
+  font-family: var(--mono); font-size: .58rem; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--ink-faint); line-height: 1.9;
+}
+
+/* ============================================================
+   HERO — name as composition
+   ============================================================ */
+.arena-hero { background: var(--void); border-bottom: 0; min-height: 100svh; display: flex; align-items: center; }
+.arena-hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 90% at 78% 12%, rgba(232,135,58,.07), transparent 58%);
+}
+.hero-comp {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 0 var(--gut);
+  align-items: center;
+  width: 100%;
+  padding: 7rem 0 4.5rem;
+}
+.hero-name { grid-column: 1 / span 8; }
+.hero-name h1 {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(3.4rem, 13.5vw, 11rem);
+  line-height: .86; letter-spacing: -.035em; color: #fff; margin: 0;
+}
+.hero-name h1 .ln { display: block; overflow: hidden; }
+.hero-name h1 .ln i {
+  display: block; font-style: normal;
+  transform: translateY(102%);
+  animation: lineUp 1.05s var(--ease) forwards;
+}
+.hero-name h1 .ln:nth-child(2) i { animation-delay: .1s; }
+@keyframes lineUp { to { transform: none; } }
+
+.hero-sub {
+  grid-column: 1 / span 6; margin-top: 2.1rem;
+  font-family: var(--sans); font-size: clamp(.95rem, 1.35vw, 1.1rem);
+  line-height: 1.55; color: #c7ccd4; max-width: 44ch;
+}
+.hero-sub .hl-human { color: var(--accent); }
+.hero-sub .hl-machine { color: var(--machine-bright); }
+
+.hero-meta {
+  grid-column: 10 / span 3; align-self: start; padding-top: 1.2rem;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.hero-meta dl { margin: 0; }
+.hero-meta dt {
+  font-family: var(--mono); font-size: .56rem; letter-spacing: .22em;
+  text-transform: uppercase; color: #6b717b; margin-bottom: .35rem;
+}
+.hero-meta dd { margin: 0; font-size: .82rem; color: #d3d8df; line-height: 1.5; }
+.hero-meta dd a { color: #d3d8df; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.22); }
+.hero-meta dd a:hover { color: var(--accent); border-color: var(--accent); }
+
+@media (max-width: 1000px) {
+  .hero-name { grid-column: 1 / -1; }
+  .hero-sub  { grid-column: 1 / -1; }
+  .hero-meta { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; gap: 1.4rem 2.5rem; padding-top: 2rem; }
+}
+
+/* the arena sits behind the name, full bleed */
+.hero-stage {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: .92;
+  touch-action: none;          /* the whole hero is the drawing surface */
+  cursor: crosshair;
+}
+.hero-stage canvas { width: 100%; height: 100%; display: block; }
+.arena-hero .wrap { position: relative; z-index: 2; }
+.hero-tools {
+  position: absolute; left: 0; right: 0; bottom: clamp(1rem, 3vh, 2.2rem); z-index: 3;
+}
+.hero-tools .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.4rem; }
+.hero-hint {
+  font-family: var(--mono); font-size: .6rem; letter-spacing: .18em; text-transform: uppercase;
+  color: #9aa0aa; display: flex; align-items: center; gap: .55rem;
+  transition: opacity .5s var(--ease);
+}
+.hero-hint i { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); animation: pulse 2.4s ease-in-out infinite; }
+.arena-hero:has(.is-used) .hero-hint { opacity: .22; }
+.hero-tools .arena-reset { margin-left: 0; }
+.hero-legend { margin-left: auto; margin-top: 0; }
+@media (max-width: 700px) { .hero-legend { margin-left: 0; } }
+
+/* ============================================================
+   FULL-BLEED MOMENT
+   ============================================================ */
+.moment {
+  background: var(--void); color: #fff; position: relative; overflow: hidden;
+  min-height: 78svh; display: flex; align-items: center;
+  padding: clamp(4rem, 10vw, 9rem) 0;
+}
+.moment canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.moment .wrap { position: relative; z-index: 2; }
+.moment blockquote {
+  margin: 0; font-family: var(--display); font-weight: 400;
+  font-size: clamp(1.9rem, 5.4vw, 4.4rem); line-height: 1.03; letter-spacing: -.02em;
+  max-width: 17ch;
+}
+.moment blockquote em { font-style: normal; color: var(--accent); }
+.moment .annot { margin-top: 1.8rem; color: #7d838d; }
+
+/* ============================================================
+   EDITORIAL PUBLICATIONS
+   ============================================================ */
+.pubrow { border-bottom: 1px solid var(--rule); }
+.pubrow-head { padding: 1.7rem .2rem; align-items: baseline; }
+.pub-title-x {
+  font-family: var(--display); font-size: clamp(1.25rem, 2.9vw, 2.1rem);
+  line-height: 1.1; margin-bottom: .55rem; letter-spacing: -.015em;
+}
+.pubrow-head:hover .pub-title-x { color: var(--accent); }
+.pubrow .authors, .pubrow .venue { font-size: .82rem; color: var(--ink-faint); }
+.pub-group h3 { font-family: var(--mono); font-size: .6rem; letter-spacing: .24em; }
+.status-chip { font-size: .56rem; letter-spacing: .18em; }
+
+/* ============================================================
+   PROXIMITY — the one interaction grammar
+   Elements expose --prox (0 at rest, 1 when the cursor is on them)
+   ============================================================ */
+[data-prox] { --prox: 0; }
+.map-node[data-prox] {
+  transform: translate(-50%, -50%) scale(calc(1 + var(--prox) * .055));
+}
+.map-node[data-prox].is-core { transform: translate(-50%, -50%); }
+.pcard[data-prox] {
+  border-color: color-mix(in srgb, var(--accent) calc(var(--prox) * 62%), var(--rule));
+}
+.qcard[data-prox] { border-left-color: color-mix(in srgb, var(--accent) calc(30% + var(--prox) * 70%), var(--rule)); }
+
+.prox-label {
+  opacity: calc(.28 + var(--prox) * .72);
+  transition: opacity .35s var(--ease);
+}
+
+/* ============================================================
+   COMPONENT REFINEMENTS
+   ============================================================ */
+.pcard { border-radius: 2px; background: transparent; box-shadow: none; border-width: 0 0 1px; border-color: var(--rule); margin-bottom: 0; }
+.pcard:hover { box-shadow: none; }
+.pcard.is-open { border-color: var(--rule); border-left: 0; }
+.pcard-head { padding: 1.9rem .2rem; grid-template-columns: 96px minmax(0,1fr) auto; gap: 1.8rem; align-items: center; }
+.pcard-viz { aspect-ratio: 1; border-radius: 2px; border-color: var(--rule); }
+.pcard-title { font-size: clamp(1.35rem, 3.1vw, 2.2rem); line-height: 1.08; margin-bottom: .4rem; }
+.pcard-q { font-family: var(--sans); font-style: normal; font-size: .9rem; color: var(--ink-faint); max-width: 54ch; }
+.pcard-meta .pill { border: 0; padding: 0; margin-right: 1rem; letter-spacing: .18em; font-size: .58rem; }
+.pcard-meta .pill.review { color: var(--accent); }
+.pcard-toggle { border-radius: 2px; }
+.pcard-inner { border-top: 0; padding-left: calc(96px + 1.8rem); }
+@media (max-width: 820px) {
+  .pcard-head { grid-template-columns: 64px minmax(0,1fr) auto; gap: 1rem; }
+  .pcard-viz { grid-column: auto; }
+  .pcard-inner { padding-left: .2rem; }
+}
+
+.map-node { border-radius: 2px; font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; }
+.map-node.is-core {
+  font-family: var(--display); font-size: 1.15rem; letter-spacing: -.01em; text-transform: none;
+  background: transparent; color: var(--ink); border-color: var(--accent); border-radius: 2px;
+}
+:root[data-theme="dark"] .map-node.is-core { color: var(--ink); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .map-node.is-core { color: var(--ink); } }
+.map-lines line.is-lit { stroke: var(--accent); }
+
+.qcard { border-radius: 0; background: transparent; box-shadow: none; padding-left: 1.3rem; }
+.qcard:hover { transform: none; box-shadow: none; }
+.qcard h3 { font-size: 1.4rem; line-height: 1.1; }
+
+.tl-what { font-family: var(--display); font-size: 1.12rem; }
+.row-head h3 { font-family: var(--display); font-size: 1.22rem; }
+
+.demo-btn.is-primary { background: var(--accent); border-color: var(--accent); color: #1a1207; }
+.arena-reset { border-radius: 2px; }
+.links a { border-radius: 2px; font-family: var(--mono); font-size: .64rem; letter-spacing: .14em; text-transform: uppercase; }
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-name h1 .ln i { transform: none; animation: none; }
+  .boot-row { opacity: 1; transform: none; animation: none; }
+  .hero-hint i { animation: none; }
+  .map-node[data-prox], .pcard[data-prox] { transform: translate(-50%, -50%); }
+  .map-node[data-prox].is-core { transform: translate(-50%, -50%); }
+  .index-nav a s { transition: none; }
+}
+
+/* ============================================================
+   HEADER OVER THE HERO
+   The header is sticky in the base sheet, so it reserves a band
+   of paper above the black hero. On this page it floats instead,
+   letting the hero run edge to edge.
+   ============================================================ */
+.home .site-head { position: fixed; top: 0; left: 0; right: 0; }
+.arena-hero { padding-top: 0; }
+
+/* phones: keep the hero full height but reserve room for the tools,
+   which are pinned to the bottom of it */
+@media (max-width: 1000px) {
+  .hero-comp { padding: 5.5rem 0 8.5rem; }
+  .hero-meta { gap: 1.2rem 2rem; }
+  .hero-tools .wrap { gap: .6rem 1rem; }
+  .hero-legend { flex-basis: 100%; }
+}
+@media (max-width: 420px) {
+  .hero-name h1 { font-size: clamp(3rem, 15vw, 4rem); }
+  .hero-sub { font-size: .92rem; }
+}
+
+/* The hero text must not block the drawing surface: "drag anywhere"
+   has to be literally true. Links and buttons stay interactive. */
+.arena-hero .wrap, .hero-comp { pointer-events: none; }
+.arena-hero .wrap a,
+.arena-hero .wrap button { pointer-events: auto; }
