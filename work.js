@@ -12,7 +12,7 @@
   var ACCENT = '#e8873a', STEEL = '#8a94a6';
 
   /* ============================================================
-     AR LENS — the AR authoring tool
+     AR LENS — EventMakAR
      The arena is plain until you look at it through the lens.
      That is the project: overlays registered onto real robots.
      ============================================================ */
@@ -24,14 +24,19 @@
     var ctx = canvas.getContext('2d');
     var W = 0, H = 0, mx = -999, my = -999, target = -999, ty = -999, raf = 0;
 
-    // five characters on the floor, the cast the AR authoring tool drives
+    // the real cast: devices exist in the room, characters only through AR
     var cast = [
-      { x: .18, y: .34, tag: 'ROBOT 1', act: 'enters' },
-      { x: .40, y: .62, tag: 'ROBOT 2', act: 'searches' },
-      { x: .60, y: .28, tag: 'ROBOT 3', act: 'delivers' },
-      { x: .78, y: .58, tag: 'ROBOT 4', act: 'waits' },
-      { x: .30, y: .80, tag: 'ROBOT 5', act: 'celebrates' }
+      { x: .13, y: .30, t: 'Car',       a: 'forward', v: false },
+      { x: .34, y: .72, t: 'Catapult',  a: 'spin',    v: false },
+      { x: .60, y: .24, t: 'House',     a: 'open',    v: false },
+      { x: .84, y: .66, t: 'Train',     a: 'forward', v: false },
+      { x: .24, y: .52, t: 'Skeleton',  a: 'attack',  v: true  },
+      { x: .49, y: .48, t: 'Barbarian', a: 'run',     v: true  },
+      { x: .71, y: .78, t: 'Spider',    a: 'walk',    v: true  },
+      { x: .90, y: .32, t: 'Woman',     a: 'dance',   v: true  }
     ];
+    // one authored event crossing from a device to a character
+    var link = { from: 1, to: 4 };
 
     function size() {
       var r = canvas.getBoundingClientRect();
@@ -56,32 +61,49 @@
 
       var R = Math.min(W, H) * 0.32;
       var live = mx > -900;
+      function seen(c) { return live && Math.hypot(c.x * W - mx, c.y * H - my) < R; }
+
+      // the authored event, visible only when both ends are under the lens
+      var a = cast[link.from], b = cast[link.to];
+      if (seen(a) && seen(b)) {
+        ctx.save();
+        ctx.setLineDash([4, 4]); ctx.strokeStyle = ACCENT; ctx.globalAlpha = .7; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.moveTo(a.x * W, a.y * H); ctx.lineTo(b.x * W, b.y * H); ctx.stroke();
+        ctx.restore();
+        ctx.fillStyle = ACCENT; ctx.font = '600 8.5px ui-monospace, monospace';
+        ctx.fillText('PHYSICAL → VIRTUAL',
+          (a.x + b.x) / 2 * W - 34, (a.y + b.y) / 2 * H - 6);
+      }
 
       cast.forEach(function (c) {
         var px = c.x * W, py = c.y * H;
-        // the robot itself is always there
-        ctx.fillStyle = STEEL;
-        ctx.globalAlpha = .85;
-        ctx.beginPath();
-        ctx.roundRect ? ctx.roundRect(px - 7, py - 5, 14, 10, 2) : ctx.rect(px - 7, py - 5, 14, 10);
-        ctx.fill();
-        ctx.globalAlpha = 1;
+        var on = seen(c);
 
-        if (!live) return;
-        var d = Math.hypot(px - mx, py - my);
-        if (d > R) return;
-        var k = 1 - d / R;                      // stronger toward the middle of the lens
-        ctx.globalAlpha = Math.min(1, k * 1.6);
-        ctx.strokeStyle = ACCENT; ctx.lineWidth = 1.2;
-        ctx.strokeRect(px - 15, py - 13, 30, 26);
-        ctx.beginPath(); ctx.moveTo(px + 15, py - 13); ctx.lineTo(px + 27, py - 22); ctx.stroke();
-        ctx.fillStyle = ACCENT;
-        ctx.font = '600 9px ui-monospace, monospace';
-        ctx.fillText(c.tag, px + 30, py - 22);
-        ctx.fillStyle = '#cfd4db';
-        ctx.font = '9px ui-monospace, monospace';
-        ctx.fillText(c.act, px + 30, py - 11);
-        ctx.globalAlpha = 1;
+        if (!c.v) {
+          // a real device: always there, whether or not you are looking through AR
+          ctx.fillStyle = STEEL; ctx.globalAlpha = .9;
+          ctx.beginPath();
+          ctx.roundRect ? ctx.roundRect(px - 8, py - 6, 16, 12, 2) : ctx.rect(px - 8, py - 6, 16, 12);
+          ctx.fill(); ctx.globalAlpha = 1;
+          ctx.fillStyle = on ? '#cfd4db' : '#5c626b';
+          ctx.font = '8.5px ui-monospace, monospace';
+          ctx.fillText(c.t.toUpperCase(), px + 12, py + 3);
+        } else if (on) {
+          // a virtual character: exists only under the lens
+          var k = 1 - Math.hypot(px - mx, py - my) / R;
+          ctx.globalAlpha = Math.min(1, k * 1.7);
+          ctx.strokeStyle = ACCENT; ctx.lineWidth = 1.2;
+          ctx.setLineDash([3, 3]);
+          ctx.strokeRect(px - 9, py - 11, 18, 22);
+          ctx.setLineDash([]);
+          ctx.fillStyle = ACCENT;
+          ctx.font = '600 8.5px ui-monospace, monospace';
+          ctx.fillText(c.t.toUpperCase(), px + 14, py - 2);
+          ctx.fillStyle = '#cfd4db';
+          ctx.font = '8.5px ui-monospace, monospace';
+          ctx.fillText(c.a, px + 14, py + 8);
+          ctx.globalAlpha = 1;
+        }
       });
 
       if (live) {

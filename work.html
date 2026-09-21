@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work &mdash; Gaurab Khadka</title>
-<meta name="description" content="Four systems by Gaurab Khadka: end user authoring for robot teams, the motion study, the AR authoring tool, and an AI assisted pipeline for educational video. Each one is playable on the page.">
+<meta name="description" content="Four systems by Gaurab Khadka: end user authoring for robot teams, the motion study, EventMakAR, and an AI assisted pipeline for educational video. Each one is playable on the page.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,7 +55,7 @@
   <div class="wrap">
     <a href="#thesis"><i></i>01 Multi-robot authoring</a>
     <a href="#motion-study"><i></i>02 Motion study</a>
-    <a href="#ar-authoring"><i></i>03 AR authoring</a>
+    <a href="#eventmakar"><i></i>03 EventMakAR</a>
     <a href="#video"><i></i>04 Nursing video</a>
   </div>
 </nav>
@@ -191,16 +191,17 @@
   </section>
 
   <!-- ============================ 03 ============================ -->
-  <section class="proj" id="ar-authoring">
+  <section class="proj" id="eventmakar">
     <div class="proj-head">
       <div>
         <p class="annot">Project 03 &middot; deployed at a public workshop</p>
-        <h2>Human-Centered Robot Programming</h2>
-        <p class="proj-q">Can people who do not program author AR stories that drive physical robots?</p>
+        <h2>EventMakAR</h2>
+        <p class="proj-q">Can people who do not program author stories that cross between virtual characters and physical devices?</p>
       </div>
       <div class="proj-meta">
         <div><div class="k">Role</div>Designed and built the authoring tool; ran it live with participants</div>
-        <div><div class="k">Code</div><a href="https://github.com/ESulululu10/the AR authoring tool" rel="noopener">github.com/ESulululu10/the AR authoring tool</a></div>
+        <div><div class="k">Cast</div>4 virtual characters &middot; 8 physical devices</div>
+        <div><div class="k">Code</div><a href="https://github.com/ESulululu10/EventMakAR" rel="noopener">github.com/ESulululu10/EventMakAR</a></div>
       </div>
     </div>
 
@@ -210,7 +211,7 @@
         <span class="instr-label">Move across the arena to look through the AR layer</span>
       </div>
     </div>
-    <p class="instr-note">Bare robots on a floor until something registers the story onto them. That registration is what the tool authors.</p>
+    <p class="instr-note">The devices are in the room. The characters are not &mdash; they exist only through AR. Authoring a story means sequencing events that cross between the two.</p>
 
     <div class="proj-body">
       <div>
@@ -224,9 +225,18 @@
       <div>
         <h3>How it works</h3>
         <p>
-          A standalone single file browser app &mdash; no install, no build step, no server, because it had to survive
-          a laptop in a workshop room. Five robot characters, each with its own action list. The export is the exact
-          structure the existing runtime parser reads, so authored stories run without anyone touching the project.
+          Four virtual characters &mdash; Barbarian, Skeleton, Spider, Woman &mdash; and eight physical devices: Car,
+          House, Garage, Helicopter, Catapult, Train, Truck, Airplane. Characters take actions like Walk, Run, Attack,
+          Dance; devices take Forward, Spin, Open, Close. The author sequences those into a story.
+        </p>
+      </div>
+      <div>
+        <h3>The interesting part</h3>
+        <p>
+          <strong>Every event crosses, or does not cross, between the two worlds.</strong> A physical device can
+          trigger a virtual character, a character can trigger a device, or either can trigger its own kind &mdash;
+          four event types the tool works out from what the author picked. It exports the exact JSON the existing
+          Unity parser reads, so authored stories run without anyone touching the project.
         </p>
       </div>
       <div>
