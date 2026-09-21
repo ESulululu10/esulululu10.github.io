@@ -575,9 +575,14 @@
 .live-launch[disabled] { opacity: .6; cursor: default; }
 
 .live-host {
-  display: none; background: #fff; max-height: 640px; overflow-y: auto;
-  border-radius: 3px; padding: 4px;
+  display: none; background: #fff;
+  border-radius: 3px; padding: 6px;
 }
+/* the component caps itself at 520px, which makes a tall narrow column
+   inside a wide frame. Let it use the panel so it stands at its own
+   height instead of scrolling inside a box. */
+.live-host > div { max-width: 100% !important; }
+@media (min-width: 760px) { .live-host > div { padding-left: 4%; padding-right: 4%; } }
 .live.is-on .live-host { display: block; }
 .live.is-on .live-shot, .live.is-on .live-launch { display: none; }
 .live-host .step-section { margin: 0 0 14px; }
