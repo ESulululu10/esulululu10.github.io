@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work &mdash; Gaurab Khadka</title>
+<meta name="description" content="Four systems by Gaurab Khadka: end user authoring for robot teams, ExpressBot, EventMakAR, and an AI assisted pipeline for educational video. Each one is playable on the page.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314407f'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='33' fill='white' text-anchor='middle'%3EGK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="art-direction.css">
+<link rel="stylesheet" href="instruments.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="index.html">Gaurab Khadka <span>Human Robot Interaction</span></a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="index.html#publications" class="hide-xs">Publications</a>
+      <a href="engineering.html" class="hide-sm">Technical</a>
+      <a href="cv.html">CV</a>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch between light and dark theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"></path>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<div class="wrap">
+  <div class="page-head">
+    <a class="back" href="index.html">Home</a>
+    <h1>Work</h1>
+    <p class="sub">
+      Four systems. Each one is playable here rather than described at you &mdash; the interaction on each is the
+      idea the project is actually about.
+    </p>
+  </div>
+</div>
+
+<nav class="work-nav" aria-label="Projects">
+  <div class="wrap">
+    <a href="#thesis"><i></i>01 Authoring motion</a>
+    <a href="#expressbot"><i></i>02 ExpressBot</a>
+    <a href="#eventmakar"><i></i>03 EventMakAR</a>
+    <a href="#video"><i></i>04 Nursing video</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============================ 01 ============================ -->
+  <section class="proj" id="thesis">
+    <div class="proj-head">
+      <div>
+        <p class="annot">Project 01 &middot; M.S. thesis &middot; HRI 2027, under review</p>
+        <h2>Authoring motion for robot teams</h2>
+        <p class="proj-q">How can someone with no robotics background author expressive motion for a robot team, and reuse it when the scenario changes?</p>
+      </div>
+      <div class="proj-meta">
+        <div><div class="k">Role</div>Built end to end: robots, localization, control server, both authoring interfaces, planning layer</div>
+        <div><div class="k">Evaluation</div>Counterbalanced within subjects study</div>
+      </div>
+    </div>
+
+    <div class="instr" data-plandemo>
+      <div class="instr-stage"><canvas role="img" aria-label="Three robots waiting with a proposed plan drawn in front of them. Approving the plan makes them execute it; rejecting it generates a different one."></canvas></div>
+      <div class="instr-bar">
+        <span class="demo-status instr-label" data-plan-status><i></i> plan proposed &middot; awaiting your review</span>
+        <button class="demo-btn" type="button" data-plan-reject>Reject &amp; regenerate</button>
+        <button class="demo-btn is-primary" type="button" data-plan-approve>Approve &amp; run</button>
+      </div>
+    </div>
+    <p class="instr-note">The stance the whole system is built on: the robots do not move until a person approves the plan.</p>
+
+    <div class="callout">
+      <p>
+        Described in general terms while the paper is under review. The system name, the architecture and results
+        figures, and video of the fleet are held back until the review process allows them. I am glad to send figures
+        and a demo to faculty who ask &mdash; <a href="mailto:gaurabk@umich.edu">email me</a>.
+      </p>
+    </div>
+
+    <div class="proj-body">
+      <div>
+        <h3>The problem</h3>
+        <p>
+          Expressive robot motion works: a robot that moves the right way can tell a bystander what it is doing with
+          no screen and no voice. But those behaviors were hand engineered for one scenario. Change the task and a
+          researcher has to author the motion again &mdash; a bottleneck no end user can get past.
+        </p>
+      </div>
+      <div>
+        <h3>What I built</h3>
+        <p>
+          <strong>Two ways to author a motion</strong>, neither assuming a robotics background: sketching the path, or
+          demonstrating it physically. A <strong>planning stage</strong> turns a plain English scenario into per robot
+          assignments drawn from the user's own library, refusing and regenerating output that does not hold up. And
+          <strong>the fleet and its tracking</strong> &mdash; the first localization approach was not accurate enough
+          to tell whether a robot had performed the authored motion, so I replaced it.
+        </p>
+      </div>
+      <div>
+        <h3>The study</h3>
+        <p>
+          A counterbalanced within subjects study comparing the two authoring routes, combining think aloud during
+          authoring with workload and usability measures afterwards and interviews at the end, so what people said
+          while authoring can be read against what they reported once they were done.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 02 ============================ -->
+  <section class="proj" id="expressbot">
+    <div class="proj-head">
+      <div>
+        <p class="annot">Project 02 &middot; formative study &middot; N = 11</p>
+        <h2>ExpressBot</h2>
+        <p class="proj-q">Can non experts tell what a robot is doing from its motion alone?</p>
+      </div>
+      <div class="proj-meta">
+        <div><div class="k">System</div>Three robots at about $30 each, seven motion primitives, camera based ArUco tracking</div>
+        <div><div class="k">Result</div>Motion alone carried the state, SUS around 70</div>
+      </div>
+    </div>
+
+    <div class="instr" data-prims>
+      <div class="instr-stage"><canvas role="img" aria-label="A robot tracing the selected motion primitive inside a small arena."></canvas></div>
+      <div class="instr-bar">
+        <span class="instr-label">Pick a state</span>
+        <div class="prims" style="margin:0">
+          <button class="prim-btn" type="button" data-prim="Searching" aria-pressed="true">Searching</button>
+          <button class="prim-btn" type="button" data-prim="Delivering" aria-pressed="false">Delivering</button>
+          <button class="prim-btn" type="button" data-prim="Waking" aria-pressed="false">Waking</button>
+          <button class="prim-btn" type="button" data-prim="Urgent" aria-pressed="false">Urgent</button>
+          <button class="prim-btn" type="button" data-prim="Returning" aria-pressed="false">Returning</button>
+          <button class="prim-btn" type="button" data-prim="Error" aria-pressed="false">Error</button>
+          <button class="prim-btn" type="button" data-prim="Idle" aria-pressed="false">Idle</button>
+        </div>
+      </div>
+    </div>
+    <p class="instr-note" data-prim-note>Each primitive is a movement pattern meant to be read at a glance rather than decoded.</p>
+
+    <figure class="diagram" style="margin:0 0 1.6rem">
+      <div class="frame plate" style="border-radius:3px">
+        <img src="media/expressbot-figure.png" width="1600" height="344" loading="lazy"
+             alt="Left: the seven motion primitives drawn as colored path diagrams. Right: three photographs of the ExpressBot robots.">
+      </div>
+      <figcaption>The seven primitives, and the fleet that performed them.</figcaption>
+    </figure>
+
+    <div class="proj-body">
+      <div>
+        <h3>What the study found</h3>
+        <p>
+          Eleven participants watched the fleet and reported what they thought each robot was doing. Non experts could
+          read robot state from motion alone, with no screen, label or explanation.
+        </p>
+      </div>
+      <div>
+        <h3>And where it broke</h3>
+        <p>
+          <strong>Urgent</strong> and <strong>Searching</strong> were regularly confused &mdash; both fast and
+          repetitive, and the distinction I designed in was not the one people perceived. Every primitive was also
+          tuned by hand for one scenario, so none of it travelled.
+        </p>
+      </div>
+      <div>
+        <h3>Why it matters</h3>
+        <p>
+          If a designer hand authoring behaviors can still pick two that people confuse, the fix is not a better
+          vocabulary. It is letting the people who know the task author the motions themselves &mdash; which is what
+          <a href="#thesis">the thesis</a> does.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 03 ============================ -->
+  <section class="proj" id="eventmakar">
+    <div class="proj-head">
+      <div>
+        <p class="annot">Project 03 &middot; deployed at a public workshop</p>
+        <h2>EventMakAR</h2>
+        <p class="proj-q">Can people who do not program author AR stories that drive physical robots?</p>
+      </div>
+      <div class="proj-meta">
+        <div><div class="k">Role</div>Designed and built the authoring tool; ran it live with participants</div>
+        <div><div class="k">Code</div><a href="https://github.com/ESulululu10/EventMakAR" rel="noopener">github.com/ESulululu10/EventMakAR</a></div>
+      </div>
+    </div>
+
+    <div class="instr" data-lens>
+      <div class="instr-stage"><canvas role="img" aria-label="An arena with five robots. Moving a lens across it reveals the augmented reality overlay attached to each one: its name and the action it performs."></canvas></div>
+      <div class="instr-bar">
+        <span class="instr-label">Move across the arena to look through the AR layer</span>
+      </div>
+    </div>
+    <p class="instr-note">Bare robots on a floor until something registers the story onto them. That registration is what the tool authors.</p>
+
+    <div class="proj-body">
+      <div>
+        <h3>The problem</h3>
+        <p>
+          An AR experience driven by real robots normally has a programmer in the loop: someone has to describe, in
+          code, which character does what and when. That puts the story decisions with whoever can edit the project
+          rather than whoever has the idea.
+        </p>
+      </div>
+      <div>
+        <h3>How it works</h3>
+        <p>
+          A standalone single file browser app &mdash; no install, no build step, no server, because it had to survive
+          a laptop in a workshop room. Five robot characters, each with its own action list. The export is the exact
+          structure the existing runtime parser reads, so authored stories run without anyone touching the project.
+        </p>
+      </div>
+      <div>
+        <h3>What this is and is not</h3>
+        <p>
+          A deployment, not a study: I collected no measures at the workshop. Its value is evidence that the authoring
+          model survives contact with real users, and that I ship systems other people use.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ 04 ============================ -->
+  <section class="proj" id="video">
+    <div class="proj-head">
+      <div>
+        <p class="annot">Project 04 &middot; manuscript in preparation</p>
+        <h2>Social web inspired video</h2>
+        <p class="proj-q">Can the short video format students already watch carry course competencies?</p>
+      </div>
+      <div class="proj-meta">
+        <div><div class="k">Where</div>School of Nursing, University of Michigan Flint &middot; PI: Dr.&nbsp;Beverly Dabney</div>
+        <div><div class="k">Role</div>Designed and built the production pipeline</div>
+      </div>
+    </div>
+
+    <div class="instr" data-scrub>
+      <div class="scrub">
+        <div class="scrub-track">
+          <button class="sframe" type="button" data-caption="A language model drafts the script, written to the competency the video has to serve."><span class="big">01</span>Script</button>
+          <button class="sframe" type="button" data-caption="Image prompting produces the visuals the script calls for."><span class="big">02</span>Visuals</button>
+          <button class="sframe" type="button" data-caption="Assembly into a finished short video with a presenter."><span class="big">03</span>Assemble</button>
+          <button class="sframe" type="button" data-caption="Delivery through the course LMS, so it lands where students already are."><span class="big">04</span>Deliver</button>
+        </div>
+        <div class="scrub-rail"><span class="scrub-handle"></span></div>
+        <label class="skip" for="scrubRange">Move through the production pipeline</label>
+        <input id="scrubRange" type="range" min="0" max="3" step="1" value="0">
+        <p class="scrub-caption"></p>
+      </div>
+    </div>
+    <p class="instr-note">The point of the pipeline is throughput: a route an instructor can actually run is what makes covering a whole competency set possible.</p>
+
+    <div class="proj-body">
+      <div>
+        <h3>The premise</h3>
+        <p>
+          Nursing programs have to show students attain the competencies in the <strong>AACN Essentials</strong>. The
+          material carrying them is usually built for a lecture slot: long, static, in a format students do not
+          otherwise choose to watch.
+        </p>
+      </div>
+      <div>
+        <h3>The Evidence Elevator</h3>
+        <p>
+          A design contribution rather than an engineering one: a visual device for teaching the hierarchy of
+          evidence, moving from expert opinion at the bottom up to meta analysis at the top. One spatial image to hang
+          the hierarchy on, hard to convey in a bulleted list and easy in fifteen seconds of video.
+        </p>
+      </div>
+      <div>
+        <h3>Why it sits beside the robots</h3>
+        <p>
+          The same question in another medium: a person with domain expertise but no production background needs to
+          express something, a model does the composition, and they keep control of the content. There the output is
+          robot motion; here it is instructional video.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <span>&copy; 2026 Gaurab Khadka</span>
+    <span><a href="index.html">Home</a> &middot; <a href="mailto:gaurabk@umich.edu">gaurabk@umich.edu</a></span>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+<script src="art-direction.js" defer></script>
+<script src="work.js" defer></script>
+<script>
+  // mark the project you are reading in the sticky project nav
+  document.addEventListener('DOMContentLoaded', function () {
+    var links = [].slice.call(document.querySelectorAll('.work-nav a'));
+    var secs = links.map(function (a) { return document.querySelector(a.getAttribute('href')); });
+    function onScroll() {
+      var y = window.scrollY + window.innerHeight * 0.32, at = 0;
+      secs.forEach(function (s, i) { if (s && s.offsetTop <= y) at = i; });
+      links.forEach(function (a, i) { a.classList.toggle('on', i === at); });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  });
+</script>
+</body>
+</html>
